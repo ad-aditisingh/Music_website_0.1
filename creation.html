@@ -72,14 +72,18 @@
       text-transform: uppercase;
     }
 
-    section.container {
-      padding-top: 60px;   /* space ABOVE each section */
-      padding-bottom: 35px; /* space BELOW each section */
-    }
-    /*  Added spacing fix between h2 and cards */
-    section.container h2 { 
-      margin-bottom: 35px;
-    }
+     section.container {
+      padding-top: 60px;     /* good space above each section */
+      padding-bottom: 35px;  /* reduced space below cards */
+}
+
+     section.container:first-of-type {
+      margin-top: 40px;      /* clean space above first section */
+}
+
+     section.container h2 {
+      margin-bottom: 35px;   /* balance between heading and cards */
+}
 
     /* Cards */
     .tool-card {
