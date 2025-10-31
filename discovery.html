@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music Discovery | UmaaG</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* ======== GLOBAL ======== */
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #0A0A0F;
+      color: #E6EDF3;
+    }
+
+    h1 {
+      font-family: 'Poppins', cursive;
+      color: #fcfafdf9;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    h2,
+    h3,
+    .navbar-brand {
+      font-family: 'Poppins', cursive;
+      color: #9966CC;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    a {
+      color: #9966CC;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #7C4DFF;
+    }
+
+    /* ======== NAVBAR ======== */
+    .navbar {
+      background-color: rgba(10, 10, 15, 0.95);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 0 10px #a200ff22;
+    }
+
+    .navbar-brand {
+      color: #9966CC !important;
+      font-size: 1.5rem;
+    }
+
+    .navbar-nav .nav-link {
+      color: #E6EDF3 !important;
+      transition: color 0.3s ease;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: #9966CC !important;
+    }
+
+    /* ======== HERO ======== */
+    .hero {
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)),
+        url('assets/images/mainbg.jpg') no-repeat center center/cover;
+      color: #E6EDF3;
+      text-align: center;
+      padding: 100px 20px;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      text-shadow: 0 0 20px #5c5c99;
+    }
+    .hero .search-bar {
+      margin-top: 70px;
+    }
+
+    /* ======== DISCOVERY STYLES ======== */
+    .genre-card {
+      background-color: #121826;
+      border: 1px solid #2b1f37;
+      border-radius: 15px;
+      box-shadow: 0 0 10px #a200ff22;
+      padding: 30px;
+      text-align: center;
+      transition: 0.3s;
+      height: 100%;
+    }
+
+    .genre-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 25px #a200ff22;
+    }
+
+    .song-list {
+      display: none;
+      margin-top: 15px;
+      text-align: left;
+    }
+
+    .song-list a {
+      display: block;
+      text-decoration: none;
+      color: #9966CC;
+      padding: 5px 0;
+    }
+
+    .search-bar {
+      max-width: 600px;
+      margin: 20px auto;
+    }
+
+    /* 💜 Custom button color */
+    .btn-primary {
+      background-color: #9966CC;
+      border-color: #9966CC;
+    }
+
+    .btn-primary:hover {
+      background-color: #7a4db3;
+      border-color: #7a4db3;
+    }
+
+    /* ======== FOOTER ======== */
+    footer {
+      background-color: #121826;
+      color: #A1A1AA;
+      padding: 20px 0;
+      box-shadow: 0 -2px 10px #00C2FF22;
+    }
+
+    footer a {
+      color: #9966CC;
+    }
+
+    footer a:hover {
+      color: #9966CC;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">UmaaG</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="career.html">Career</a></li>
+          <li class="nav-item"><a class="nav-link active" href="discovery.html">Discovery</a></li>
+          <li class="nav-item"><a class="nav-link" href="creation.html">Creation</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Discover the Sound that Resonates with You</h1>
+    <!--<p>Search and explore music by genre, mood, or style</p>-->
+    <div class="search-bar">
+      <input type="text" id="searchInput" class="form-control" placeholder="Search by genre, mood, or style...">
+    </div>
+  </section>
+
+  <!-- Genre Grid -->
+  <section class="container my-5">
+    <h2 class="text-center mb-4">Listen by Genre</h2>
+    <div class="row g-4" id="genreContainer"></div>
+
+    <!-- Listen by Mood & Featured Artists -->
+    <section class="container my-5">
+      <div class="row g-4">
+
+        <!-- Listen by Mood -->
+        <div class="col-md-6">
+          <h2 class="text-center mb-4">Listen by Mood</h2>
+          <div class="row g-4" id="moodContainer"></div>
+        </div>
+
+        <!-- Featured Artists -->
+        <div class="col-md-6">
+          <h2 class="text-center mb-4">Featured Artists</h2>
+          <div class="row g-4" id="artistContainer"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <script>
+      // Mood Data
+      const moods = [
+        { name: "Chill", songs: ["Let Her Go", "Death Bed", "Riptide", "Location"] },
+        { name: "Romantic", songs: ["Perfect", "Tum Hi Ho", "All of Me", "Raabta"] },
+        { name: "Party", songs: ["Uptown Funk", "Nashe Si Chadh Gayi", "Dance Monkey", "Taki Taki"] },
+        { name: "Focus", songs: ["Weightless", "Clair de Lune", "Ocean Eyes", "River Flows In You"] }
+      ];
+
+      // Artist Data
+      const artists = [
+        { name: "Taylor Swift", songs: ["Love Story", "Cruel Summer", "Blank Space", "Style"] },
+        { name: "Arijit Singh", songs: ["Tum Hi Ho", "Channa Mereya", "Phir Le Aaya Dil", "Raabta"] },
+        { name: "Ed Sheeran", songs: ["Perfect", "Shape of You", "Photograph", "Thinking Out Loud"] },
+        { name: "A.R. Rahman", songs: ["Kun Faya Kun", "Dil Se Re", "Vande Mataram", "Tere Bina"] }
+      ];
+
+      const moodContainer = document.getElementById('moodContainer');
+      const artistContainer = document.getElementById('artistContainer');
+
+      // Render Mood Cards
+      moods.forEach((mood, index) => {
+        const col = document.createElement('div');
+        col.classList.add('col-md-6');
+        col.innerHTML = `
+          <div class="genre-card">
+            <h5>${mood.name}</h5>
+            <button class="btn btn-primary mt-2" onclick="toggleMoodSongs(${index})">View Songs</button>
+            <div class="song-list" id="moodSongs-${index}">
+              ${mood.songs.map(song => `<a href="#" onclick="playSong('${song}')">▪️ ${song}</a>`).join('')}
+            </div>
+          </div>
+        `;
+        moodContainer.appendChild(col);
+      });
+
+      // Render Artist Cards
+      artists.forEach((artist, index) => {
+        const col = document.createElement('div');
+        col.classList.add('col-md-6');
+        col.innerHTML = `
+          <div class="genre-card">
+            <h5>${artist.name}</h5>
+            <button class="btn btn-primary mt-2" onclick="toggleArtistSongs(${index})">View Songs</button>
+            <div class="song-list" id="artistSongs-${index}">
+              ${artist.songs.map(song => `<a href="#" onclick="playSong('${song}')">▪️ ${song}</a>`).join('')}
+            </div>
+          </div>
+        `;
+        artistContainer.appendChild(col);
+      });
+
+      function toggleMoodSongs(index) {
+        const list = document.getElementById(`moodSongs-${index}`);
+        list.style.display = (list.style.display === "block") ? "none" : "block";
+      }
+
+      function toggleArtistSongs(index) {
+        const list = document.getElementById(`artistSongs-${index}`);
+        list.style.display = (list.style.display === "block") ? "none" : "block";
+      }
+    </script>
+  </section>
+
+  <script>
+    const genres = [
+      { name: "Pop", songs: ["Shape of You", "Blinding Lights", "Levitating", "Watermelon Sugar"] },
+      { name: "Rock", songs: ["Bohemian Rhapsody", "Hotel California", "Smells Like Teen Spirit", "Stairway to Heaven"] },
+      { name: "Jazz", songs: ["Take Five", "What a Wonderful World", "So What", "Blue in Green"] },
+      { name: "Hip-hop", songs: ["God's Plan", "Lose Yourself", "Sicko Mode", "HUMBLE."] },
+      { name: "EDM", songs: ["Animals", "Titanium", "Wake Me Up", "Lean On"] },
+      { name: "Classical", songs: ["Moonlight Sonata", "Canon in D", "Swan Lake"] },
+      { name: "Bollywood", songs: ["Tum Hi Ho", "Kesariya", "Tera Ban Jaunga", "Kalank Title Track"] },
+      { name: "Folk", songs: ["Kesariya Balam", "Nimbooda", "Heer", "Kaanch Hi Bans Ke"] },
+      { name: "Indie", songs: ["Cold/Mess", "Riha", "Kho Gaye Hum Kahan", "Alag Aasmaan"] },
+      { name: "Sufi", songs: ["Kun Faaya Kun", "Khwaja Mere Khwaja", "Tajdar E Haram", "Afreen Afreen"] },
+      { name: "Reggae", songs: ["One Love", "Three Little Birds", "No Woman No Cry", "Could You Be Loved"] },
+      { name: "Blues", songs: ["The Thrill Is Gone", "Sweet Home Chicago", "Hoochie Coochie Man", "Cross Road Blues"] }
+    ];
+
+    const container = document.getElementById('genreContainer');
+
+    genres.forEach((genre, index) => {
+      const col = document.createElement('div');
+      col.classList.add('col-md-3', 'col-sm-6');
+      col.innerHTML = `
+        <div class="genre-card">
+          <h4>${genre.name}</h4>
+          <button class="btn btn-primary mt-3" onclick="toggleSongs(${index})">View Songs</button>
+          <div class="song-list" id="songs-${index}">
+            ${genre.songs.map(song => `<a href="#" onclick="playSong('${song}')"> ${song}</a>`).join('')}
+          </div>
+        </div>
+      `;
+      container.appendChild(col);
+    });
+
+    function toggleSongs(index) {
+      const list = document.getElementById(`songs-${index}`);
+      list.style.display = (list.style.display === "block") ? "none" : "block";
+    }
+
+    document.getElementById('searchInput').addEventListener('input', function () {
+      const searchValue = this.value.toLowerCase();
+      const cards = container.querySelectorAll('.genre-card');
+      genres.forEach((genre, i) => {
+        cards[i].parentElement.style.display = genre.name.toLowerCase().includes(searchValue) ? 'block' : 'none';
+      });
+    });
+
+    function playSong(songName) {
+      const audioPlayer = document.getElementById("audioPlayer");
+      const formattedName = songName.replaceAll(" ", "_").toLowerCase();
+      const filePath = `assets/audio/${formattedName}.mp3`;
+
+      audioPlayer.src = filePath;
+      audioPlayer.style.display = "block";
+      audioPlayer.play().catch(err => console.error("Error playing audio:", err));
+    }
+  </script>
+
+  <!-- Audio Player -->
+  <audio id="audioPlayer" controls style="display:none; width:100%; margin-top:20px;"></audio>
+
+  <!-- Footer -->
+  <footer class="text-center">
+    <div class="container">
+      <p>&copy; 2025 UmaaG. All Rights Reserved.</p>
+      <p>Follow us on
+        <a href="#">Facebook</a> |
+        <a href="#">Instagram</a> |
+        <a href="#">Twitter</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
+
