@@ -20,6 +20,7 @@
       font-family: 'Poppins', sans-serif;
       background-color: #0A0A0F;
       color: #E6EDF3;
+      overflow-x: hidden; /* prevent horizontal scroll */
     }
 
     h1 {
@@ -82,6 +83,7 @@
       margin-bottom: 20px;
       text-shadow: 0 0 20px #5c5c99;
     }
+
     .hero .search-bar {
       margin-top: 70px;
     }
@@ -147,10 +149,49 @@
     footer a:hover {
       color: #9966CC;
     }
+
+    /* ======== NEON SCROLLING BACKGROUND ======== */
+    #neon-bg {
+      position: fixed;
+      inset: 0;                 /* top:0; right:0; bottom:0; left:0 */
+      z-index: -1;              /* behind everything */
+      pointer-events: none;     /* never block clicks */
+      background:
+        radial-gradient(circle at 10% 20%, rgba(0, 255, 255, 0.35), transparent 55%),
+        radial-gradient(circle at 80% 10%, rgba(255, 0, 200, 0.4), transparent 55%),
+        radial-gradient(circle at 20% 80%, rgba(0, 255, 120, 0.4), transparent 55%),
+        radial-gradient(circle at 90% 80%, rgba(255, 255, 0, 0.35), transparent 55%),
+        #050509;
+      filter: blur(2px);
+      transform: translate3d(0, 0, 0);
+      transition: transform 0.08s linear;
+    }
+
+    @keyframes floatNeon {
+      0% {
+        transform: translate3d(0, 0, 0);
+      }
+
+      50% {
+        transform: translate3d(-10px, 5px, 0);
+      }
+
+      100% {
+        transform: translate3d(0, 0, 0);
+      }
+    }
+
+    /* Optional gentle floating even when not scrolling */
+    #neon-bg.neon-float {
+      animation: floatNeon 18s ease-in-out infinite alternate;
+    }
   </style>
 </head>
 
 <body>
+
+  <!-- 🌈 Neon background layer -->
+  <div id="neon-bg" class="neon-float"></div>
 
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
@@ -174,9 +215,11 @@
   <section class="hero">
     <h1>Explore the Music Within</h1>
     <p>Let every note guide you closer to your passion for music.</p>
-    <!--<div class="search-bar">
+    <!--
+    <div class="search-bar">
       <input type="text" id="searchInput" class="form-control" placeholder="Search by genre, mood, or style...">
-    </div>-->
+    </div>
+    -->
   </section>
 
   <!-- Genre Grid -->
@@ -278,7 +321,7 @@
       { name: "Bollywood", songs: ["Tum Hi Ho", "Kesariya", "Tera Ban Jaunga", "Kalank Title Track"] },
       { name: "Folk", songs: ["Kesariya Balam", "Nimbooda", "Heer", "Kaanch Hi Bans Ke"] },
       { name: "Indie", songs: ["Cold/Mess", "Riha", "Kho Gaye Hum Kahan", "Alag Aasmaan"] },
-      { name: "Sufi", songs: ["Kun Faaya Kun", "Khwaja Mere Khwaja", "Tajdar E Haram", "Afreen Afreen"] },
+      { name: "Sufi", songs: ["Kun Faaya Kun", "Khwaja Mere Khaja", "Tajdar E Haram", "Afreen Afreen"] },
       { name: "Reggae", songs: ["One Love", "Three Little Birds", "No Woman No Cry", "Could You Be Loved"] },
       { name: "Blues", songs: ["The Thrill Is Gone", "Sweet Home Chicago", "Hoochie Coochie Man", "Cross Road Blues"] }
     ];
@@ -305,13 +348,18 @@
       list.style.display = (list.style.display === "block") ? "none" : "block";
     }
 
-    document.getElementById('searchInput').addEventListener('input', function () {
-      const searchValue = this.value.toLowerCase();
-      const cards = container.querySelectorAll('.genre-card');
-      genres.forEach((genre, i) => {
-        cards[i].parentElement.style.display = genre.name.toLowerCase().includes(searchValue) ? 'block' : 'none';
+    // Safe searchInput handling (since it is commented out in the HTML)
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+      searchInput.addEventListener('input', function () {
+        const searchValue = this.value.toLowerCase();
+        const cards = container.querySelectorAll('.genre-card');
+        genres.forEach((genre, i) => {
+          cards[i].parentElement.style.display =
+            genre.name.toLowerCase().includes(searchValue) ? 'block' : 'none';
+        });
       });
-    });
+    }
 
     function playSong(songName) {
       const audioPlayer = document.getElementById("audioPlayer");
@@ -340,7 +388,23 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Neon parallax scroll script -->
+  <script>
+    (function () {
+      const neonBg = document.getElementById('neon-bg');
+
+      window.addEventListener('scroll', () => {
+        const scrollY = window.scrollY || window.pageYOffset;
+
+        // tweak these values to change how much it moves
+        const offsetX = scrollY * 0.02;
+        const offsetY = scrollY * 0.05;
+
+        neonBg.style.transform = `translate3d(${-offsetX}px, ${-offsetY}px, 0)`;
+      });
+    })();
+  </script>
 </body>
 
 </html>
-
