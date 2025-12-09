@@ -87,6 +87,7 @@
             align-items: center;
             text-align: center;
             overflow: hidden;
+            padding: 2rem 0;
         }
 
         /* soft overlay gradient (keeps text readable) */
@@ -94,7 +95,7 @@
             content: "";
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, rgba(4,4,8,0.10), rgba(4,4,8,0.45));
+            background: linear-gradient(180deg, rgba(4,4,8,0.08), rgba(4,4,8,0.45));
             z-index: 0;
             pointer-events: none;
         }
@@ -111,7 +112,7 @@
         .hero .sub {
             margin-top: .5rem;
             color: #dfe9ff;
-            opacity: 0.9;
+            opacity: 0.95;
             position: relative;
             z-index: 2;
         }
@@ -125,25 +126,29 @@
             align-items: center;
             justify-content: center;
             pointer-events: none;    /* allow clicks through */
-            opacity: 0.25;           /* global opacity - tweak for intensity */
-            filter: blur(3px) saturate(1.4);
-            background: radial-gradient(1200px 600px at 10% 10%, rgba(153,102,204,0.06), transparent 10%),
-                        radial-gradient(800px 400px at 90% 90%, rgba(124,77,255,0.06), transparent 10%);
+            opacity: 0.35;           /* increased visibility */
+            filter: blur(2px) saturate(1.6);
+            background: radial-gradient(1200px 600px at 10% 10%, rgba(153,102,204,0.08), transparent 10%),
+                        radial-gradient(800px 400px at 90% 90%, rgba(124,77,255,0.08), transparent 10%);
         }
 
         /* container that constrains the equalizer shape */
         .bars {
             display: flex;
-            gap: 6px;
+            gap: 4px;
             align-items: end;
-            height: 60vh;        /* visible height of bars (change to taste) */
-            width: min(1100px, 95%);
-            justify-content: center;
+            height: 60vh;                /* visible height of bars (change to taste) */
+            width: 100%;                 /* full width */
+            max-width: 100%;
+            padding: 0 4%;               /* side padding so bars don't touch edges */
+            justify-content: space-between; /* spread bars across width */
+            box-sizing: border-box;
         }
 
         /* a single bar */
         .bar {
-            width: clamp(4px, 0.6vw, 12px);
+            /* narrower default so many bars fit horizontally; will be randomized via JS */
+            width: clamp(3px, 0.6vw, 10px);
             opacity: 1;
             height: 12%;
             background: linear-gradient(180deg, var(--accent1), var(--accent2));
@@ -151,23 +156,11 @@
             transform-origin: bottom;
             box-shadow: 0 0 18px rgba(153,102,204,0.65), 0 0 6px rgba(124,77,255,0.25) inset;
             animation: equalize 1200ms ease-in-out infinite;
+            will-change: height, transform, opacity;
+            flex: 0 0 auto; /* don't stretch */
         }
 
-        /* create natural-looking variation using nth-child */
-        /* group-based variation repeating every 4 bars */
-.bar:nth-child(4n+1) { animation-duration: 1100ms; animation-delay: -200ms; }
-.bar:nth-child(4n+2) { animation-duration: 1250ms; animation-delay: -450ms; }
-.bar:nth-child(4n+3) { animation-duration: 1000ms; animation-delay: -150ms; }
-.bar:nth-child(4n)   { animation-duration: 900ms;  animation-delay: -800ms; }
-
-/* a second layer of grouped variation to avoid strict repeating look */
-.bar:nth-child(6n+1) { animation-duration: 1400ms; animation-delay: -300ms; }
-.bar:nth-child(6n+2) { animation-duration: 1150ms; animation-delay: -50ms;  }
-.bar:nth-child(6n+3) { animation-duration: 1320ms; animation-delay: -240ms; }
-.bar:nth-child(6n+4) { animation-duration: 1040ms; animation-delay: -720ms; }
-.bar:nth-child(6n+5) { animation-duration: 980ms;  animation-delay: -540ms; }
-.bar:nth-child(6n)   { animation-duration: 1300ms; animation-delay: -110ms; }
-
+        /* remove nth-child pattern (we will randomize via JS) */
 
         /* keyframes for height changes (simple pulse) */
         @keyframes equalize {
@@ -272,11 +265,10 @@
 
         /* Responsive tweaks */
         @media (max-width: 768px){
-            .bars { height: 40vh; gap:4px; }
+            .bars { height: 40vh; gap:4px; padding: 0 6%; }
             .hero h1 { font-size: 2rem; }
-            .equalizer-bg { opacity: 0.16; filter: blur(8px); }
+            .equalizer-bg { opacity: 0.28; filter: blur(4px); }
         }
-
     </style>
 </head>
 <body>
@@ -304,7 +296,10 @@
     <!-- Equalizer background -->
     <div class="equalizer-bg" aria-hidden="true">
         <div class="bars" role="img" aria-label="animated equalizer background">
-            <!-- 24 bars for a nice spectrum -->
+            <!-- many bars — they will be randomized via JS -->
+            <!-- keep as many as you like; they will spread across width -->
+            <!-- I left the same large count you provided; you can reduce if desired -->
+            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
             <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
             <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
             <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
@@ -404,5 +399,28 @@
 
 <!-- Bootstrap JS Bundle -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Randomize bars so they all move differently -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const bars = document.querySelectorAll(".bars .bar");
+    bars.forEach((bar) => {
+        // random duration between 650ms and 1800ms
+        const duration = Math.floor(650 + Math.random() * 1150);
+        // negative delay so bar starts mid-animation
+        const delay = -Math.floor(Math.random() * duration);
+        // slight random horizontal scale so bars are not identical
+        const scaleX = (0.85 + Math.random() * 0.45).toFixed(2);
+        // slight random opacity
+        const opacity = (0.7 + Math.random() * 0.35).toFixed(2);
+
+        bar.style.animationDuration = duration + "ms";
+        bar.style.animationDelay = delay + "ms";
+        bar.style.transform = `scaleX(${scaleX})`;
+        bar.style.opacity = opacity;
+    });
+});
+</script>
+
 </body>
 </html>
