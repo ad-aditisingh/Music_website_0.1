@@ -154,22 +154,20 @@
         }
 
         /* create natural-looking variation using nth-child */
-        .bar:nth-child(1)  { animation-duration: 1100ms; animation-delay: -200ms; }
-        .bar:nth-child(2)  { animation-duration: 1250ms; animation-delay: -450ms; }
-        .bar:nth-child(3)  { animation-duration: 1000ms; animation-delay: -150ms; }
-        .bar:nth-child(4)  { animation-duration: 900ms;  animation-delay: -800ms; }
-        .bar:nth-child(5)  { animation-duration: 1400ms; animation-delay: -300ms; }
-        .bar:nth-child(6)  { animation-duration: 1150ms; animation-delay: -50ms;  }
-        .bar:nth-child(7)  { animation-duration: 980ms;  animation-delay: -620ms; }
-        .bar:nth-child(8)  { animation-duration: 1200ms; animation-delay: -420ms; }
-        .bar:nth-child(9)  { animation-duration: 1320ms; animation-delay: -240ms; }
-        .bar:nth-child(10) { animation-duration: 1040ms; animation-delay: -720ms; }
-        .bar:nth-child(11) { animation-duration: 980ms;  animation-delay: -540ms; }
-        .bar:nth-child(12) { animation-duration: 1300ms; animation-delay: -110ms; }
-        .bar:nth-child(13) { animation-duration: 980ms;  animation-delay: -350ms; }
-        .bar:nth-child(14) { animation-duration: 1150ms; animation-delay: -210ms; }
-        .bar:nth-child(15) { animation-duration: 900ms;  animation-delay: -480ms; }
-        .bar:nth-child(16) { animation-duration: 1240ms; animation-delay: -630ms; }
+        /* group-based variation repeating every 4 bars */
+.bar:nth-child(4n+1) { animation-duration: 1100ms; animation-delay: -200ms; }
+.bar:nth-child(4n+2) { animation-duration: 1250ms; animation-delay: -450ms; }
+.bar:nth-child(4n+3) { animation-duration: 1000ms; animation-delay: -150ms; }
+.bar:nth-child(4n)   { animation-duration: 900ms;  animation-delay: -800ms; }
+
+/* a second layer of grouped variation to avoid strict repeating look */
+.bar:nth-child(6n+1) { animation-duration: 1400ms; animation-delay: -300ms; }
+.bar:nth-child(6n+2) { animation-duration: 1150ms; animation-delay: -50ms;  }
+.bar:nth-child(6n+3) { animation-duration: 1320ms; animation-delay: -240ms; }
+.bar:nth-child(6n+4) { animation-duration: 1040ms; animation-delay: -720ms; }
+.bar:nth-child(6n+5) { animation-duration: 980ms;  animation-delay: -540ms; }
+.bar:nth-child(6n)   { animation-duration: 1300ms; animation-delay: -110ms; }
+
 
         /* keyframes for height changes (simple pulse) */
         @keyframes equalize {
