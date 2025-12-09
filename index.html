@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" href="style.css">    
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>UmaaG</title>
 
     <!-- Bootstrap CSS -->
@@ -12,13 +11,25 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
-    <!-- Custom CSS -->
+    <!-- Custom CSS (including neon equalizer background) -->
     <style>
         /* ======== GLOBAL ======== */
+        :root{
+            --accent1: #9966CC;
+            --accent2: #7C4DFF;
+            --bg: #0A0A0F;
+            --card-bg: #121826;
+            --muted: #A1A1AA;
+        }
+
+        html,body{height:100%}
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #0A0A0F;
+            background-color: var(--bg);
             color: #E6EDF3;
+            margin:0;
+            -webkit-font-smoothing:antialiased;
+            -moz-osx-font-smoothing:grayscale;
         }
 
         h1{
@@ -30,18 +41,18 @@
 
         h2, h3, .navbar-brand {
             font-family: 'Poppins', cursive;
-            color: #9966CC;
+            color: var(--accent1);
             letter-spacing: 1px;
             text-transform: uppercase;
         }
 
         a {
-            color:#9966CC ;
+            color: var(--accent1);
             text-decoration: none;
         }
 
         a:hover {
-            color: #7C4DFF;
+            color: var(--accent2);
         }
 
         /* ======== NAVBAR ======== */
@@ -52,7 +63,7 @@
         }
 
         .navbar-brand {
-            color:#9966CC !important;
+            color:var(--accent1) !important;
             font-size: 1.5rem;
         }
 
@@ -62,13 +73,12 @@
         }
 
         .navbar-nav .nav-link:hover {
-            color:#9966CC  !important;
+            color:var(--accent1)  !important;
         }
 
-        /* ======== HERO SECTION ======== */
+        /* ======== HERO + EQUALIZER BG ======== */
         .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)),
-                        url('assets/images/mainbg.jpg') no-repeat center center/cover;
+            position: relative;               /* container for absolute background */
             height: 90vh;
             color: #E6EDF3;
             display: flex;
@@ -76,17 +86,101 @@
             justify-content: center;
             align-items: center;
             text-align: center;
+            overflow: hidden;
+        }
+
+        /* soft overlay gradient (keeps text readable) */
+        .hero::before{
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(4,4,8,0.25), rgba(4,4,8,0.65));
+            z-index: 0;
+            pointer-events: none;
         }
 
         .hero h1 {
-            font-size: 3rem;
+            font-size: clamp(2rem, 4vw, 3.2rem);
             margin-bottom: 20px;
             text-shadow: 0 0 20px #5c5c99;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* neon subtitle */
+        .hero .sub {
+            margin-top: .5rem;
+            color: #dfe9ff;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* EQUALIZER BACKGROUND - sits behind everything */
+        .equalizer-bg {
+            position: absolute;
+            inset: 0;
+            z-index: -1;             /* behind hero content */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;    /* allow clicks through */
+            opacity: 0.12;           /* global opacity - tweak for intensity */
+            filter: blur(6px) saturate(1.1);
+            background: radial-gradient(1200px 600px at 10% 10%, rgba(153,102,204,0.06), transparent 10%),
+                        radial-gradient(800px 400px at 90% 90%, rgba(124,77,255,0.06), transparent 10%);
+        }
+
+        /* container that constrains the equalizer shape */
+        .bars {
+            display: flex;
+            gap: 6px;
+            align-items: end;
+            height: 60vh;        /* visible height of bars (change to taste) */
+            width: min(1100px, 95%);
+            justify-content: center;
+        }
+
+        /* a single bar */
+        .bar {
+            width: clamp(4px, 0.6vw, 12px);
+            height: 12%;
+            background: linear-gradient(180deg, var(--accent1), var(--accent2));
+            border-radius: 6px;
+            transform-origin: bottom;
+            box-shadow: 0 0 18px rgba(153,102,204,0.65), 0 0 6px rgba(124,77,255,0.25) inset;
+            animation: equalize 1200ms ease-in-out infinite;
+        }
+
+        /* create natural-looking variation using nth-child */
+        .bar:nth-child(1)  { animation-duration: 1100ms; animation-delay: -200ms; }
+        .bar:nth-child(2)  { animation-duration: 1250ms; animation-delay: -450ms; }
+        .bar:nth-child(3)  { animation-duration: 1000ms; animation-delay: -150ms; }
+        .bar:nth-child(4)  { animation-duration: 900ms;  animation-delay: -800ms; }
+        .bar:nth-child(5)  { animation-duration: 1400ms; animation-delay: -300ms; }
+        .bar:nth-child(6)  { animation-duration: 1150ms; animation-delay: -50ms;  }
+        .bar:nth-child(7)  { animation-duration: 980ms;  animation-delay: -620ms; }
+        .bar:nth-child(8)  { animation-duration: 1200ms; animation-delay: -420ms; }
+        .bar:nth-child(9)  { animation-duration: 1320ms; animation-delay: -240ms; }
+        .bar:nth-child(10) { animation-duration: 1040ms; animation-delay: -720ms; }
+        .bar:nth-child(11) { animation-duration: 980ms;  animation-delay: -540ms; }
+        .bar:nth-child(12) { animation-duration: 1300ms; animation-delay: -110ms; }
+        .bar:nth-child(13) { animation-duration: 980ms;  animation-delay: -350ms; }
+        .bar:nth-child(14) { animation-duration: 1150ms; animation-delay: -210ms; }
+        .bar:nth-child(15) { animation-duration: 900ms;  animation-delay: -480ms; }
+        .bar:nth-child(16) { animation-duration: 1240ms; animation-delay: -630ms; }
+
+        /* keyframes for height changes (simple pulse) */
+        @keyframes equalize {
+            0%   { height: 12%; transform: scaleY(0.2); opacity: 0.7; }
+            30%  { height: 85%; transform: scaleY(1.02);  opacity: 1; }
+            60%  { height: 28%; transform: scaleY(0.45); opacity: 0.85; }
+            100% { height: 12%; transform: scaleY(0.2); opacity: 0.7; }
         }
 
         /* ======== ABOUT SECTION ======== */
         .about-section {
-            background-color: #121826;
+            background-color: var(--card-bg);
             border-radius: 15px;
             padding: 50px;
             box-shadow: 0 0 20px #a200ff22;
@@ -94,13 +188,15 @@
 
         /* ======== FEATURE CARDS ======== */
         .feature-card {
-            background-color: #121826;
+            background-color: var(--card-bg);
             border: 1px solid #2b1f37;
             border-radius: 15px;
             transition: all 0.3s ease;
             padding: 30px;
             color: #E6EDF3;
             box-shadow: 0 0 10px #a200ff22;
+            display:flex;
+            flex-direction:column;
         }
 
         .feature-card:hover {
@@ -112,14 +208,13 @@
             width: 80px;
             height: 80px;
             margin-bottom: 15px;
-            /*filter: drop-shadow(0 0 8px )*/
         }
 
         .feature-card h5 {
-            color:#9966CC ;
+            color:var(--accent1);
         }
 
-        /* ======== BUTTONS ======== 0 0 10px , 0 0 20px*/
+        /* ======== BUTTONS ======== */
         .btn-primary, .btn-success, .btn-warning {
             border: none;
             color: #130f16;
@@ -128,53 +223,61 @@
         }
 
         .btn-outline-primary {
-            border-color:#9966CC ;
-            color:#9966CC ;
+            border-color:var(--accent1);
+            color:var(--accent1);
         }
 
         .btn-outline-primary:hover {
-            background-color:#9966CC ;
+            background-color:var(--accent1);
             color: #130f16;
             box-shadow: 0 0 10px rgba(153,102,204,0.5) ;
         }
 
         .btn-outline-success {
-            border-color:#9966CC ;
-            color: #9966CC;
+            border-color:var(--accent1);
+            color: var(--accent1);
         }
 
         .btn-outline-success:hover {
-            background-color: #9966CC ;
+            background-color: var(--accent1);
             color: #130f16;
             box-shadow: 0 0 10px rgba(153,102,204,0.5);
         }
 
         .btn-outline-warning {
-            border-color: #9966CC;
-            color: #9966CC;
+            border-color: var(--accent1);
+            color: var(--accent1);
         }
 
         .btn-outline-warning:hover {
-            background-color: #9966CC;
+            background-color: var(--accent1);
             color: #130f16;
             box-shadow: 0 0 10px rgba(153,102,204,0.5);
         }
 
         /* ======== FOOTER ======== */
         footer {
-            background-color: #121826;
-            color: #A1A1AA;
+            background-color: var(--card-bg);
+            color: var(--muted);
             padding: 20px 0;
             box-shadow: 0 -2px 10px #00C2FF22;
         }
 
         footer a {
-            color: #9966CC;
+            color: var(--accent1);
         }
 
         footer a:hover {
-            color: #9966CC;
+            color: var(--accent2);
         }
+
+        /* Responsive tweaks */
+        @media (max-width: 768px){
+            .bars { height: 40vh; gap:4px; }
+            .hero h1 { font-size: 2rem; }
+            .equalizer-bg { opacity: 0.16; filter: blur(8px); }
+        }
+
     </style>
 </head>
 <body>
@@ -199,7 +302,19 @@
 
 <!-- Hero Section -->
 <section class="hero">
+    <!-- Equalizer background -->
+    <div class="equalizer-bg" aria-hidden="true">
+        <div class="bars" role="img" aria-label="animated equalizer background">
+            <!-- 16 bars for a nice spectrum -->
+            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+        </div>
+    </div>
+
     <h1>Onto Your Musical Journey</h1>
+    <p class="sub">Feel the rhythm. Create. Discover. Grow.</p>
 </section>
 
 <!-- About Section -->
@@ -207,8 +322,8 @@
     <div class="container about-section">
         <h2>Welcome to UMAAG</h2>
         <p class="lead mt-3">
-            Step into the rhythm of creativity with UMAAG — a space made for music lovers, creators, and dreamers alike.  
-            Discover new sounds, explore how music careers take shape, and create your own unique vibe.  
+            Step into the rhythm of creativity with UMAAG — a space made for music lovers, creators, and dreamers alike.
+            Discover new sounds, explore how music careers take shape, and create your own unique vibe.
             Whether you’re here to explore or to make something original, UmaaG is where your love for music truly comes alive.
         </p>
     </div>
@@ -220,7 +335,6 @@
         <div class="row text-center">
             <div class="col-md-4 mb-4 d-flex">
                 <div class="card feature-card w-100 h-100">
-                   <!-- <img src="C:\Users\aditi\OneDrive\Desktop\Music_website_0.1\assets\images\careerhome.jpg" alt="Career Guidance" class="mx-auto">-->
                     <h5 class="mt-3">Career Guidance</h5>
                     <p>Learn about music careers and find resources to pursue your passion professionally.</p>
                     <a href="career.html" class="btn btn-outline-primary mt-auto">Learn More</a>
@@ -228,7 +342,6 @@
             </div>
             <div class="col-md-4 mb-4 d-flex">
                 <div class="card feature-card w-100 h-100">
-                   <!-- <img src="assets/images/discoverhome.jpg" alt="Music Discovery" class="mx-auto">-->
                     <h5 class="mt-3">Music Discovery</h5>
                     <p>Listen to music from different genres and discover new favorites.</p>
                     <a href="discovery.html" class="btn btn-outline-success mt-auto" target="_blank">Explore</a>
@@ -236,7 +349,6 @@
             </div>
             <div class="col-md-4 mb-4 d-flex">
                 <div class="card feature-card w-100 h-100">
-                  <!--  <img src="assets/images/createhome.jpg" alt="Music Creation" class="mx-auto">-->
                     <h5 class="mt-3">Music Creation</h5>
                     <p>Create your own music and upload your tracks for others to enjoy.</p>
                     <a href="creation.html" class="btn btn-outline-warning mt-auto" target="_blank">Create Now</a>
@@ -250,9 +362,9 @@
 <footer class="text-center">
     <div class="container">
         <p>&copy; 2025 UmaaG. All Rights Reserved.</p>
-        <p>Follow us on 
-            <a href="#">Facebook</a> | 
-            <a href="#">Instagram</a> | 
+        <p>Follow us on
+            <a href="#">Facebook</a> |
+            <a href="#">Instagram</a> |
             <a href="#">Twitter</a>
         </p>
     </div>
