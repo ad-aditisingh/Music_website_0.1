@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" href="style.css">    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UmaaG</title>
+
+    <!-- External CSS (moved inside head for valid HTML) -->
+    <link rel="stylesheet" href="style.css">
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -14,24 +16,21 @@
 
     <!-- Custom CSS -->
     <style>
-        /* (Your entire CSS remains unchanged) */
-        /* I did not modify ANY CSS from your original code */
-        
+        /* (Only necessary changes applied - rest retained) */
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        /* FIXED: allow normal scrolling and don't force 1-screen layout */
         body {
             font-family: 'Inter', 'Helvetica Neue', sans-serif;
-            overflow: hidden;
             background-color: #050505;
             color: white;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: relative;
+            min-height: 100vh;
         }
 
         .content-container {
@@ -40,6 +39,7 @@
             text-align: center;
             max-width: 600px;
             padding: 2rem;
+            margin: 120px auto; /* give some top space so navbar doesn't overlap */
         }
 
         h1 {
@@ -79,13 +79,11 @@
             box-shadow: 0 6px 25px rgba(255, 58, 130, 0.4);
         }
 
+        /* FIXED: keep background elements behind content */
         .gradient-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
+            position: fixed;
+            inset: 0;
+            z-index: -1; /* ALWAYS behind all content */
             overflow: hidden;
         }
 
@@ -134,18 +132,32 @@
         }
 
         @keyframes float-1 {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(10%, 10%) scale(1.1); }
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                transform: translate(10%, 10%) scale(1.1);
+            }
         }
 
         @keyframes float-2 {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(-10%, -5%) scale(1.15); }
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                transform: translate(-10%, -5%) scale(1.15);
+            }
         }
 
         @keyframes float-3 {
-            0% { transform: translate(0, 0) scale(1); opacity: 0.3; }
-            100% { transform: translate(-5%, 10%) scale(1.05); opacity: 0.6; }
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 0.3;
+            }
+            100% {
+                transform: translate(-5%, 10%) scale(1.05);
+                opacity: 0.6;
+            }
         }
 
         .grid-overlay {
@@ -175,8 +187,14 @@
         }
 
         @keyframes pulse {
-            0% { opacity: 0.3; transform: translate(-50%, -50%) scale(0.9); }
-            100% { opacity: 0.7; transform: translate(-50%, -50%) scale(1.1); }
+            0% {
+                opacity: 0.3;
+                transform: translate(-50%, -50%) scale(0.9);
+            }
+            100% {
+                opacity: 0.7;
+                transform: translate(-50%, -50%) scale(1.1);
+            }
         }
 
         .particles-container {
@@ -196,11 +214,166 @@
             opacity: 0;
             pointer-events: none;
         }
+        
+        /* ======== GLOBAL ======== */
+        /* keep your global styles that follow, but we already set body above */
+        h1{
+            font-family: 'Poppins', cursive;
+            color: #fcfafdf9;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
 
-        /* Your remaining CSS stays unchanged... */
+        h2, h3, .navbar-brand {
+            font-family: 'Poppins', cursive;
+            color: #9966CC;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        a {
+            color:#9966CC ;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #7C4DFF;
+        }
+
+        /* ======== NAVBAR ======== */
+        .navbar {
+            background-color: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 0 10px #a200ff22;
+        }
+
+        .navbar-brand {
+            color:#9966CC !important;
+            font-size: 1.5rem;
+        }
+
+        .navbar-nav .nav-link {
+            color: #E6EDF3 !important;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color:#9966CC  !important;
+        }
+
+        /* ======== HERO SECTION ======== */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)),
+                        url('assets/images/mainbg.jpg') no-repeat center center/cover;
+            min-height: 90vh;
+            color: #E6EDF3;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding-top: 80px; /* leave space for fixed navbar */
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px #5c5c99;
+        }
+
+        /* ======== ABOUT SECTION ======== */
+        .about-section {
+            background-color: #121826;
+            border-radius: 15px;
+            padding: 50px;
+            box-shadow: 0 0 20px #a200ff22;
+        }
+
+        /* ======== FEATURE CARDS ======== */
+        .feature-card {
+            background-color: #121826;
+            border: 1px solid #2b1f37;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            padding: 30px;
+            color: #E6EDF3;
+            box-shadow: 0 0 10px #a200ff22;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px #a200ff22;
+        }
+
+        .feature-card img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 15px;
+            /*filter: drop-shadow(0 0 8px )*/
+        }
+
+        .feature-card h5 {
+            color:#9966CC ;
+        }
+
+        /* ======== BUTTONS ======== */
+        .btn-primary, .btn-success, .btn-warning {
+            border: none;
+            color: #130f16;
+            font-weight: 600;
+            transition: all 0.1s ease;
+        }
+
+        .btn-outline-primary {
+            border-color:#9966CC ;
+            color:#9966CC ;
+        }
+
+        .btn-outline-primary:hover {
+            background-color:#9966CC ;
+            color: #130f16;
+            box-shadow: 0 0 10px rgba(153,102,204,0.5) ;
+        }
+
+        .btn-outline-success {
+            border-color:#9966CC ;
+            color: #9966CC;
+        }
+
+        .btn-outline-success:hover {
+            background-color: #9966CC ;
+            color: #130f16;
+            box-shadow: 0 0 10px rgba(153,102,204,0.5);
+        }
+
+        .btn-outline-warning {
+            border-color: #9966CC;
+            color: #9966CC;
+        }
+
+        .btn-outline-warning:hover {
+            background-color: #9966CC;
+            color: #130f16;
+            box-shadow: 0 0 10px rgba(153,102,204,0.5);
+        }
+
+        /* ======== FOOTER ======== */
+        footer {
+            background-color: #121826;
+            color: #A1A1AA;
+            padding: 20px 0;
+            box-shadow: 0 -2px 10px #00C2FF22;
+        }
+
+        footer a {
+            color: #9966CC;
+        }
+
+        footer a:hover {
+            color: #9966CC;
+        }
     </style>
 </head>
-
 <body>
 
 <!-- Navbar -->
@@ -221,6 +394,7 @@
     </div>
 </nav>
 
+<!-- Background (gradient spheres + particles) -->
 <div class="gradient-background">
     <div class="gradient-sphere sphere-1"></div>
     <div class="gradient-sphere sphere-2"></div>
@@ -229,7 +403,7 @@
     <div class="grid-overlay"></div>
     <div class="noise-overlay"></div>
 
-    <!-- ✔ Only ONE particles container kept -->
+    <!-- ONLY one particles container -->
     <div class="particles-container" id="particles-container"></div>
 </div>
 
@@ -239,101 +413,168 @@
     <button class="btn">Explore More</button>
 </div>
 
-<!-- ✔ Removed duplicate particles container -->
-<!-- ❌ <div id="particles-container"></div> -->
+<!-- Hero Section -->
+<section class="hero">
+    <h1>Onto Your Musical Journey</h1>
+</section>
 
+<!-- About Section -->
+<section class="py-5 text-center">
+    <div class="container about-section">
+        <h2>Welcome to UMAAG</h2>
+        <p class="lead mt-3">
+            Step into the rhythm of creativity with UMAAG — a space made for music lovers, creators, and dreamers alike.  
+            Discover new sounds, explore how music careers take shape, and create your own unique vibe.  
+            Whether you’re here to explore or to make something original, UmaaG is where your love for music truly comes alive.
+        </p>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-4 mb-4 d-flex">
+                <div class="card feature-card w-100 h-100">
+                   <!-- <img src="C:\Users\aditi\OneDrive\Desktop\Music_website_0.1\assets\images\careerhome.jpg" alt="Career Guidance" class="mx-auto">-->
+                    <h5 class="mt-3">Career Guidance</h5>
+                    <p>Learn about music careers and find resources to pursue your passion professionally.</p>
+                    <a href="career.html" class="btn btn-outline-primary mt-auto">Learn More</a>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4 d-flex">
+                <div class="card feature-card w-100 h-100">
+                   <!-- <img src="assets/images/discoverhome.jpg" alt="Music Discovery" class="mx-auto">-->
+                    <h5 class="mt-3">Music Discovery</h5>
+                    <p>Listen to music from different genres and discover new favorites.</p>
+                    <a href="discovery.html" class="btn btn-outline-success mt-auto" target="_blank">Explore</a>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4 d-flex">
+                <div class="card feature-card w-100 h-100">
+                  <!--  <img src="assets/images/createhome.jpg" alt="Music Creation" class="mx-auto">-->
+                    <h5 class="mt-3">Music Creation</h5>
+                    <p>Create your own music and upload your tracks for others to enjoy.</p>
+                    <a href="creation.html" class="btn btn-outline-warning mt-auto" target="_blank">Create Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="text-center">
+    <div class="container">
+        <p>&copy; 2025 UmaaG. All Rights Reserved.</p>
+        <p>Follow us on 
+            <a href="#">Facebook</a> | 
+            <a href="#">Instagram</a> | 
+            <a href="#">Twitter</a>
+        </p>
+    </div>
+</footer>
+
+<!-- Particle JS (unchanged) -->
 <script>
-/* Your entire JavaScript remains unchanged */
-const particlesContainer = document.getElementById('particles-container');
-const particleCount = 80;
+    // Create particle effect
+    const particlesContainer = document.getElementById('particles-container');
+    const particleCount = 80;
 
-// Create particles
-for (let i = 0; i < particleCount; i++) {
-    createParticle();
-}
+    // Create particles
+    for (let i = 0; i < particleCount; i++) {
+        createParticle();
+    }
 
-function createParticle() {
-    const particle = document.createElement('div');
-    particle.className = 'particle';
+    function createParticle() {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
 
-    const size = Math.random() * 3 + 1;
-    particle.style.width = `${size}px`;
-    particle.style.height = `${size}px`;
+        // Random size (small)
+        const size = Math.random() * 3 + 1;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
 
-    resetParticle(particle);
-    particlesContainer.appendChild(particle);
+        // Initial position
+        resetParticle(particle);
 
-    animateParticle(particle);
-}
+        particlesContainer.appendChild(particle);
 
-function resetParticle(particle) {
-    const posX = Math.random() * 100;
-    const posY = Math.random() * 100;
+        // Animate
+        animateParticle(particle);
+    }
 
-    particle.style.left = `${posX}%`;
-    particle.style.top = `${posY}%`;
-    particle.style.opacity = '0';
+    function resetParticle(particle) {
+        const posX = Math.random() * 100;
+        const posY = Math.random() * 100;
 
-    return { x: posX, y: posY };
-}
-
-function animateParticle(particle) {
-    const pos = resetParticle(particle);
-
-    const duration = Math.random() * 10 + 10;
-    const delay = Math.random() * 5;
-
-    setTimeout(() => {
-        particle.style.transition = `all ${duration}s linear`;
-        particle.style.opacity = Math.random() * 0.3 + 0.1;
-
-        const moveX = pos.x + (Math.random() * 20 - 10);
-        const moveY = pos.y - Math.random() * 30;
-
-        particle.style.left = `${moveX}%`;
-        particle.style.top = `${moveY}%`;
-
-        setTimeout(() => animateParticle(particle), duration * 1000);
-    }, delay * 1000);
-}
-
-document.addEventListener('mousemove', (e) => {
-    const mouseX = (e.clientX / window.innerWidth) * 100;
-    const mouseY = (e.clientY / window.innerHeight) * 100;
-
-    const particle = document.createElement('div');
-    particle.className = 'particle';
-
-    const size = Math.random() * 4 + 2;
-    particle.style.width = `${size}px`;
-    particle.style.height = `${size}px`;
-    particle.style.left = `${mouseX}%`;
-    particle.style.top = `${mouseY}%`;
-    particle.style.opacity = '0.6';
-
-    particlesContainer.appendChild(particle);
-
-    setTimeout(() => {
-        particle.style.transition = 'all 2s ease-out';
-        particle.style.left = `${mouseX + (Math.random() * 10 - 5)}%`;
-        particle.style.top = `${mouseY + (Math.random() * 10 - 5)}%`;
+        particle.style.left = `${posX}%`;
+        particle.style.top = `${posY}%`;
         particle.style.opacity = '0';
 
-        setTimeout(() => particle.remove(), 2000);
-    }, 10);
+        return { x: posX, y: posY };
+    }
 
-    const spheres = document.querySelectorAll('.gradient-sphere');
-    const moveX = (e.clientX / window.innerWidth - 0.5) * 5;
-    const moveY = (e.clientY / window.innerHeight - 0.5) * 5;
+    function animateParticle(particle) {
+        const pos = resetParticle(particle);
 
-    spheres.forEach(sphere => {
-        sphere.style.transform = `translate(${moveX}px, ${moveY}px)`;
+        const duration = Math.random() * 10 + 10;
+        const delay = Math.random() * 5;
+
+        setTimeout(() => {
+            particle.style.transition = `all ${duration}s linear`;
+            particle.style.opacity = Math.random() * 0.3 + 0.1;
+
+            const moveX = pos.x + (Math.random() * 20 - 10);
+            const moveY = pos.y - Math.random() * 30;
+
+            particle.style.left = `${moveX}%`;
+            particle.style.top = `${moveY}%`;
+
+            setTimeout(() => {
+                animateParticle(particle);
+            }, duration * 1000);
+        }, delay * 1000);
+    }
+
+    // Mouse interaction
+    document.addEventListener('mousemove', (e) => {
+        const mouseX = (e.clientX / window.innerWidth) * 100;
+        const mouseY = (e.clientY / window.innerHeight) * 100;
+
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+
+        const size = Math.random() * 4 + 2;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.left = `${mouseX}%`;
+        particle.style.top = `${mouseY}%`;
+        particle.style.opacity = '0.6';
+
+        particlesContainer.appendChild(particle);
+
+        setTimeout(() => {
+            particle.style.transition = 'all 2s ease-out';
+            particle.style.left = `${mouseX + (Math.random() * 10 - 5)}%`;
+            particle.style.top = `${mouseY + (Math.random() * 10 - 5)}%`;
+            particle.style.opacity = '0';
+
+            setTimeout(() => {
+                particle.remove();
+            }, 2000);
+        }, 10);
+
+        const spheres = document.querySelectorAll('.gradient-sphere');
+        const moveX = (e.clientX / window.innerWidth - 0.5) * 5;
+        const moveY = (e.clientY / window.innerHeight - 0.5) * 5;
+
+        spheres.forEach(sphere => {
+            sphere.style.transform = `translate(${moveX}px, ${moveY}px)`;
+        });
     });
-});
 </script>
 
 <!-- Bootstrap JS Bundle -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
 </html>
