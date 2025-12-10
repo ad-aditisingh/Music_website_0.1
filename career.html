@@ -203,6 +203,55 @@
       .bar { width: clamp(3px, 1.2vw, 12px); }
     }
 
+
+/* Make accordion match card color */
+.accordion-item {
+  background-color: #121826 !important;
+  border: none;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 10px #a200ff22;
+}
+
+/* Accordion header button */
+.accordion-button {
+  background-color: #121826 !important;
+  color: #E6EDF3 !important;
+  font-weight: 600;
+  border: none;
+  box-shadow: none !important;
+  padding: 18px;
+}
+
+/* Remove blue focus outline */
+.accordion-button:focus {
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* Purple highlight when expanded */
+.accordion-button:not(.collapsed) {
+  background-color: #1A1F2F !important;       /* Slightly lighter purple-black */
+  color: #9966CC !important;                  /* Purple text */
+  box-shadow: inset 0 0 10px #9966CC55;       /* Glow effect */
+}
+
+/* Change icon color (arrow) */
+.accordion-button::after {
+  filter: hue-rotate(250deg) brightness(1.4);   /* Makes arrow purple */
+}
+
+/* Accordion body */
+.accordion-body {
+  background-color: #121826;
+  color: #ccc;
+  padding: 18px 20px;
+}
+
+
+
+    
   </style>
 </head>
 
