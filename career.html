@@ -88,8 +88,8 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, rgba(4,4,8,0.06), rgba(4,4,8,0.45));
-      z-index: 1;
+      background: linear-gradient(180deg, rgba(4,4,8,0.08), rgba(4,4,8,0.45));
+      z-index: 0;
       pointer-events: none;
     }
 
@@ -97,15 +97,15 @@
     .equalizer-bg {
       position: absolute;
       inset: 0;
-      z-index: 0;
+      z-index: -1;
       pointer-events: none;
       display: flex;
       align-items: center;
       justify-content: center;
-      opacity: 0.42;           /* adjust intensity */
+      opacity: 0.35;           /* adjust intensity */
       filter: blur(2px) saturate(1.6);
-      background: radial-gradient(900px 400px at 10% 10%, rgba(153,102,204,0.08), transparent 10%),
-                  radial-gradient(600px 300px at 90% 90%, rgba(124,77,255,0.08), transparent 10%);
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(153,102,204,0.08), transparent 10%),
+                  radial-gradient(800px 400px at 90% 90%, rgba(124,77,255,0.08), transparent 10%);
     }
 
     .bars {
@@ -123,6 +123,7 @@
     .bar {
       width: clamp(3px, 0.7vw, 10px);
       height: 12%;
+      opacity: 1;
       background: linear-gradient(180deg, var(--accent1), var(--accent2));
       border-radius: 6px;
       transform-origin: bottom;
@@ -130,7 +131,6 @@
       animation: equalize 1200ms ease-in-out infinite;
       will-change: height, transform, opacity;
       flex: 0 0 auto;
-      opacity: 0.9;
     }
 
     @keyframes equalize {
