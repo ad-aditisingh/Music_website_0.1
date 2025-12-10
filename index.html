@@ -135,12 +135,12 @@
         /* container that constrains the equalizer shape */
         .bars {
             display: flex;
-            gap: 4px;
+            gap: 5px;
             align-items: end;
             height: 60vh;                /* visible height of bars (change to taste) */
             width: 100%;                 /* full width */
             max-width: 100%;
-            padding: 0 4%;               /* side padding so bars don't touch edges */
+            padding: 0 3%;               /* side padding so bars don't touch edges */
             justify-content: space-between; /* spread bars across width */
             box-sizing: border-box;
         }
@@ -148,7 +148,7 @@
         /* a single bar */
         .bar {
             /* narrower default so many bars fit horizontally; will be randomized via JS */
-            width: clamp(3px, 0.6vw, 10px);
+            width: clamp(3px, 0.7vw, 10px);
             opacity: 1;
             height: 12%;
             background: linear-gradient(180deg, var(--accent1), var(--accent2));
