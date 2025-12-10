@@ -7,7 +7,6 @@
   --bg: #0A0A0F;
   --card-bg: #121826;
   --muted: #A1A1AA;
-
   /* sizing: adjust once to affect all pages */
   --hero-height: 90vh;
   --hero-min-height: 520px;
@@ -20,7 +19,6 @@
 /* === base === */
 * { box-sizing: border-box; }
 html, body { height: 100%; margin: 0; font-family: 'Poppins', sans-serif; background: var(--bg); color: #E6EDF3; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
-
 /* headings & links */
 h1{ font-family: 'Poppins', cursive; color:#fcfafdf9; letter-spacing:1px; text-transform:uppercase; }
 h2,h3,.navbar-brand{ font-family:'Poppins',cursive; color:var(--accent1); letter-spacing:1px; text-transform:uppercase; }
@@ -45,12 +43,10 @@ a:hover { color:var(--accent2); }
   overflow: hidden;
   padding: 2rem;
 }
-
 .hero--short { /* page-specific shorter hero (career page) */
   height: 380px;
   min-height: 320px;
 }
-
 .hero::before{
   content:"";
   position:absolute;
@@ -59,7 +55,6 @@ a:hover { color:var(--accent2); }
   z-index:1;
   pointer-events:none;
 }
-
 .hero h1 { position:relative; z-index:3; font-size:clamp(2rem,4vw,3.2rem); margin-bottom:12px; text-shadow: 0 0 20px #5c5c99; }
 .hero .subtitle{ position:relative; z-index:3; color:#dfe9ff; opacity:.95; margin-top:.5rem; }
 
@@ -90,7 +85,6 @@ a:hover { color:var(--accent2); }
   padding: 0 3%;
   box-sizing: border-box;
 }
-
 .bar {
   width: clamp(3px, 0.7vw, 10px);
   height: 12%;
@@ -103,7 +97,6 @@ a:hover { color:var(--accent2); }
   flex: 0 0 auto;
   opacity: .95;
 }
-
 @keyframes equalize {
   0%   { height: 12%; transform: scaleY(0.22); opacity: 0.65; }
   30%  { height: 85%; transform: scaleY(1.02); opacity: 1; }
@@ -134,7 +127,6 @@ a:hover { color:var(--accent2); }
 /* buttons */
 .btn-outline-primary { border-color: var(--accent1); color: var(--accent1); }
 .btn-outline-primary:hover { background-color: var(--accent1); color: #130f16; box-shadow: 0 0 10px rgba(153,102,204,0.5); }
-
 .btn-custom { background-color: var(--accent1); border: none; border-radius: 25px; padding: 8px 20px; color: white; display:inline-block; text-decoration:none; }
 .btn-custom:hover { background-color: #7a4fb4; box-shadow: 0 0 10px rgba(153,102,204,0.5); color: white; }
 
