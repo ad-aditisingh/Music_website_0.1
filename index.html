@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+<link rel="stylesheet" href="style.css">    
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UmaaG</title>
 
     <!-- Bootstrap CSS -->
@@ -11,7 +12,7 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
-    <!-- Custom CSS (including neon equalizer background) -->
+    <!-- Custom CSS -->
     <style>
         /* ======== GLOBAL ======== */
         :root{
@@ -47,7 +48,7 @@
         }
 
         a {
-            color: var(--accent1);
+            color:var(--accent1) ;
             text-decoration: none;
         }
 
@@ -76,10 +77,11 @@
             color:var(--accent1)  !important;
         }
 
-        /* ======== HERO + EQUALIZER BG ======== */
+        /* ======== HERO SECTION (Replaced static image with animated equalizer) ======== */
         .hero {
-            position: relative;               /* container for absolute background */
-            height: 90vh;
+            position: relative;               /* container for absolute equalizer */
+            height: 90vh;                     /* kept your original tall hero */
+            min-height: 520px;
             color: #E6EDF3;
             display: flex;
             flex-direction: column;
@@ -87,16 +89,16 @@
             align-items: center;
             text-align: center;
             overflow: hidden;
-            padding: 2rem 0;
+            padding: 2rem;
         }
 
-        /* soft overlay gradient (keeps text readable) */
+        /* soft overlay gradient to keep text readable */
         .hero::before{
             content: "";
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, rgba(4,4,8,0.08), rgba(4,4,8,0.45));
-            z-index: 0;
+            background: linear-gradient(180deg, rgba(4,4,8,0.10), rgba(4,4,8,0.55));
+            z-index: 1;
             pointer-events: none;
         }
 
@@ -105,50 +107,49 @@
             margin-bottom: 20px;
             text-shadow: 0 0 20px #5c5c99;
             position: relative;
-            z-index: 2;
+            z-index: 3;
         }
 
-        /* neon subtitle */
-        .hero .sub {
-            margin-top: .5rem;
+        /* subtitle */
+        .hero .subtitle {
+            position: relative;
+            z-index: 3;
             color: #dfe9ff;
             opacity: 0.95;
-            position: relative;
-            z-index: 2;
+            margin-top: .5rem;
         }
 
         /* EQUALIZER BACKGROUND - sits behind everything */
         .equalizer-bg {
             position: absolute;
             inset: 0;
-            z-index: -1;             /* behind hero content */
+            z-index: 0;             /* behind hero content */
             display: flex;
             align-items: center;
             justify-content: center;
-            pointer-events: none;    /* allow clicks through */
-            opacity: 0.35;           /* increased visibility */
+            pointer-events: none;    /* clicks pass through */
+            opacity: 0.36;           /* overall intensity (tweak if needed) */
             filter: blur(2px) saturate(1.6);
-            background: radial-gradient(1200px 600px at 10% 10%, rgba(153,102,204,0.08), transparent 10%),
-                        radial-gradient(800px 400px at 90% 90%, rgba(124,77,255,0.08), transparent 10%);
+            background: radial-gradient(1200px 600px at 10% 10%, rgba(153,102,204,0.06), transparent 10%),
+                        radial-gradient(800px 400px at 90% 90%, rgba(124,77,255,0.06), transparent 10%);
         }
 
         /* container that constrains the equalizer shape */
         .bars {
             display: flex;
-            gap: 5px;
+            gap: 6px;
             align-items: end;
-            height: 60vh;                /* visible height of bars (change to taste) */
-            width: 100%;                 /* full width */
-            max-width: 100%;
-            padding: 0 3%;               /* side padding so bars don't touch edges */
-            justify-content: space-between; /* spread bars across width */
+            height: 62vh;        /* visible height of bars (adjust to taste) */
+            width: 100%;
+            max-width: 1400px;
+            justify-content: space-between; /* spread bars across the hero */
+            padding: 0 3%;
             box-sizing: border-box;
         }
 
         /* a single bar */
         .bar {
-            /* narrower default so many bars fit horizontally; will be randomized via JS */
-            width: clamp(3px, 0.7vw, 10px);
+            width: clamp(3px, 0.6vw, 12px);  /* narrow so many bars fit */
             opacity: 1;
             height: 12%;
             background: linear-gradient(180deg, var(--accent1), var(--accent2));
@@ -157,12 +158,12 @@
             box-shadow: 0 0 18px rgba(153,102,204,0.65), 0 0 6px rgba(124,77,255,0.25) inset;
             animation: equalize 1200ms ease-in-out infinite;
             will-change: height, transform, opacity;
-            flex: 0 0 auto; /* don't stretch */
+            flex: 0 0 auto; /* prevents bars from stretching */
         }
 
-        /* remove nth-child pattern (we will randomize via JS) */
+        /* Remove any previous nth-child patterns — randomness handled by JS below */
 
-        /* keyframes for height changes (simple pulse) */
+        /* keyframes for height changes (pulse) */
         @keyframes equalize {
             0%   { height: 12%; transform: scaleY(0.2); opacity: 0.7; }
             30%  { height: 85%; transform: scaleY(1.02);  opacity: 1; }
@@ -260,14 +261,19 @@
         }
 
         footer a:hover {
-            color: var(--accent2);
+            color: var(--accent1);
         }
 
         /* Responsive tweaks */
-        @media (max-width: 768px){
-            .bars { height: 40vh; gap:4px; padding: 0 6%; }
-            .hero h1 { font-size: 2rem; }
-            .equalizer-bg { opacity: 0.28; filter: blur(4px); }
+        @media (max-width: 992px){
+            .bars { height: 50vh; gap:4px; padding: 0 4%; }
+            .hero { height: 70vh; min-height: 420px; padding: 1.5rem; }
+            .bar { width: clamp(3px, 1vw, 12px); }
+        }
+
+        @media (max-width: 576px){
+            .bars { height: 40vh; gap:3px; padding: 0 6%; }
+            .hero { height: 56vh; min-height: 360px; padding: 1rem; }
         }
     </style>
 </head>
@@ -293,12 +299,11 @@
 
 <!-- Hero Section -->
 <section class="hero">
-    <!-- Equalizer background -->
+    <!-- Equalizer Background -->
     <div class="equalizer-bg" aria-hidden="true">
         <div class="bars" role="img" aria-label="animated equalizer background">
-            <!-- many bars — they will be randomized via JS -->
-            <!-- keep as many as you like; they will spread across width -->
-            <!-- I left the same large count you provided; you can reduce if desired -->
+            <!-- 48 bars for a wide dense spread (change number if you want) -->
+            <!-- these are plain; JS below randomizes duration/delay/opacity -->
             <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
             <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
             <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
@@ -311,26 +316,11 @@
             <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
             <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
             <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-
         </div>
     </div>
 
     <h1>Onto Your Musical Journey</h1>
-    <p class="sub">Feel the rhythm. Create. Discover. Grow.</p>
+    <div class="subtitle">Feel the rhythm. Create. Discover.</div>
 </section>
 
 <!-- About Section -->
@@ -338,8 +328,8 @@
     <div class="container about-section">
         <h2>Welcome to UMAAG</h2>
         <p class="lead mt-3">
-            Step into the rhythm of creativity with UMAAG — a space made for music lovers, creators, and dreamers alike.
-            Discover new sounds, explore how music careers take shape, and create your own unique vibe.
+            Step into the rhythm of creativity with UMAAG — a space made for music lovers, creators, and dreamers alike.  
+            Discover new sounds, explore how music careers take shape, and create your own unique vibe.  
             Whether you’re here to explore or to make something original, UmaaG is where your love for music truly comes alive.
         </p>
     </div>
@@ -378,9 +368,9 @@
 <footer class="text-center">
     <div class="container">
         <p>&copy; 2025 UmaaG. All Rights Reserved.</p>
-        <p>Follow us on
-            <a href="#">Facebook</a> |
-            <a href="#">Instagram</a> |
+        <p>Follow us on 
+            <a href="#">Facebook</a> | 
+            <a href="#">Instagram</a> | 
             <a href="#">Twitter</a>
         </p>
     </div>
@@ -389,25 +379,29 @@
 <!-- Bootstrap JS Bundle -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- Randomize bars so they all move differently -->
+<!-- Randomize bars so they all move differently + subtle width/opacity variation -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-    const bars = document.querySelectorAll(".bars .bar");
-    bars.forEach((bar) => {
-        // random duration between 650ms and 1800ms
-        const duration = Math.floor(650 + Math.random() * 1150);
-        // negative delay so bar starts mid-animation
-        const delay = -Math.floor(Math.random() * duration);
-        // slight random horizontal scale so bars are not identical
-        const scaleX = (0.85 + Math.random() * 0.45).toFixed(2);
-        // slight random opacity
-        const opacity = (0.7 + Math.random() * 0.35).toFixed(2);
+  const bars = document.querySelectorAll(".bars .bar");
+  bars.forEach((bar, i) => {
+    // random duration between 700ms and 2000ms
+    const duration = Math.floor(700 + Math.random() * 1300);
+    // negative delay so bars start mid-animation (lively immediately)
+    const delay = -Math.floor(Math.random() * duration);
+    // random horizontal scale for subtle width differences
+    const scaleX = (0.85 + Math.random() * 0.4).toFixed(2);
+    // random opacity for depth
+    const opacity = (0.65 + Math.random() * 0.35).toFixed(2);
+    // occasionally make some bars taller on average by adjusting base height via CSS variable (optional)
+    const extra = Math.random() < 0.18 ? 1.15 : 1;
 
-        bar.style.animationDuration = duration + "ms";
-        bar.style.animationDelay = delay + "ms";
-        bar.style.transform = `scaleX(${scaleX})`;
-        bar.style.opacity = opacity;
-    });
+    bar.style.animationDuration = duration + "ms";
+    bar.style.animationDelay = delay + "ms";
+    bar.style.transform = `scaleX(${scaleX})`;
+    bar.style.opacity = opacity;
+    // small custom property for JS-driven scaling if you want to use later
+    bar.style.setProperty('--extra-scale', extra);
+  });
 });
 </script>
 
