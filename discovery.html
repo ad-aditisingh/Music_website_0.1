@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Music Discovery | UmaaG</title>
 
   <!-- Bootstrap CSS -->
@@ -16,10 +17,24 @@
 
   <style>
     /* ======== GLOBAL ======== */
+    :root {
+      --accent1: #9966CC;
+      --accent2: #7C4DFF;
+      --bg: #0A0A0F;
+      --card-bg: #121826;
+      --muted: #A1A1AA;
+    }
+
+    html,
     body {
-      font-family: 'Poppins', sans-serif;
-      background-color: #0A0A0F;
+      height: 100%;
+      background-color: var(--bg);
       color: #E6EDF3;
+      margin: 0;
+      padding-top: 70px; /* space for fixed navbar */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-family: 'Poppins', sans-serif;
     }
 
     h1 {
@@ -33,18 +48,18 @@
     h3,
     .navbar-brand {
       font-family: 'Poppins', cursive;
-      color: #9966CC;
+      color: var(--accent1);
       letter-spacing: 1px;
       text-transform: uppercase;
     }
 
     a {
-      color: #9966CC;
+      color: var(--accent1);
       text-decoration: none;
     }
 
     a:hover {
-      color: #7C4DFF;
+      color: var(--accent2);
     }
 
     /* ======== NAVBAR ======== */
@@ -55,7 +70,7 @@
     }
 
     .navbar-brand {
-      color: #9966CC !important;
+      color: var(--accent1) !important;
       font-size: 1.5rem;
     }
 
@@ -65,30 +80,119 @@
     }
 
     .navbar-nav .nav-link:hover {
-      color: #9966CC !important;
+      color: var(--accent1) !important;
     }
 
-    /* ======== HERO ======== */
+    /* ======== HERO with animated equalizer background ======== */
     .hero {
-      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)),
-        url('assets/images/mainbg.jpg') no-repeat center center/cover;
+      position: relative;
+      height: 70vh;
+      min-height: 360px;
       color: #E6EDF3;
       text-align: center;
-      padding: 100px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      padding: 0 20px;
+    }
+
+    /* overlay to keep text readable */
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(4, 4, 8, 0.12), rgba(4, 4, 8, 0.55));
+      z-index: 1;
+      pointer-events: none;
     }
 
     .hero h1 {
-      font-size: 3rem;
-      margin-bottom: 20px;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      margin-bottom: 12px;
       text-shadow: 0 0 20px #5c5c99;
-    }
-    .hero .search-bar {
-      margin-top: 70px;
+      position: relative;
+      z-index: 2;
     }
 
-    /* ======== DISCOVERY STYLES ======== */
+    .hero p {
+      margin: 0;
+      position: relative;
+      z-index: 2;
+      color: #dfe9ff;
+      opacity: 0.95;
+    }
+
+    /* equalizer wrapper (behind everything) */
+    .equalizer-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.38; /* intensity - tweak as desired */
+      filter: blur(2px) saturate(1.5);
+      background: radial-gradient(900px 400px at 10% 10%, rgba(153, 102, 204, 0.06), transparent 10%),
+        radial-gradient(600px 300px at 90% 90%, rgba(124, 77, 255, 0.06), transparent 10%);
+    }
+
+    .bars {
+      width: 100%;
+      max-width: 1400px;
+      display: flex;
+      gap: 6px;
+      align-items: end;
+      justify-content: space-between;
+      height: 62vh;
+      box-sizing: border-box;
+      padding: 0 3%;
+    }
+
+    .bar {
+      width: clamp(3px, 0.7vw, 10px);
+      height: 12%;
+      background: linear-gradient(180deg, var(--accent1), var(--accent2));
+      border-radius: 8px;
+      transform-origin: bottom;
+      box-shadow: 0 0 18px rgba(153, 102, 204, 0.65), 0 0 6px rgba(124, 77, 255, 0.25) inset;
+      animation: equalize 1200ms ease-in-out infinite;
+      will-change: height, transform, opacity;
+      flex: 0 0 auto;
+      opacity: 0.95;
+    }
+
+    @keyframes equalize {
+      0% {
+        height: 12%;
+        transform: scaleY(0.22);
+        opacity: 0.65;
+      }
+
+      30% {
+        height: 85%;
+        transform: scaleY(1.02);
+        opacity: 1;
+      }
+
+      60% {
+        height: 28%;
+        transform: scaleY(0.45);
+        opacity: 0.88;
+      }
+
+      100% {
+        height: 12%;
+        transform: scaleY(0.22);
+        opacity: 0.65;
+      }
+    }
+
+    /* ======== DISCOVERY / CARD STYLES ======== */
     .genre-card {
-      background-color: #121826;
+      background-color: var(--card-bg);
       border: 1px solid #2b1f37;
       border-radius: 15px;
       box-shadow: 0 0 10px #a200ff22;
@@ -112,7 +216,7 @@
     .song-list a {
       display: block;
       text-decoration: none;
-      color: #9966CC;
+      color: var(--accent1);
       padding: 5px 0;
     }
 
@@ -121,10 +225,9 @@
       margin: 20px auto;
     }
 
-    /*  Custom button color */
     .btn-primary {
-      background-color: #9966CC;
-      border-color: #9966CC;
+      background-color: var(--accent1);
+      border-color: var(--accent1);
     }
 
     .btn-primary:hover {
@@ -134,24 +237,38 @@
 
     /* ======== FOOTER ======== */
     footer {
-      background-color: #121826;
-      color: #A1A1AA;
+      background-color: var(--card-bg);
+      color: var(--muted);
       padding: 20px 0;
       box-shadow: 0 -2px 10px #00C2FF22;
     }
 
     footer a {
-      color: #9966CC;
+      color: var(--accent1);
     }
 
     footer a:hover {
-      color: #9966CC;
+      color: var(--accent1);
+    }
+
+    /* responsive */
+    @media (max-width: 992px) {
+      .bars {
+        gap: 4px;
+        height: 50vh;
+      }
+      .bar { width: clamp(3px, 1vw, 12px); }
+    }
+
+    @media (max-width: 576px) {
+      body { padding-top: 56px; }
+      .hero { height: 56vh; min-height: 300px; padding: 0 12px; }
+      .bars { height: 44vh; gap: 3px; padding: 0 5%; }
     }
   </style>
 </head>
 
 <body>
-
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container">
@@ -172,11 +289,25 @@
 
   <!-- Hero Section -->
   <section class="hero">
+    <!-- Equalizer Background -->
+    <div class="equalizer-bg" aria-hidden="true">
+      <div class="bars" role="img" aria-label="Animated equalizer background">
+        <!-- 40 bars (feel free to reduce/increase) -->
+        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+      </div>
+    </div>
+
     <h1>Explore the Music Within</h1>
     <p>Let every note guide you closer to your passion for music.</p>
-    <!--<div class="search-bar">
-      <input type="text" id="searchInput" class="form-control" placeholder="Search by genre, mood, or style...">
-    </div>-->
   </section>
 
   <!-- Genre Grid -->
@@ -305,14 +436,6 @@
       list.style.display = (list.style.display === "block") ? "none" : "block";
     }
 
-    document.getElementById('searchInput').addEventListener('input', function () {
-      const searchValue = this.value.toLowerCase();
-      const cards = container.querySelectorAll('.genre-card');
-      genres.forEach((genre, i) => {
-        cards[i].parentElement.style.display = genre.name.toLowerCase().includes(searchValue) ? 'block' : 'none';
-      });
-    });
-
     function playSong(songName) {
       const audioPlayer = document.getElementById("audioPlayer");
       const formattedName = songName.replaceAll(" ", "_").toLowerCase();
@@ -339,7 +462,30 @@
     </div>
   </footer>
 
+  <!-- Bootstrap JS Bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Randomize bars so they all move differently -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const bars = document.querySelectorAll(".bars .bar");
+      bars.forEach((bar) => {
+        // random duration between 650ms and 1900ms
+        const duration = Math.floor(650 + Math.random() * 1250);
+        // negative delay so bar starts mid-animation
+        const delay = -Math.floor(Math.random() * duration);
+        // slight random horizontal scale so bars are not identical
+        const scaleX = (0.85 + Math.random() * 0.45).toFixed(2);
+        // random opacity
+        const opacity = (0.75 + Math.random() * 0.25).toFixed(2);
+
+        bar.style.animationDuration = duration + "ms";
+        bar.style.animationDelay = delay + "ms";
+        bar.style.transform = `scaleX(${scaleX})`;
+        bar.style.opacity = opacity;
+      });
+    });
+  </script>
 </body>
 
 </html>
