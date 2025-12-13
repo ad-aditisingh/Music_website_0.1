@@ -1,203 +1,64 @@
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Music Discovery | UmaaG</title>
 
-  <!-- Bootstrap CSS -->
+  <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css">
+  <!-- Shared Equalizer CSS -->
+  <link rel="stylesheet" href="css/equalizer.css">
 
+  <!-- Page Styles -->
   <style>
-    /* ======== GLOBAL ======== */
-    :root {
-      --accent1: #9966CC;
-      --accent2: #7C4DFF;
-      --bg: #0A0A0F;
-      --card-bg: #121826;
-      --muted: #A1A1AA;
-    }
-
-    html,
     body {
-      height: 100%;
-      background-color: var(--bg);
-      color: #E6EDF3;
-      margin: 0;
-      padding-top: 70px; /* space for fixed navbar */
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
       font-family: 'Poppins', sans-serif;
+      background-color: #0A0A0F;
+      color: #E6EDF3;
+      padding-top: 70px;
     }
 
-    h1 {
-      font-family: 'Poppins', cursive;
-      color: #fcfafdf9;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-
-    h2,
-    h3,
-    .navbar-brand {
-      font-family: 'Poppins', cursive;
-      color: var(--accent1);
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-
-    a {
-      color: var(--accent1);
-      text-decoration: none;
-    }
-
-    a:hover {
-      color: var(--accent2);
-    }
-
-    /* ======== NAVBAR ======== */
     .navbar {
-      background-color: rgba(10, 10, 15, 0.95);
-      backdrop-filter: blur(8px);
+      background-color: rgba(10,10,15,0.95);
       box-shadow: 0 0 10px #a200ff22;
     }
 
     .navbar-brand {
-      color: var(--accent1) !important;
+      color: #9966CC !important;
       font-size: 1.5rem;
+      font-weight: 700;
     }
 
-    .navbar-nav .nav-link {
+    .nav-link {
       color: #E6EDF3 !important;
-      transition: color 0.3s ease;
     }
 
-    .navbar-nav .nav-link:hover {
-      color: var(--accent1) !important;
+    .nav-link:hover,
+    .nav-link.active {
+      color: #9966CC !important;
     }
 
-    /* ======== HERO with animated equalizer background ======== */
-    .hero {
-      position: relative;
-      height: 70vh;
-      min-height: 360px;
-      color: #E6EDF3;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-      padding: 0 20px;
-    }
-
-    /* overlay to keep text readable */
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(4, 4, 8, 0.12), rgba(4, 4, 8, 0.55));
-      z-index: 1;
-      pointer-events: none;
-    }
-
-    .hero h1 {
-      font-size: clamp(1.8rem, 4vw, 3rem);
-      margin-bottom: 12px;
+    h1 {
+      text-transform: uppercase;
+      letter-spacing: 1px;
       text-shadow: 0 0 20px #5c5c99;
-      position: relative;
-      z-index: 2;
     }
 
-    .hero p {
-      margin: 0;
-      position: relative;
-      z-index: 2;
+    .subtitle {
       color: #dfe9ff;
       opacity: 0.95;
     }
 
-    /* equalizer wrapper (behind everything) */
-    .equalizer-bg {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0.38; /* intensity - tweak as desired */
-      filter: blur(2px) saturate(1.5);
-      background: radial-gradient(900px 400px at 10% 10%, rgba(153, 102, 204, 0.06), transparent 10%),
-        radial-gradient(600px 300px at 90% 90%, rgba(124, 77, 255, 0.06), transparent 10%);
-    }
-
-    .bars {
-      width: 100%;
-      max-width: 1400px;
-      display: flex;
-      gap: 6px;
-      align-items: end;
-      justify-content: space-between;
-      height: 62vh;
-      box-sizing: border-box;
-      padding: 0 3%;
-    }
-
-    .bar {
-      width: clamp(3px, 0.7vw, 10px);
-      height: 12%;
-      background: linear-gradient(180deg, var(--accent1), var(--accent2));
-      border-radius: 8px;
-      transform-origin: bottom;
-      box-shadow: 0 0 18px rgba(153, 102, 204, 0.65), 0 0 6px rgba(124, 77, 255, 0.25) inset;
-      animation: equalize 1200ms ease-in-out infinite;
-      will-change: height, transform, opacity;
-      flex: 0 0 auto;
-      opacity: 0.95;
-    }
-
-    @keyframes equalize {
-      0% {
-        height: 12%;
-        transform: scaleY(0.22);
-        opacity: 0.65;
-      }
-
-      30% {
-        height: 85%;
-        transform: scaleY(1.02);
-        opacity: 1;
-      }
-
-      60% {
-        height: 28%;
-        transform: scaleY(0.45);
-        opacity: 0.88;
-      }
-
-      100% {
-        height: 12%;
-        transform: scaleY(0.22);
-        opacity: 0.65;
-      }
-    }
-
-    /* ======== DISCOVERY / CARD STYLES ======== */
     .genre-card {
-      background-color: var(--card-bg);
-      border: 1px solid #2b1f37;
+      background-color: #121826;
       border-radius: 15px;
-      box-shadow: 0 0 10px #a200ff22;
       padding: 30px;
-      text-align: center;
+      box-shadow: 0 0 10px #a200ff22;
       transition: 0.3s;
       height: 100%;
     }
@@ -210,282 +71,141 @@
     .song-list {
       display: none;
       margin-top: 15px;
-      text-align: left;
     }
 
     .song-list a {
       display: block;
+      color: #9966CC;
       text-decoration: none;
-      color: var(--accent1);
-      padding: 5px 0;
+      padding: 4px 0;
     }
 
-    .search-bar {
-      max-width: 600px;
-      margin: 20px auto;
-    }
-
-    .btn-primary {
-      background-color: var(--accent1);
-      border-color: var(--accent1);
-    }
-
-    .btn-primary:hover {
-      background-color: #7a4db3;
-      border-color: #7a4db3;
-    }
-
-    /* ======== FOOTER ======== */
     footer {
-      background-color: var(--card-bg);
-      color: var(--muted);
+      background-color: #121826;
+      color: #A1A1AA;
       padding: 20px 0;
-      box-shadow: 0 -2px 10px #00C2FF22;
+      margin-top: 40px;
     }
 
     footer a {
-      color: var(--accent1);
-    }
-
-    footer a:hover {
-      color: var(--accent1);
-    }
-
-    /* responsive */
-    @media (max-width: 992px) {
-      .bars {
-        gap: 4px;
-        height: 50vh;
-      }
-      .bar { width: clamp(3px, 1vw, 12px); }
-    }
-
-    @media (max-width: 576px) {
-      body { padding-top: 56px; }
-      .hero { height: 56vh; min-height: 300px; padding: 0 12px; }
-      .bars { height: 44vh; gap: 3px; padding: 0 5%; }
+      color: #9966CC;
+      text-decoration: none;
     }
   </style>
 </head>
 
 <body>
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="index.html">UmaaG</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="career.html">Career</a></li>
-          <li class="nav-item"><a class="nav-link active" href="discovery.html">Discovery</a></li>
-          <li class="nav-item"><a class="nav-link" href="creation.html">Creation</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <!-- Equalizer Background -->
-    <div class="equalizer-bg" aria-hidden="true">
-      <div class="bars" role="img" aria-label="Animated equalizer background">
-        <!-- 40 bars (feel free to reduce/increase) -->
-        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-      </div>
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">UmaaG</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="career.html">Career</a></li>
+        <li class="nav-item"><a class="nav-link active" href="discovery.html">Discovery</a></li>
+        <li class="nav-item"><a class="nav-link" href="creation.html">Creation</a></li>
+      </ul>
     </div>
+  </div>
+</nav>
 
+<!-- HERO -->
+<section class="hero">
+  <div class="equalizer-bg">
+    <div class="bars">
+      <!-- SAME 48 BARS -->
+      <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+      <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+      <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+      <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+      <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+      <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+      <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+      <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+      <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+      <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+      <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+      <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+    </div>
+  </div>
+
+  <div style="position:relative; z-index:2">
     <h1>Explore the Music Within</h1>
-    <p>Let every note guide you closer to your passion for music.</p>
-  </section>
+    <p class="subtitle">Discover songs by genre, mood & artists</p>
+  </div>
+</section>
 
-  <!-- Genre Grid -->
-  <section class="container my-5">
-    <h2 class="text-center mb-4">Listen by Genre</h2>
-    <div class="row g-4" id="genreContainer"></div>
+<!-- GENRES -->
+<section class="container my-5">
+  <h2 class="text-center mb-4">Listen by Genre</h2>
+  <div class="row g-4" id="genreContainer"></div>
+</section>
 
-    <!-- Listen by Mood & Featured Artists -->
-    <section class="container my-5">
-      <div class="row g-4">
+<!-- AUDIO PLAYER -->
+<audio id="audioPlayer" controls style="display:none;width:100%;margin:30px auto"></audio>
 
-        <!-- Listen by Mood -->
-        <div class="col-md-6">
-          <h2 class="text-center mb-4">Listen by Mood</h2>
-          <div class="row g-4" id="moodContainer"></div>
-        </div>
+<!-- FOOTER -->
+<footer class="text-center">
+  <div class="container">
+    <p>&copy; 2025 UmaaG. All Rights Reserved.</p>
+    <p>
+      <a href="#">Instagram</a> |
+      <a href="#">Twitter</a> |
+      <a href="#">YouTube</a>
+    </p>
+  </div>
+</footer>
 
-        <!-- Featured Artists -->
-        <div class="col-md-6">
-          <h2 class="text-center mb-4">Featured Artists</h2>
-          <div class="row g-4" id="artistContainer"></div>
-        </div>
+<!-- Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
+<!-- Shared Equalizer JS -->
+<script src="js/equalizer.js"></script>
+
+<!-- DISCOVERY LOGIC -->
+<script>
+const genres = [
+  { name: "Pop", songs: ["Shape of You", "Blinding Lights", "Levitating"] },
+  { name: "Rock", songs: ["Bohemian Rhapsody", "Hotel California"] },
+  { name: "Jazz", songs: ["Take Five", "So What"] },
+  { name: "Hip-hop", songs: ["Lose Yourself", "God's Plan"] },
+  { name: "EDM", songs: ["Animals", "Titanium"] },
+  { name: "Classical", songs: ["Moonlight Sonata", "Canon in D"] }
+];
+
+const container = document.getElementById("genreContainer");
+
+genres.forEach((genre, i) => {
+  const col = document.createElement("div");
+  col.className = "col-md-4";
+  col.innerHTML = `
+    <div class="genre-card text-center">
+      <h5>${genre.name}</h5>
+      <button class="btn btn-outline-primary mt-2" onclick="toggle(${i})">View Songs</button>
+      <div class="song-list" id="list-${i}">
+        ${genre.songs.map(s => `<a href="#" onclick="play('${s}')">${s}</a>`).join("")}
       </div>
-    </section>
+    </div>`;
+  container.appendChild(col);
+});
 
-    <script>
-      // Mood Data
-      const moods = [
-        { name: "Chill", songs: ["Let Her Go", "Death Bed", "Riptide", "Location"] },
-        { name: "Romantic", songs: ["Perfect", "Tum Hi Ho", "All of Me", "Raabta"] },
-        { name: "Party", songs: ["Uptown Funk", "Nashe Si Chadh Gayi", "Dance Monkey", "Taki Taki"] },
-        { name: "Focus", songs: ["Weightless", "Clair de Lune", "Ocean Eyes", "River Flows In You"] }
-      ];
+function toggle(i) {
+  const el = document.getElementById(`list-${i}`);
+  el.style.display = el.style.display === "block" ? "none" : "block";
+}
 
-      // Artist Data
-      const artists = [
-        { name: "Taylor Swift", songs: ["Love Story", "Cruel Summer", "Blank Space", "Style"] },
-        { name: "Arijit Singh", songs: ["Tum Hi Ho", "Channa Mereya", "Phir Le Aaya Dil", "Raabta"] },
-        { name: "Ed Sheeran", songs: ["Perfect", "Shape of You", "Photograph", "Thinking Out Loud"] },
-        { name: "A.R. Rahman", songs: ["Kun Faya Kun", "Dil Se Re", "Vande Mataram", "Tere Bina"] }
-      ];
+function play(name) {
+  const audio = document.getElementById("audioPlayer");
+  audio.src = `assets/audio/${name.replaceAll(" ", "_").toLowerCase()}.mp3`;
+  audio.style.display = "block";
+  audio.play();
+}
+</script>
 
-      const moodContainer = document.getElementById('moodContainer');
-      const artistContainer = document.getElementById('artistContainer');
-
-      // Render Mood Cards
-      moods.forEach((mood, index) => {
-        const col = document.createElement('div');
-        col.classList.add('col-md-6');
-        col.innerHTML = `
-          <div class="genre-card">
-            <h5>${mood.name}</h5>
-            <button class="btn btn-primary mt-2" onclick="toggleMoodSongs(${index})">View Songs</button>
-            <div class="song-list" id="moodSongs-${index}">
-              ${mood.songs.map(song => `<a href="#" onclick="playSong('${song}')">▪️ ${song}</a>`).join('')}
-            </div>
-          </div>
-        `;
-        moodContainer.appendChild(col);
-      });
-
-      // Render Artist Cards
-      artists.forEach((artist, index) => {
-        const col = document.createElement('div');
-        col.classList.add('col-md-6');
-        col.innerHTML = `
-          <div class="genre-card">
-            <h5>${artist.name}</h5>
-            <button class="btn btn-primary mt-2" onclick="toggleArtistSongs(${index})">View Songs</button>
-            <div class="song-list" id="artistSongs-${index}">
-              ${artist.songs.map(song => `<a href="#" onclick="playSong('${song}')">▪️ ${song}</a>`).join('')}
-            </div>
-          </div>
-        `;
-        artistContainer.appendChild(col);
-      });
-
-      function toggleMoodSongs(index) {
-        const list = document.getElementById(`moodSongs-${index}`);
-        list.style.display = (list.style.display === "block") ? "none" : "block";
-      }
-
-      function toggleArtistSongs(index) {
-        const list = document.getElementById(`artistSongs-${index}`);
-        list.style.display = (list.style.display === "block") ? "none" : "block";
-      }
-    </script>
-  </section>
-
-  <script>
-    const genres = [
-      { name: "Pop", songs: ["Shape of You", "Blinding Lights", "Levitating", "Watermelon Sugar"] },
-      { name: "Rock", songs: ["Bohemian Rhapsody", "Hotel California", "Smells Like Teen Spirit", "Stairway to Heaven"] },
-      { name: "Jazz", songs: ["Take Five", "What a Wonderful World", "So What", "Blue in Green"] },
-      { name: "Hip-hop", songs: ["God's Plan", "Lose Yourself", "Sicko Mode", "HUMBLE."] },
-      { name: "EDM", songs: ["Animals", "Titanium", "Wake Me Up", "Lean On"] },
-      { name: "Classical", songs: ["Moonlight Sonata", "Canon in D", "Swan Lake"] },
-      { name: "Bollywood", songs: ["Tum Hi Ho", "Kesariya", "Tera Ban Jaunga", "Kalank Title Track"] },
-      { name: "Folk", songs: ["Kesariya Balam", "Nimbooda", "Heer", "Kaanch Hi Bans Ke"] },
-      { name: "Indie", songs: ["Cold/Mess", "Riha", "Kho Gaye Hum Kahan", "Alag Aasmaan"] },
-      { name: "Sufi", songs: ["Kun Faaya Kun", "Khwaja Mere Khwaja", "Tajdar E Haram", "Afreen Afreen"] },
-      { name: "Reggae", songs: ["One Love", "Three Little Birds", "No Woman No Cry", "Could You Be Loved"] },
-      { name: "Blues", songs: ["The Thrill Is Gone", "Sweet Home Chicago", "Hoochie Coochie Man", "Cross Road Blues"] }
-    ];
-
-    const container = document.getElementById('genreContainer');
-
-    genres.forEach((genre, index) => {
-      const col = document.createElement('div');
-      col.classList.add('col-md-3', 'col-sm-6');
-      col.innerHTML = `
-        <div class="genre-card">
-          <h4>${genre.name}</h4>
-          <button class="btn btn-primary mt-3" onclick="toggleSongs(${index})">View Songs</button>
-          <div class="song-list" id="songs-${index}">
-            ${genre.songs.map(song => `<a href="#" onclick="playSong('${song}')"> ${song}</a>`).join('')}
-          </div>
-        </div>
-      `;
-      container.appendChild(col);
-    });
-
-    function toggleSongs(index) {
-      const list = document.getElementById(`songs-${index}`);
-      list.style.display = (list.style.display === "block") ? "none" : "block";
-    }
-
-    function playSong(songName) {
-      const audioPlayer = document.getElementById("audioPlayer");
-      const formattedName = songName.replaceAll(" ", "_").toLowerCase();
-      const filePath = `assets/audio/${formattedName}.mp3`;
-
-      audioPlayer.src = filePath;
-      audioPlayer.style.display = "block";
-      audioPlayer.play().catch(err => console.error("Error playing audio:", err));
-    }
-  </script>
-
-  <!-- Audio Player -->
-  <audio id="audioPlayer" controls style="display:none; width:100%; margin-top:20px;"></audio>
-
-  <!-- Footer -->
-  <footer class="text-center">
-    <div class="container">
-      <p>&copy; 2025 UmaaG. All Rights Reserved.</p>
-      <p>Follow us on
-        <a href="#">Facebook</a> |
-        <a href="#">Instagram</a> |
-        <a href="#">Twitter</a>
-      </p>
-    </div>
-  </footer>
-
-  <!-- Bootstrap JS Bundle -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Randomize bars so they all move differently -->
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const bars = document.querySelectorAll(".bars .bar");
-      bars.forEach((bar) => {
-        // random duration between 650ms and 1900ms
-        const duration = Math.floor(650 + Math.random() * 1250);
-        // negative delay so bar starts mid-animation
-        const delay = -Math.floor(Math.random() * duration);
-        // slight random horizontal scale so bars are not identical
-        const scaleX = (0.85 + Math.random() * 0.45).toFixed(2);
-        // random opacity
-        const opacity = (0.75 + Math.random() * 0.25).toFixed(2);
-
-        bar.style.animationDuration = duration + "ms";
-        bar.style.animationDelay = delay + "ms";
-        bar.style.transform = `scaleX(${scaleX})`;
-        bar.style.opacity = opacity;
-      });
-    });
-  </script>
 </body>
-
 </html>
