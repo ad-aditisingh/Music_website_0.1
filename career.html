@@ -204,55 +204,6 @@
       .bar { width: clamp(3px, 1.2vw, 12px); }
     }
 
-
-/* Make accordion match card color */
-.accordion-item {
-  background-color: #121826 !important;
-  border: none;
-  border-radius: 12px;
-  margin-bottom: 10px;
-  overflow: hidden;
-  box-shadow: 0 0 10px #a200ff22;
-}
-
-/* Accordion header button */
-.accordion-button {
-  background-color: #121826 !important;
-  color: #E6EDF3 !important;
-  font-weight: 600;
-  border: none;
-  box-shadow: none !important;
-  padding: 18px;
-}
-
-/* Remove blue focus outline */
-.accordion-button:focus {
-  box-shadow: none !important;
-  border: none !important;
-}
-
-/* Purple highlight when expanded */
-.accordion-button:not(.collapsed) {
-  background-color: #1A1F2F !important;       /* Slightly lighter purple-black */
-  color: #9966CC !important;                  /* Purple text */
-  box-shadow: inset 0 0 10px #9966CC55;       /* Glow effect */
-}
-
-/* Change icon color (arrow) */
-.accordion-button::after {
-  filter: hue-rotate(250deg) brightness(1.4);   /* Makes arrow purple */
-}
-
-/* Accordion body */
-.accordion-body {
-  background-color: #121826;
-  color: #ccc;
-  padding: 18px 20px;
-}
-
-
-
-    
   </style>
 </head>
 
@@ -363,120 +314,50 @@
   </section>
 
   <!-- Career Information Section -->
- <section class="container my-5">
-  <h2 class="text-center mb-4">Popular Careers in Music</h2>
+  <section class="container my-5">
+    <h2 class="text-center mb-4">Popular Careers in Music</h2>
+    <div>
+      <h5>Vocalist / Singer</h5>
+      <p>Perform songs across genres — from playback to live concerts. Focus on training your voice, expression, and stage performance. 
+      A career as a vocalist requires consistent practice, vocal health maintenance, and collaboration with music producers and composers. 
+      Opportunities include playback singing, live performances, choir singing, and independent artistry on digital platforms. 
+      With social media and streaming platforms, independent singers can reach a global audience and build their brand.</p>
 
-  <div class="accordion" id="careerAccordion">
+      <h5>Composer / Songwriter</h5>
+      <p>Create original melodies and lyrics. Requires understanding of musical theory, harmony, and digital audio workstations (DAWs). 
+      Composers work for films, advertisements, and gaming studios or as independent creators. 
+      Songwriters often collaborate with singers and producers, and strong storytelling through lyrics is key. 
+      Creativity, emotional intelligence, and networking with the industry can help composers establish a lasting career.</p>
 
-    <!-- 1. Vocalist -->
-    <div class="accordion-item bg-dark text-light border-0 mb-2" style="border-radius:10px;">
-      <h2 class="accordion-header">
-        <button class="accordion-button bg-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#career1" style="border-radius:10px;">
-          Vocalist / Singer
-        </button>
-      </h2>
-      <div id="career1" class="accordion-collapse collapse show" data-bs-parent="#careerAccordion">
-        <div class="accordion-body">
-          Perform songs across genres — playback, live concerts, choir, and indie work.  
-          Requires strong vocal technique, consistency, and stage presence.  
-          Social media platforms allow singers to grow a global audience.
-        </div>
-      </div>
+      <h5>Music Producer</h5>
+      <p>Oversee the entire music production process — mixing, mastering, and sound design. Requires technical and creative skills. 
+      Producers act as both technicians and visionaries, helping artists translate musical ideas into finished tracks. 
+      Mastery of DAWs such as Logic Pro or Ableton Live is essential. A good producer understands sound trends, manages studio sessions, and maintains a creative yet organized workflow.</p>
+
+      <h5>Performance (Musicians & Singers)</h5>
+      <p>Perform live on stage or in studios as instrumentalists or vocalists. Develop stage presence and collaborate with other artists. 
+      Performing artists can specialize in specific genres like classical, pop, jazz, or fusion. 
+      Success in this field demands not only musical excellence but also confidence, audience engagement, and versatility. 
+      Frequent practice, networking, and exposure to live audiences help performers grow professionally.</p>
+
+      <h5>Production (Producers & Audio Engineers)</h5>
+      <p>Shape the sound of music through recording, editing, and mixing. Work with modern DAWs and studio equipment. 
+      Audio engineers ensure sound quality and balance in both studio and live performances. 
+      The field offers opportunities in studios, film production, television, gaming, and podcasts. 
+      Strong technical skills and a good ear for detail make this career highly rewarding for those passionate about sound.</p>
+
+      <h5>Music Business (Agents, Publicists, Managers)</h5>
+      <p>Handle marketing, contracts, and artist management. Bridge the gap between art and commerce in the music world. 
+      These professionals negotiate deals, organize tours, and handle branding for artists. 
+      Knowledge of media, public relations, and legal aspects of music is essential. 
+      It’s ideal for those who enjoy working behind the scenes and supporting creative talent to reach larger audiences.</p>
+
+      <h5>Education (Teachers & Therapists)</h5>
+      <p>Inspire others through teaching or use music therapy to promote well-being. Requires compassion and musical understanding. 
+      Music educators work in schools, colleges, or private institutes, while music therapists use rhythm and melody to aid emotional and physical healing. 
+      Both careers are fulfilling paths that merge art and human connection, with growing demand in academic and healthcare institutions alike.</p>
     </div>
-
-    <!-- 2. Composer -->
-    <div class="accordion-item bg-dark text-light border-0 mb-2" style="border-radius:10px;">
-      <h2 class="accordion-header">
-        <button class="accordion-button collapsed bg-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#career2">
-          Composer / Songwriter
-        </button>
-      </h2>
-      <div id="career2" class="accordion-collapse collapse" data-bs-parent="#careerAccordion">
-        <div class="accordion-body">
-          Creates original melodies and lyrics. Works in films, games, ads, and indie music.  
-          Requires music theory, lyric writing, emotional storytelling, and collaboration with artists.
-        </div>
-      </div>
-    </div>
-
-    <!-- 3. Music Producer -->
-    <div class="accordion-item bg-dark text-light border-0 mb-2" style="border-radius:10px;">
-      <h2 class="accordion-header">
-        <button class="accordion-button collapsed bg-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#career3">
-          Music Producer
-        </button>
-      </h2>
-      <div id="career3" class="accordion-collapse collapse" data-bs-parent="#careerAccordion">
-        <div class="accordion-body">
-          Oversees entire music production — arranging, recording, mixing, and mastering.  
-          Must know DAWs like FL Studio, Logic Pro, or Ableton. Balances technical and creative skills.
-        </div>
-      </div>
-    </div>
-
-    <!-- 4. Performer -->
-    <div class="accordion-item bg-dark text-light border-0 mb-2" style="border-radius:10px;">
-      <h2 class="accordion-header">
-        <button class="accordion-button collapsed bg-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#career4">
-          Performing Artist (Musicians & Singers)
-        </button>
-      </h2>
-      <div id="career4" class="accordion-collapse collapse" data-bs-parent="#careerAccordion">
-        <div class="accordion-body">
-          Performs on stage or in studios. Requires stage presence, versatility, and collaboration.  
-          Genres include pop, classical, jazz, fusion, and more.
-        </div>
-      </div>
-    </div>
-
-    <!-- 5. Production -->
-    <div class="accordion-item bg-dark text-light border-0 mb-2" style="border-radius:10px;">
-      <h2 class="accordion-header">
-        <button class="accordion-button collapsed bg-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#career5">
-          Production (Audio Engineers)
-        </button>
-      </h2>
-      <div id="career5" class="accordion-collapse collapse" data-bs-parent="#careerAccordion">
-        <div class="accordion-body">
-          Works with recording, editing, mixing, and sound design.  
-          Opportunities in studios, film, games, podcasts, and live concerts.
-        </div>
-      </div>
-    </div>
-
-    <!-- 6. Music Business -->
-    <div class="accordion-item bg-dark text-light border-0 mb-2" style="border-radius:10px;">
-      <h2 class="accordion-header">
-        <button class="accordion-button collapsed bg-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#career6">
-          Music Business (Agents, Managers, Publicists)
-        </button>
-      </h2>
-      <div id="career6" class="accordion-collapse collapse" data-bs-parent="#careerAccordion">
-        <div class="accordion-body">
-          Handles marketing, contracts, branding, tours, and artist management.  
-          Ideal for people who enjoy behind-the-scenes work.
-        </div>
-      </div>
-    </div>
-
-    <!-- 7. Music Education -->
-    <div class="accordion-item bg-dark text-light border-0 mb-2" style="border-radius:10px;">
-      <h2 class="accordion-header">
-        <button class="accordion-button collapsed bg-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#career7">
-          Education (Teachers & Music Therapists)
-        </button>
-      </h2>
-      <div id="career7" class="accordion-collapse collapse" data-bs-parent="#careerAccordion">
-        <div class="accordion-body">
-          Teaching in schools/colleges or using music for healing and therapy.  
-          A fulfilling path combining creativity with human connection.
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
+  </section>
 
   <!-- Skills Section -->
   <section class="container my-5">
