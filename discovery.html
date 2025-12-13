@@ -281,19 +281,19 @@ function render(containerId, data, prefix) {
 render("genreContainer", genres, "genre");
 render("moodContainer", moods, "mood");
 render("artistContainer", artists, "artist");
-
 function toggle(id) {
-  // Close all open song lists
+  // close all other open song lists
   document.querySelectorAll(".song-list").forEach(list => {
     if (list.id !== id) {
       list.style.display = "none";
     }
   });
 
-  // Toggle selected one
+  // toggle the clicked one
   const el = document.getElementById(id);
   el.style.display = el.style.display === "block" ? "none" : "block";
 }
+
 
 </script>
 
