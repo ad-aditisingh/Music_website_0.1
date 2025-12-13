@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,8 +26,6 @@
     .navbar-brand {
       color:#9966CC !important;
       font-size: 1.5rem;
-      font-weight: 700;
-      letter-spacing: 1px;
     }
 
     .navbar-nav .nav-link {
@@ -54,20 +53,37 @@
       text-shadow: 0 0 20px #5c5c99;
     }
 
-    .subtitle {
-      color: #dfe9ff;
-      opacity: 0.95;
-   }
-
-
     body {
       padding-top: 70px;
     }
 
 
+    /* Section Titles */
+    .section-title {
+      text-align: center;
+      margin-top: 60px;
+      margin-bottom: 30px;
+      font-weight: 600;
+      font-family: 'Poppins', cursive;
+      color: #9966CC;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
 
+     section.container {
+      padding-top: 60px;     /* good space above each section */
+      padding-bottom: 35px;  /* reduced space below cards */
+}
 
-        /* Cards */
+     section.container:first-of-type {
+      margin-top: 40px;      /* clean space above first section */
+}
+
+     section.container h2 {
+      margin-bottom: 35px;   /* balance between heading and cards */
+}
+
+    /* Cards */
     .tool-card {
       background-color: #121826;
       border-radius: 15px;
@@ -81,8 +97,14 @@
     .tool-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 0 25px #a200ff22;
-    } 
+    }
 
+    .tool-card img {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      margin-bottom: 15px;
+    }
 
     .tool-card h5 {
       color: #9966CC;
@@ -90,7 +112,24 @@
       margin-top: 10px;
     }
 
+    .btn-custom {
+      background-color: #9966CC;
+      border: none;
+      border-radius: 25px;
+      padding: 8px 20px;
+      color: white;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 10px;
+      transition: 0.3s;
+    }
 
+    .btn-custom:hover {
+      background-color: #7a4fb4;
+      box-shadow: 0 0 10px rgba(153,102,204,0.5);
+      text-decoration: none;
+      color: white;
+    }
 
     /* Footer */
     footer {
@@ -151,7 +190,7 @@
 
   <div class="hero-content">
     <h1>Create Your Own Music</h1>
-    <p class="subtitle">
+    <p class="hero-subtitle">
       Unleash your creativity — make, mix, and share your sound with the world.
     </p>
   </div>
@@ -166,21 +205,21 @@
         <div class="tool-card">
           <h5>Soundtrap by Spotify</h5>
           <p>Record, mix, and collaborate online. Great for beginners and pros with real-time collaboration.</p>
-          <a href="https://www.soundtrap.com/" target="_blank" class="btn btn-outline-primary">Visit Website</a>
+          <a href="https://www.soundtrap.com/" target="_blank" class="btn-custom">Visit Website</a>
         </div>
       </div>
       <div class="col-md-4">
         <div class="tool-card">
           <h5>Soundation</h5>
           <p>Create tracks with loops, beats, and synths right in your browser — perfect for EDM and pop music.</p>
-          <a href="https://soundation.com/" target="_blank" class="btn btn-outline-primary">Visit Website</a>
+          <a href="https://soundation.com/" target="_blank" class="btn-custom">Visit Website</a>
         </div>
       </div>
       <div class="col-md-4">
         <div class="tool-card">
           <h5>Audiotool</h5>
           <p>Powerful online DAW featuring drum machines, synthesizers, and a large community of creators.</p>
-          <a href="https://www.audiotool.com/" target="_blank" class="btn btn-outline-primary">Visit Website</a>
+          <a href="https://www.audiotool.com/" target="_blank" class="btn-custom">Visit Website</a>
         </div>
       </div>
     </div>
@@ -194,7 +233,14 @@
         <div class="tool-card">
           <h5>YouDJ</h5>
           <p>Mix and play tracks directly in your browser with effects and samples. Great for quick, fun DJ sessions.</p>
-          <a href="https://you.dj/" target="_blank" class="btn btn-outline-primary">Visit Website</a>
+          <a href="https://you.dj/" target="_blank" class="btn-custom">Visit Website</a>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="tool-card">
+          <h5>Transitions DJ</h5>
+          <p>Mix songs from SoundCloud or your local files with tempo and beat matching tools.</p>
+          <a href="https://dj.app/" target="_blank" class="btn-custom">Visit Website</a>
         </div>
       </div>
     </div>
@@ -208,21 +254,21 @@
         <div class="tool-card">
           <h5>FL Studio</h5>
           <p>One of the most popular DAWs for electronic, hip-hop, and pop music production.</p>
-          <a href="https://www.image-line.com/flstudio/" target="_blank" class="btn btn-outline-primary">Visit Website</a>
+          <a href="https://www.image-line.com/flstudio/" target="_blank" class="btn-custom">Visit Website</a>
         </div>
       </div>
       <div class="col-md-4">
         <div class="tool-card">
           <h5>Ableton Live</h5>
           <p>Perfect for live performances and advanced mixing with real-time sound control.</p>
-          <a href="https://www.ableton.com/" target="_blank" class="btn btn-outline-primary">Visit Website</a>
+          <a href="https://www.ableton.com/" target="_blank" class="btn-custom">Visit Website</a>
         </div>
       </div>
       <div class="col-md-4">
         <div class="tool-card">
           <h5>Logic Pro</h5>
           <p>Apple’s professional-grade DAW for songwriting, recording, and high-quality production.</p>
-          <a href="https://www.apple.com/logic-pro/" target="_blank" class="btn btn-outline-primary">Visit Website</a>
+          <a href="https://www.apple.com/logic-pro/" target="_blank" class="btn-custom">Visit Website</a>
         </div>
       </div>
     </div>
