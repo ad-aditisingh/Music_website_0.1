@@ -271,7 +271,7 @@ function render(containerId, data, prefix) {
         <h5>${item.name}</h5>
         <button class="btn btn-outline-primary mt-2" onclick="toggle('${prefix}-${i}')">View Songs</button>
         <div class="song-list" id="${prefix}-${i}">
-          ${item.songs.map(s => `<a href="#" onclick="playSong('${s}')">▪️ ${s}</a>`).join("")}
+          ${item.songs.map(s => `<a href="#" onclick="event.preventDefault(); playSong('${s}')">▪️ ${s}</a>`).join("")}
         </div>
       </div>`;
     container.appendChild(col);
@@ -294,7 +294,22 @@ function toggle(id) {
   el.style.display = el.style.display === "block" ? "none" : "block";
 }
 
+function playSong(song) {
+  const audio = document.getElementById("audioPlayer");
 
+  // Build file path
+  audio.src = `assets/audio/${song.replaceAll(" ", "_").toLowerCase()}.mp3`;
+
+  audio.style.display = "block";
+
+  audio.play().catch(err => {
+    console.error("Audio play failed:", err);
+  });
+}
+
+
+
+  
 </script>
 
 </body>
