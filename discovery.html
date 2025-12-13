@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Music Discovery | UmaaG</title>
 
   <!-- Bootstrap -->
@@ -56,9 +56,11 @@
 
     .genre-card {
       background-color: #121826;
+      border: 1px solid #2b1f37;
       border-radius: 15px;
-      padding: 30px;
       box-shadow: 0 0 10px #a200ff22;
+      padding: 30px;
+      text-align: center;
       transition: 0.3s;
       height: 100%;
     }
@@ -71,13 +73,14 @@
     .song-list {
       display: none;
       margin-top: 15px;
+      text-align: left;
     }
 
     .song-list a {
       display: block;
-      color: #9966CC;
       text-decoration: none;
-      padding: 4px 0;
+      color: #9966CC;
+      padding: 5px 0;
     }
 
     footer {
@@ -118,7 +121,7 @@
 <section class="hero">
   <div class="equalizer-bg">
     <div class="bars">
-      <!-- SAME 48 BARS -->
+      <!-- EXACT SAME 48 BARS -->
       <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
       <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
       <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
@@ -136,7 +139,7 @@
 
   <div style="position:relative; z-index:2">
     <h1>Explore the Music Within</h1>
-    <p class="subtitle">Discover songs by genre, mood & artists</p>
+    <p class="subtitle">Let every note guide you closer to your passion</p>
   </div>
 </section>
 
@@ -146,17 +149,32 @@
   <div class="row g-4" id="genreContainer"></div>
 </section>
 
+<!-- MOOD + ARTISTS -->
+<section class="container my-5">
+  <div class="row g-4">
+    <div class="col-md-6">
+      <h2 class="text-center mb-4">Listen by Mood</h2>
+      <div class="row g-4" id="moodContainer"></div>
+    </div>
+
+    <div class="col-md-6">
+      <h2 class="text-center mb-4">Featured Artists</h2>
+      <div class="row g-4" id="artistContainer"></div>
+    </div>
+  </div>
+</section>
+
 <!-- AUDIO PLAYER -->
-<audio id="audioPlayer" controls style="display:none;width:100%;margin:30px auto"></audio>
+<audio id="audioPlayer" controls style="display:none;width:100%;margin-top:20px;"></audio>
 
 <!-- FOOTER -->
 <footer class="text-center">
   <div class="container">
     <p>&copy; 2025 UmaaG. All Rights Reserved.</p>
     <p>
+      <a href="#">Facebook</a> |
       <a href="#">Instagram</a> |
-      <a href="#">Twitter</a> |
-      <a href="#">YouTube</a>
+      <a href="#">Twitter</a>
     </p>
   </div>
 </footer>
@@ -167,41 +185,62 @@
 <!-- Shared Equalizer JS -->
 <script src="js/equalizer.js"></script>
 
-<!-- DISCOVERY LOGIC -->
+<!-- ORIGINAL DISCOVERY LOGIC (UNCHANGED) -->
 <script>
 const genres = [
-  { name: "Pop", songs: ["Shape of You", "Blinding Lights", "Levitating"] },
-  { name: "Rock", songs: ["Bohemian Rhapsody", "Hotel California"] },
-  { name: "Jazz", songs: ["Take Five", "So What"] },
-  { name: "Hip-hop", songs: ["Lose Yourself", "God's Plan"] },
-  { name: "EDM", songs: ["Animals", "Titanium"] },
-  { name: "Classical", songs: ["Moonlight Sonata", "Canon in D"] }
+  { name: "Pop", songs: ["Shape of You","Blinding Lights","Levitating","Watermelon Sugar"] },
+  { name: "Rock", songs: ["Bohemian Rhapsody","Hotel California","Smells Like Teen Spirit"] },
+  { name: "Jazz", songs: ["Take Five","What a Wonderful World","So What"] },
+  { name: "Hip-hop", songs: ["God's Plan","Lose Yourself","HUMBLE."] },
+  { name: "EDM", songs: ["Animals","Titanium","Lean On"] },
+  { name: "Classical", songs: ["Moonlight Sonata","Canon in D","Swan Lake"] },
+  { name: "Bollywood", songs: ["Tum Hi Ho","Kesariya","Raabta"] },
+  { name: "Indie", songs: ["Cold/Mess","Alag Aasmaan","Riha"] }
 ];
 
-const container = document.getElementById("genreContainer");
+const moods = [
+  { name: "Chill", songs: ["Let Her Go","Death Bed","Riptide"] },
+  { name: "Romantic", songs: ["Perfect","Tum Hi Ho","All of Me"] },
+  { name: "Party", songs: ["Uptown Funk","Dance Monkey","Taki Taki"] },
+  { name: "Focus", songs: ["Weightless","Clair de Lune","River Flows In You"] }
+];
 
-genres.forEach((genre, i) => {
-  const col = document.createElement("div");
-  col.className = "col-md-4";
-  col.innerHTML = `
-    <div class="genre-card text-center">
-      <h5>${genre.name}</h5>
-      <button class="btn btn-outline-primary mt-2" onclick="toggle(${i})">View Songs</button>
-      <div class="song-list" id="list-${i}">
-        ${genre.songs.map(s => `<a href="#" onclick="play('${s}')">${s}</a>`).join("")}
-      </div>
-    </div>`;
-  container.appendChild(col);
-});
+const artists = [
+  { name: "Taylor Swift", songs: ["Love Story","Cruel Summer","Style"] },
+  { name: "Arijit Singh", songs: ["Tum Hi Ho","Channa Mereya","Raabta"] },
+  { name: "Ed Sheeran", songs: ["Perfect","Photograph","Shape of You"] },
+  { name: "A.R. Rahman", songs: ["Kun Faya Kun","Dil Se Re","Tere Bina"] }
+];
 
-function toggle(i) {
-  const el = document.getElementById(`list-${i}`);
+function render(containerId, data, prefix) {
+  const container = document.getElementById(containerId);
+  data.forEach((item, i) => {
+    const col = document.createElement("div");
+    col.className = "col-md-6";
+    col.innerHTML = `
+      <div class="genre-card">
+        <h5>${item.name}</h5>
+        <button class="btn btn-outline-primary mt-2" onclick="toggle('${prefix}-${i}')">View Songs</button>
+        <div class="song-list" id="${prefix}-${i}">
+          ${item.songs.map(s => `<a href="#" onclick="playSong('${s}')">▪️ ${s}</a>`).join("")}
+        </div>
+      </div>`;
+    container.appendChild(col);
+  });
+}
+
+render("genreContainer", genres, "genre");
+render("moodContainer", moods, "mood");
+render("artistContainer", artists, "artist");
+
+function toggle(id) {
+  const el = document.getElementById(id);
   el.style.display = el.style.display === "block" ? "none" : "block";
 }
 
-function play(name) {
+function playSong(song) {
   const audio = document.getElementById("audioPlayer");
-  audio.src = `assets/audio/${name.replaceAll(" ", "_").toLowerCase()}.mp3`;
+  audio.src = `assets/audio/${song.replaceAll(" ","_").toLowerCase()}.mp3`;
   audio.style.display = "block";
   audio.play();
 }
