@@ -13,8 +13,7 @@
 /* ===== HERO SECTION ===== */
 .hero {
   position: relative;
-  height: 70vh;
-  min-height: 420px;
+  height: 380px;          /* SAME everywhere */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -22,6 +21,7 @@
   overflow: hidden;
   padding: 2rem;
 }
+
 
 /* Overlay to improve text contrast */
 .hero::before {
@@ -54,7 +54,7 @@
 .bars {
   width: 100%;
   max-width: 1400px;
-  height: 60vh;
+  height: 65%;
   display: flex;
   gap: 6px;
   align-items: flex-end;
@@ -62,6 +62,7 @@
   padding: 0 3%;
   box-sizing: border-box;
 }
+
 
 /* Individual bar */
 .bar {
@@ -110,33 +111,15 @@
 }
 
 /* ===== RESPONSIVE TUNING ===== */
-@media (max-width: 992px) {
+@media (max-width: 768px) {
   .hero {
-    height: 65vh;
-    min-height: 380px;
-  }
-
-  .bars {
-    height: 50vh;
-    gap: 4px;
-    padding: 0 4%;
-  }
-
-  .bar {
-    width: clamp(3px, 1vw, 12px);
-  }
-}
-
-@media (max-width: 576px) {
-  .hero {
-    height: 56vh;
-    min-height: 320px;
+    height: 320px;
     padding: 1rem;
   }
 
   .bars {
-    height: 44vh;
-    gap: 3px;
-    padding: 0 6%;
+    height: 65%;
+    gap: 4px;
   }
 }
+
