@@ -2,228 +2,474 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Career in Music | UmaaG</title>
-
-  <!-- Shared stylesheet + Bootstrap + Fonts -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Career in Music</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --accent1: #9966CC;
+      --accent2: #7C4DFF;
+      --bg: #0A0A0F;
+      --card-bg: #121826;
+      --muted: #A1A1AA;
+    }
+
+    html,body{height:100%}
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--bg);
+      color: #E6EDF3;
+      margin:0;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    h2, h3, h5, .navbar-brand {
+      font-family: 'Poppins', cursive;
+      color: var(--accent1);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    a {
+      color: var(--accent1);
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: var(--accent2);
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: rgba(10,10,15,0.95);
+      box-shadow: 0 0 10px #a200ff22;
+    }
+    .navbar-brand { color:var(--accent1) !important; font-size:1.5rem; }
+    .navbar-nav .nav-link { color: #E6EDF3 !important; transition: color .3s; }
+    .navbar-nav .nav-link:hover { color:var(--accent1) !important; }
+
+    /* HERO with equalizer background */
+    .hero {
+      position: relative;
+      height: 380px;            /* shorter hero for career page; adjust as needed */
+      color: #E6EDF3;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 20px;
+      overflow: hidden;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 36px 12px;
+    }
+
+    .hero h1 {
+      font-size: clamp(1.8rem, 3.8vw, 2.8rem);
+      margin-bottom: 10px;
+      text-shadow: 0 0 20px #5c5c99;
+    }
+
+    .hero p {
+      margin:0;
+      color: #dfe9ff;
+      opacity: 0.95;
+    }
+
+    /* overlay to keep text readable */
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(4,4,8,0.06), rgba(4,4,8,0.45));
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* equalizer background */
+    .equalizer-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.42;           /* adjust intensity */
+      filter: blur(2px) saturate(1.6);
+      background: radial-gradient(900px 400px at 10% 10%, rgba(153,102,204,0.08), transparent 10%),
+                  radial-gradient(600px 300px at 90% 90%, rgba(124,77,255,0.08), transparent 10%);
+    }
+
+    .bars {
+      width: 100%;
+      max-width: 1200px;
+      display: flex;
+      gap: 5px;
+      align-items: end;
+      justify-content: space-between;
+      height: 60%;
+      padding: 0 3%;
+      box-sizing: border-box;
+    }
+
+    .bar {
+      width: clamp(3px, 0.7vw, 10px);
+      height: 12%;
+      background: linear-gradient(180deg, var(--accent1), var(--accent2));
+      border-radius: 6px;
+      transform-origin: bottom;
+      box-shadow: 0 0 18px rgba(153,102,204,0.65), 0 0 6px rgba(124,77,255,0.25) inset;
+      animation: equalize 1200ms ease-in-out infinite;
+      will-change: height, transform, opacity;
+      flex: 0 0 auto;
+      opacity: 0.9;
+    }
+
+    @keyframes equalize {
+      0%   { height: 12%; transform: scaleY(0.22); opacity: 0.65; }
+      25%  { height: 78%; transform: scaleY(0.98); opacity: 1; }
+      55%  { height: 30%; transform: scaleY(0.48); opacity: 0.88; }
+      100% { height: 12%; transform: scaleY(0.22); opacity: 0.65; }
+    }
+
+    /* rest of your page styles (cards, etc.) */
+    .career-card {
+      background-color: var(--card-bg);
+      border-radius: 15px;
+      box-shadow: 0 0 10px #a200ff22;
+      padding: 30px;
+      height: 100%;
+      text-align: center;
+      transition: 0.3s;
+    }
+
+    .career-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 25px #a200ff22;
+    }
+
+    .career-card h5 {
+      margin-top: 10px;
+      font-weight: 600;
+      color: var(--accent1);
+    }
+
+    .career-card p { font-size: 0.95rem; color: #ccc; }
+
+    .resource-links a {
+      display: block;
+      text-decoration: none;
+      color: var(--accent1);
+      padding: 6px 0;
+    }
+
+    .btn-custom {
+      background-color: var(--accent1);
+      border: none;
+      border-radius: 25px;
+      padding: 8px 20px;
+      color: white;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 10px;
+      transition: 0.3s;
+    }
+    .btn-custom:hover {
+      background-color: #7a4fb4;
+      box-shadow: 0 0 10px rgba(153,102,204,0.5);
+      color: white;
+    }
+
+    footer {
+      background-color: #212529;
+      color: #ccc;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 40px;
+    }
+
+    /* responsive */
+    @media (max-width: 768px){
+      .hero { height: 320px; padding: 18px 12px; }
+      .bars { gap: 3px; height: 55%; padding: 0 6%; }
+      .bar { width: clamp(3px, 1.2vw, 12px); }
+    }
+
+
+/* Make accordion match card color */
+.accordion-item {
+  background-color: #121826 !important;
+  border: none;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 10px #a200ff22;
+}
+
+/* Accordion header button */
+.accordion-button {
+  background-color: #121826 !important;
+  color: #E6EDF3 !important;
+  font-weight: 600;
+  border: none;
+  box-shadow: none !important;
+  padding: 18px;
+}
+
+/* Remove blue focus outline */
+.accordion-button:focus {
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* Purple highlight when expanded */
+.accordion-button:not(.collapsed) {
+  background-color: #1A1F2F !important;       /* Slightly lighter purple-black */
+  color: #9966CC !important;                  /* Purple text */
+  box-shadow: inset 0 0 10px #9966CC55;       /* Glow effect */
+}
+
+/* Change icon color (arrow) */
+.accordion-button::after {
+  filter: hue-rotate(250deg) brightness(1.4);   /* Makes arrow purple */
+}
+
+/* Accordion body */
+.accordion-body {
+  background-color: #121826;
+  color: #ccc;
+  padding: 18px 20px;
+}
+
+
+
+    
+  </style>
 </head>
+
 <body>
-
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-  <div class="container">
-    <a class="navbar-brand" href="index.html">UmaaG</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-        <li class="nav-item"><a class="nav-link active" href="career.html">Career</a></li>
-        <li class="nav-item"><a class="nav-link" href="discovery.html">Discovery</a></li>
-        <li class="nav-item"><a class="nav-link" href="creation.html">Creation</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<!-- short hero: use hero--short -->
-<section class="hero hero--short">
-  <div class="equalizer-bg" aria-hidden="true">
-    <div class="bars" role="img" aria-label="animated equalizer">
-      <!-- 48 bars -->
-      <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-      <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-      <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-      <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-      <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-      <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-      <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-      <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-      <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-      <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-      <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-    </div>
-  </div>
-
-  <div class="hero-content">
-    <h1>Want to Build Your Career in Music?</h1>
-    <p class="subtitle">Turn your passion into a profession — explore music careers, skills, and resources.</p>
-  </div>
-</section>
-
-<!-- Colleges Section -->
-<section class="container my-5">
-  <h2 class="text-center mb-4">Top Colleges for Music</h2>
-  <div class="row g-4">
-    <div class="col-md-4">
-      <div class="career-card">
-        <h5>Berklee College of Music (Massachusetts, USA)</h5>
-        <p>Renowned globally for contemporary music education and performance programs.</p>
-        <a href="https://www.berklee.edu/" target="_blank" class="btn-custom">Visit Website</a>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">UmaaG</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="career.html">Career</a></li>
+          <li class="nav-item"><a class="nav-link" href="discovery.html">Discovery</a></li>
+          <li class="nav-item"><a class="nav-link" href="creation.html">Creation</a></li>
+        </ul>
       </div>
     </div>
-    <div class="col-md-4">
-      <div class="career-card">
-        <h5>Juilliard School (New York, USA)</h5>
-        <p>Prestigious conservatory offering degrees in music, drama, and dance.</p>
-        <a href="https://www.juilliard.edu/" target="_blank" class="btn-custom">Visit Website</a>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="career-card">
-        <h5>Royal College of Music (England, UK)</h5>
-        <p>Offers world-class training for composers, conductors, and performers.</p>
-        <a href="https://www.rcm.ac.uk/" target="_blank" class="btn-custom">Visit Website</a>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <!-- Equalizer background -->
+    <div class="equalizer-bg" aria-hidden="true">
+      <div class="bars" role="img" aria-label="Animated equalizer background">
+        <!-- 64 bars (feel free to reduce/increase) -->
+        <!-- You can copy/paste more <div class="bar"></div> if you want even denser spectrum -->
+        <!-- I'll include 64 for a wide spread -->
+        <!-- 64 bars -->
+        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+
+        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
       </div>
     </div>
 
-    <div class="col-md-4">
-      <div class="career-card">
-        <h5>KM Music Conservatory (Tamil Nadu, India)</h5>
-        <p>Founded by A.R. Rahman, provides education in music production and performance.</p>
-        <a href="https://kmmc.in/" target="_blank" class="btn-custom">Visit Website</a>
+    <div class="hero-content">
+      <h1>Want to Build Your Career in Music ?</h1>
+      <p>Turn your passion into a profession — explore music careers, skills, and resources.</p>
+    </div>
+  </section>
+
+  <!-- Colleges Section -->
+  <section class="container my-5">
+    <h2 class="text-center mb-4">Top Colleges for Music</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="career-card">
+          <h5>Berklee College of Music (Massachusetts, USA)</h5>
+          <p>Renowned globally for contemporary music education and performance programs.</p>
+          <a href="https://www.berklee.edu/" target="_blank" class="btn-custom">Visit Website</a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="career-card">
+          <h5>Juilliard School (New York, USA)</h5>
+          <p>Prestigious conservatory offering degrees in music, drama, and dance.</p>
+          <a href="https://www.juilliard.edu/" target="_blank" class="btn-custom">Visit Website</a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="career-card">
+          <h5>Royal College of Music (England, UK)</h5>
+          <p>Offers world-class training for composers, conductors, and performers.</p>
+          <a href="https://www.rcm.ac.uk/" target="_blank" class="btn-custom">Visit Website</a>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="career-card">
+          <h5>KM Music Conservatory (Tamil Nadu, India)</h5>
+          <p>Founded by A.R. Rahman, provides education in music production and performance.</p>
+          <a href="https://kmmc.in/" target="_blank" class="btn-custom">Visit Website</a>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="career-card">
+          <h5>Delhi School of Music (New Delhi, India)</h5>
+          <p>Offers Western classical music education with graded certification programs.</p>
+          <a href="https://delhischoolofmusic.net/" target="_blank" class="btn-custom">Visit Website</a>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="career-card">
+          <h5>Swarnabhoomi Academy of Music (Tamil Nadu, India)</h5>
+          <p>Premier music school offering degrees in performance, production, and composition.</p>
+          <a href="https://sam.org.in/" target="_blank" class="btn-custom">Visit Website</a>
+        </div>
       </div>
     </div>
+  </section>
 
-    <div class="col-md-4">
-      <div class="career-card">
-        <h5>Delhi School of Music (New Delhi, India)</h5>
-        <p>Offers Western classical music education with graded certification programs.</p>
-        <a href="https://delhischoolofmusic.net/" target="_blank" class="btn-custom">Visit Website</a>
-      </div>
-    </div>
-
-    <div class="col-md-4">
-      <div class="career-card">
-        <h5>Swarnabhoomi Academy of Music (Tamil Nadu, India)</h5>
-        <p>Premier music school offering degrees in performance, production, and composition.</p>
-        <a href="https://sam.org.in/" target="_blank" class="btn-custom">Visit Website</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Career Information Section -->
-<section class="container my-5">
+  <!-- Career Information Section -->
+ <section class="container my-5">
   <h2 class="text-center mb-4">Popular Careers in Music</h2>
 
   <div class="accordion" id="careerAccordion">
 
     <!-- 1. Vocalist -->
-    <div class="accordion-item">
+    <div class="accordion-item bg-dark text-light border-0 mb-2" style="border-radius:10px;">
       <h2 class="accordion-header">
-        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#career1" aria-expanded="true" aria-controls="career1">
+        <button class="accordion-button bg-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#career1" style="border-radius:10px;">
           Vocalist / Singer
         </button>
       </h2>
       <div id="career1" class="accordion-collapse collapse show" data-bs-parent="#careerAccordion">
         <div class="accordion-body">
-          Perform songs across genres — from playback to live concerts. Focus on training your voice, expression, and stage performance.
-          A career as a vocalist requires consistent practice, vocal health maintenance, and collaboration with music producers and composers.
-          Opportunities include playback singing, live performances, choir singing, and independent artistry on digital platforms.
-          With social media and streaming platforms, independent singers can reach a global audience and build their brand.
+          Perform songs across genres — playback, live concerts, choir, and indie work.  
+          Requires strong vocal technique, consistency, and stage presence.  
+          Social media platforms allow singers to grow a global audience.
         </div>
       </div>
     </div>
 
     <!-- 2. Composer -->
-    <div class="accordion-item">
+    <div class="accordion-item bg-dark text-light border-0 mb-2" style="border-radius:10px;">
       <h2 class="accordion-header">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#career2" aria-expanded="false" aria-controls="career2">
+        <button class="accordion-button collapsed bg-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#career2">
           Composer / Songwriter
         </button>
       </h2>
       <div id="career2" class="accordion-collapse collapse" data-bs-parent="#careerAccordion">
         <div class="accordion-body">
-          Create original melodies and lyrics. Requires understanding of musical theory, harmony, and digital audio workstations (DAWs).
-          Composers work for films, advertisements, and gaming studios or as independent creators.
-          Songwriters often collaborate with singers and producers, and strong storytelling through lyrics is key.
-          Creativity, emotional intelligence, and networking with the industry can help composers establish a lasting career.
+          Creates original melodies and lyrics. Works in films, games, ads, and indie music.  
+          Requires music theory, lyric writing, emotional storytelling, and collaboration with artists.
         </div>
       </div>
     </div>
 
     <!-- 3. Music Producer -->
-    <div class="accordion-item">
+    <div class="accordion-item bg-dark text-light border-0 mb-2" style="border-radius:10px;">
       <h2 class="accordion-header">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#career3" aria-expanded="false" aria-controls="career3">
+        <button class="accordion-button collapsed bg-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#career3">
           Music Producer
         </button>
       </h2>
       <div id="career3" class="accordion-collapse collapse" data-bs-parent="#careerAccordion">
         <div class="accordion-body">
-          Oversee the entire music production process — mixing, mastering, and sound design. Requires technical and creative skills.
-          Producers act as both technicians and visionaries, helping artists translate musical ideas into finished tracks.
-          Mastery of DAWs such as Logic Pro or Ableton Live is essential. A good producer understands sound trends, manages studio sessions, and maintains a creative yet organized workflow.
+          Oversees entire music production — arranging, recording, mixing, and mastering.  
+          Must know DAWs like FL Studio, Logic Pro, or Ableton. Balances technical and creative skills.
         </div>
       </div>
     </div>
 
     <!-- 4. Performer -->
-    <div class="accordion-item">
+    <div class="accordion-item bg-dark text-light border-0 mb-2" style="border-radius:10px;">
       <h2 class="accordion-header">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#career4" aria-expanded="false" aria-controls="career4">
+        <button class="accordion-button collapsed bg-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#career4">
           Performing Artist (Musicians & Singers)
         </button>
       </h2>
       <div id="career4" class="accordion-collapse collapse" data-bs-parent="#careerAccordion">
         <div class="accordion-body">
-          Perform live on stage or in studios as instrumentalists or vocalists. Develop stage presence and collaborate with other artists.
-          Performing artists can specialize in specific genres like classical, pop, jazz, or fusion.
-          Success in this field demands not only musical excellence but also confidence, audience engagement, and versatility.
-          Frequent practice, networking, and exposure to live audiences help performers grow professionally.
+          Performs on stage or in studios. Requires stage presence, versatility, and collaboration.  
+          Genres include pop, classical, jazz, fusion, and more.
         </div>
       </div>
     </div>
 
     <!-- 5. Production -->
-    <div class="accordion-item">
+    <div class="accordion-item bg-dark text-light border-0 mb-2" style="border-radius:10px;">
       <h2 class="accordion-header">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#career5" aria-expanded="false" aria-controls="career5">
+        <button class="accordion-button collapsed bg-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#career5">
           Production (Audio Engineers)
         </button>
       </h2>
       <div id="career5" class="accordion-collapse collapse" data-bs-parent="#careerAccordion">
         <div class="accordion-body">
-          Shape the sound of music through recording, editing, and mixing. Work with modern DAWs and studio equipment.
-          Audio engineers ensure sound quality and balance in both studio and live performances.
-          The field offers opportunities in studios, film production, television, gaming, and podcasts.
-          Strong technical skills and a good ear for detail make this career highly rewarding for those passionate about sound.
+          Works with recording, editing, mixing, and sound design.  
+          Opportunities in studios, film, games, podcasts, and live concerts.
         </div>
       </div>
     </div>
 
     <!-- 6. Music Business -->
-    <div class="accordion-item">
+    <div class="accordion-item bg-dark text-light border-0 mb-2" style="border-radius:10px;">
       <h2 class="accordion-header">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#career6" aria-expanded="false" aria-controls="career6">
+        <button class="accordion-button collapsed bg-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#career6">
           Music Business (Agents, Managers, Publicists)
         </button>
       </h2>
       <div id="career6" class="accordion-collapse collapse" data-bs-parent="#careerAccordion">
         <div class="accordion-body">
-          Handle marketing, contracts, and artist management. Bridge the gap between art and commerce in the music world.
-          These professionals negotiate deals, organize tours, and handle branding for artists.
-          Knowledge of media, public relations, and legal aspects of music is essential.
-          It’s ideal for those who enjoy working behind the scenes and supporting creative talent to reach larger audiences.
+          Handles marketing, contracts, branding, tours, and artist management.  
+          Ideal for people who enjoy behind-the-scenes work.
         </div>
       </div>
     </div>
 
     <!-- 7. Music Education -->
-    <div class="accordion-item">
+    <div class="accordion-item bg-dark text-light border-0 mb-2" style="border-radius:10px;">
       <h2 class="accordion-header">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#career7" aria-expanded="false" aria-controls="career7">
+        <button class="accordion-button collapsed bg-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#career7">
           Education (Teachers & Music Therapists)
         </button>
       </h2>
       <div id="career7" class="accordion-collapse collapse" data-bs-parent="#careerAccordion">
         <div class="accordion-body">
-          Inspire others through teaching or use music therapy to promote well-being. Requires compassion and musical understanding.
-          Music educators work in schools, colleges, or private institutes, while music therapists use rhythm and melody to aid emotional and physical healing.
-          Both careers are fulfilling paths that merge art and human connection, with growing demand in academic and healthcare institutions alike.
+          Teaching in schools/colleges or using music for healing and therapy.  
+          A fulfilling path combining creativity with human connection.
         </div>
       </div>
     </div>
@@ -231,54 +477,71 @@
   </div>
 </section>
 
-<!-- Skills Section -->
-<section class="container my-5">
-  <h2 class="text-center mb-4">Skills You'd Require</h2>
-  <div>
-    <h5>Musical Skills</h5>
-    <p>If you want to grow in the world of music, start by strengthening your basics — understanding rhythm, melody, and harmony. Learning how to read music, compose simple tunes, and train your ear will help you express your ideas more freely and confidently.</p>
 
-    <h5>Technical & Production Skills</h5>
-    <p>Music today isn’t just about instruments — it’s about technology too. Getting comfortable with music software like FL Studio, Logic Pro, or Ableton Live can take your creativity to the next level. Knowing how to record, mix, and master your songs will make your work sound polished and professional.</p>
+  <!-- Skills Section -->
+  <section class="container my-5">
+    <h2 class="text-center mb-4">Skills You'd Require</h2>
+    <div> 
+      <h5>Musical Skills</h5>
+      <p>If you want to grow in the world of music, start by strengthening your basics — understanding rhythm, melody, and harmony. Learning how to read music, compose simple tunes, and train your ear will help you express your ideas more freely and confidently.</p>
+      <h5>Technical & Production Skills</h5>
+      <p>Music today isn’t just about instruments — it’s about technology too. Getting comfortable with music software like FL Studio, Logic Pro, or Ableton Live can take your creativity to the next level. Knowing how to record, mix, and master your songs will make your work sound polished and professional.</p>
+      <h5>Performance & Communication Skills</h5>
+      <p>Performing is all about connection — with your audience and with your team. Building confidence on stage, developing a strong presence, and communicating clearly with other artists or producers will help you bring your best energy to every performance or collaboration.</p>
+      <h5>Creative & Analytical Thinking</h5>
+      <p>Creativity is your biggest strength as a musician. Don’t be afraid to experiment with sounds, genres, and new styles. At the same time, learning to listen critically and analyze your work helps you grow — it’s how great ideas turn into timeless music.</p>
+      <h5>Business & Marketing Skills</h5>
+      <p>In today’s music world, talent alone isn’t enough — you also need to know the business side. Understanding how to market yourself, protect your work, manage contracts, and build your personal brand can help you take control of your career and reach a wider audience.</p>
+    </div>
+  </section>
 
-    <h5>Performance & Communication Skills</h5>
-    <p>Performing is all about connection — with your audience and with your team. Building confidence on stage, developing a strong presence, and communicating clearly with other artists or producers will help you bring your best energy to every performance or collaboration.</p>
+  <!-- Resources Section -->
+  <section class="container my-5">
+    <h2 class="text-center mb-4">Useful Resources & Courses</h2>
+    <div class="resource-links text-center">
+      <a href="https://musicproductioncourse.com/" target="_blank">Online Music Production Courses</a>
+      <a href="https://www.udemy.com/courses/music/production/" target="_blank">Udemy Music Production Courses</a>
+      <a href="https://www.soundgym.co/site/school?utm_source=chatgpt.com" target="_blank">SoundGym School Free Music Production Program</a>
+      <a href="https://www.coursera.org/browse/arts-and-humanities/music-and-art" target="_blank">Coursera Music Programs</a>
+      <a href="https://www.pointblankmusicschool.com/locations/online/?utm_source=chatgpt.com" target="_blank">Point Blank Music School Music Production Diploma</a>
+      <a href="https://www.spotifyforartists.com/" target="_blank">Spotify for Artists</a>
+    </div>
+  </section>
 
-    <h5>Creative & Analytical Thinking</h5>
-    <p>Creativity is your biggest strength as a musician. Don’t be afraid to experiment with sounds, genres, and new styles. At the same time, learning to listen critically and analyze your work helps you grow — it’s how great ideas turn into timeless music.</p>
+  <!-- Footer -->
+  <footer class="text-center">
+    <div class="container">
+      <p>&copy; 2025 UmaaG. All Rights Reserved.</p>
+      <p>Follow us on
+        <a href="#">Facebook</a> |
+        <a href="#">Instagram</a> |
+        <a href="#">Twitter</a>
+      </p>
+    </div>
+  </footer>
 
-    <h5>Business & Marketing Skills</h5>
-    <p>In today’s music world, talent alone isn’t enough — you also need to know the business side. Understanding how to market yourself, protect your work, manage contracts, and build your personal brand can help you take control of your career and reach a wider audience.</p>
-  </div>
-</section>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- Resources Section -->
-<section class="container my-5">
-  <h2 class="text-center mb-4">Useful Resources & Courses</h2>
-  <div class="resource-links text-center">
-    <a href="https://musicproductioncourse.com/" target="_blank">Online Music Production Courses</a>
-    <a href="https://www.udemy.com/courses/music/production/" target="_blank">Udemy Music Production Courses</a>
-    <a href="https://www.soundgym.co/site/school?utm_source=chatgpt.com" target="_blank">SoundGym School Free Music Production Program</a>
-    <a href="https://www.coursera.org/browse/arts-and-humanities/music-and-art" target="_blank">Coursera Music Programs</a>
-    <a href="https://www.pointblankmusicschool.com/locations/online/?utm_source=chatgpt.com" target="_blank">Point Blank Music School Music Production Diploma</a>
-    <a href="https://www.spotifyforartists.com/" target="_blank">Spotify for Artists</a>
-  </div>
-</section>
+  <!-- Randomize bars so they all move differently -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const bars = document.querySelectorAll(".bars .bar");
+      bars.forEach((bar) => {
+        // duration between 650ms and 1900ms
+        const duration = Math.floor(650 + Math.random() * 1250);
+        // negative delay so bar starts mid-animation
+        const delay = -Math.floor(Math.random() * duration);
+        // slight random horizontal scale for variety
+        const scaleX = (0.85 + Math.random() * 0.45).toFixed(2);
+        // random opacity
+        const opacity = (0.7 + Math.random() * 0.35).toFixed(2);
 
-<!-- Footer -->
-<footer class="text-center">
-  <div class="container">
-    <p>&copy; 2025 UmaaG. All Rights Reserved.</p>
-    <p>Follow us on
-      <a href="#">Facebook</a> |
-      <a href="#">Instagram</a> |
-      <a href="#">Twitter</a>
-    </p>
-  </div>
-</footer>
-
-<!-- Bootstrap + main randomizer script -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="main.js"></script>
+        bar.style.animationDuration = duration + "ms";
+        bar.style.animationDelay = delay + "ms";
+        bar.style.transform = `scaleX(${scaleX})`;
+        bar.style.opacity = opacity;
+      });
+    });
+  </script>
 </body>
 </html>
