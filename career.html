@@ -10,6 +10,9 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
+  <link rel="stylesheet" href="css/equalizer.css">
+
+  
   <style>
     :root{
       --accent1: #9966CC;
@@ -54,94 +57,7 @@
     .navbar-nav .nav-link { color: #E6EDF3 !important; transition: color .3s; }
     .navbar-nav .nav-link:hover { color:var(--accent1) !important; }
 
-    /* HERO with equalizer background */
-    .hero {
-      position: relative;
-      height: 380px;            /* shorter hero for career page; adjust as needed */
-      color: #E6EDF3;
-      text-align: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0 20px;
-      overflow: hidden;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      padding: 36px 12px;
-    }
-
-    .hero h1 {
-      font-size: clamp(1.8rem, 3.8vw, 2.8rem);
-      margin-bottom: 10px;
-      text-shadow: 0 0 20px #5c5c99;
-    }
-
-    .hero p {
-      margin:0;
-      color: #dfe9ff;
-      opacity: 0.95;
-    }
-
-    /* overlay to keep text readable */
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(4,4,8,0.06), rgba(4,4,8,0.45));
-      z-index: 1;
-      pointer-events: none;
-    }
-
-    /* equalizer background */
-    .equalizer-bg {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0.42;           /* adjust intensity */
-      filter: blur(2px) saturate(1.6);
-      background: radial-gradient(900px 400px at 10% 10%, rgba(153,102,204,0.08), transparent 10%),
-                  radial-gradient(600px 300px at 90% 90%, rgba(124,77,255,0.08), transparent 10%);
-    }
-
-    .bars {
-      width: 100%;
-      max-width: 1200px;
-      display: flex;
-      gap: 5px;
-      align-items: end;
-      justify-content: space-between;
-      height: 60%;
-      padding: 0 3%;
-      box-sizing: border-box;
-    }
-
-    .bar {
-      width: clamp(3px, 0.7vw, 10px);
-      height: 12%;
-      background: linear-gradient(180deg, var(--accent1), var(--accent2));
-      border-radius: 6px;
-      transform-origin: bottom;
-      box-shadow: 0 0 18px rgba(153,102,204,0.65), 0 0 6px rgba(124,77,255,0.25) inset;
-      animation: equalize 1200ms ease-in-out infinite;
-      will-change: height, transform, opacity;
-      flex: 0 0 auto;
-      opacity: 0.9;
-    }
-
-    @keyframes equalize {
-      0%   { height: 12%; transform: scaleY(0.22); opacity: 0.65; }
-      25%  { height: 78%; transform: scaleY(0.98); opacity: 1; }
-      55%  { height: 30%; transform: scaleY(0.48); opacity: 0.88; }
-      100% { height: 12%; transform: scaleY(0.22); opacity: 0.65; }
-    }
-
+    
     /* rest of your page styles (cards, etc.) */
     .career-card {
       background-color: var(--card-bg);
@@ -198,13 +114,7 @@
       margin-top: 40px;
     }
 
-    /* responsive */
-    @media (max-width: 768px){
-      .hero { height: 320px; padding: 18px 12px; }
-      .bars { gap: 3px; height: 55%; padding: 0 6%; }
-      .bar { width: clamp(3px, 1.2vw, 12px); }
-    }
-
+   
 
 /* Make accordion match card color */
 .accordion-item {
@@ -523,26 +433,8 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Randomize bars so they all move differently -->
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const bars = document.querySelectorAll(".bars .bar");
-      bars.forEach((bar) => {
-        // duration between 650ms and 1900ms
-        const duration = Math.floor(650 + Math.random() * 1250);
-        // negative delay so bar starts mid-animation
-        const delay = -Math.floor(Math.random() * duration);
-        // slight random horizontal scale for variety
-        const scaleX = (0.85 + Math.random() * 0.45).toFixed(2);
-        // random opacity
-        const opacity = (0.7 + Math.random() * 0.35).toFixed(2);
+  <script src="js/equalizer.js"></script>
 
-        bar.style.animationDuration = duration + "ms";
-        bar.style.animationDelay = delay + "ms";
-        bar.style.transform = `scaleX(${scaleX})`;
-        bar.style.opacity = opacity;
-      });
-    });
-  </script>
+  
 </body>
 </html>
