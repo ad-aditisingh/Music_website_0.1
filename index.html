@@ -103,6 +103,14 @@
         0 0 60px rgba(192,132,252,0.4);
     }
 
+    .hero-logo .accent-g {
+      color: var(--accent-secondary); /* purple */
+      text-shadow:
+        0 0 20px rgba(192,132,252,0.7),
+        0 0 60px rgba(192,132,252,0.5);
+    }
+
+
     .about-section {
       background: var(--bg-card);
       padding: 50px;
@@ -155,13 +163,14 @@
 <section class="hero">
   <div class="equalizer-bg"></div>
 
-  <h1 class="hero-logo">
-    <span class="char">U</span>
-    <span class="char">M</span>
-    <span class="char">A</span>
-    <span class="char">A</span>
-    <span class="char">G</span>
-  </h1>
+<h1 class="hero-logo">
+  <span class="char">U</span>
+  <span class="char">M</span>
+  <span class="char">A</span>
+  <span class="char">A</span>
+  <span class="char accent-g">G</span>
+</h1>
+
 </section>
 
 <!-- ABOUT -->
@@ -228,7 +237,7 @@
           randomChars[Math.floor(Math.random() * randomChars.length)];
         i++;
       }
-    }, 45);
+    }, 60);
   });
 
   gsap.to(".hero-logo", {
@@ -245,6 +254,15 @@
     duration: 1,
     ease: "power2.out"
   });
+
+
+ gsap.to(".accent-g", {
+  textShadow: "0 0 45px rgba(192,132,252,1), 0 0 120px rgba(192,132,252,0.7)",
+  repeat: -1,
+  yoyo: true,
+  duration: 3
+});
+ 
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
