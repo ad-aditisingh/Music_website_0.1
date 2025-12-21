@@ -118,17 +118,37 @@
       font-size: 1.1rem;
     }
 
-    /* Cards */
+    /* Image cards */
     .genre-card {
-      background: var(--bg-card);
+      position: relative;
+      overflow: hidden;
       border-radius: 16px;
       padding: 28px;
       text-align: center;
-      transition: 0.3s ease;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.3s ease;
     }
 
     .genre-card:hover {
       transform: translateY(-6px);
+    }
+
+    .genre-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.35),
+        rgba(0,0,0,0.85)
+      );
+      z-index: 0;
+    }
+
+    .genre-card * {
+      position: relative;
+      z-index: 1;
     }
 
     .genre-card h5 {
@@ -136,40 +156,6 @@
       text-transform: uppercase;
       letter-spacing: 1px;
     }
-
-    .genre-card p {
-      color: var(--text-muted);
-    }
-
-
-/* Image-based cards */
-    .genre-card {
-      position: relative;
-      overflow: hidden;
-      background-size: cover;
-      background-position: center;
-    }
-
-/* Dark overlay for readability */
-    .genre-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(0,0,0,0.3),
-        rgba(0,0,0,0.85)
-      );
-      z-index: 0;
-    }
-
-/* Keep text above overlay */
-    .genre-card * {
-      position: relative;
-      z-index: 1;
-    }
-
-
 
     .song-list {
       display: none;
@@ -265,7 +251,7 @@
 <!-- BOOTSTRAP -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- DISCOVERY LOGIC (UNCHANGED) -->
+<!-- DISCOVERY LOGIC -->
 <script>
 const genres = [
   { name: "Pop", songs: ["Shape of You","Blinding Lights","Levitating","Watermelon Sugar"] },
@@ -280,56 +266,4 @@ const genres = [
 
 const moods = [
   { name: "Chill", songs: ["Let Her Go","Death Bed","Riptide"] },
-  { name: "Romantic", songs: ["Perfect","Tum Hi Ho","All of Me"] },
-  { name: "Party", songs: ["Uptown Funk","Dance Monkey","Taki Taki"] },
-  { name: "Focus", songs: ["Weightless","Clair de Lune","River Flows In You"] }
-];
-
-const artists = [
-  { name: "Taylor Swift", songs: ["Love Story","Cruel Summer","Style"] },
-  { name: "Arijit Singh", songs: ["Tum Hi Ho","Channa Mereya","Raabta"] },
-  { name: "Ed Sheeran", songs: ["Perfect","Photograph","Shape of You"] },
-  { name: "A.R. Rahman", songs: ["Kun Faya Kun","Dil Se Re","Tere Bina"] }
-];
-
-function render(containerId, data, prefix) {
-  const container = document.getElementById(containerId);
-  data.forEach((item, i) => {
-    const col = document.createElement("div");
-    col.className = "col-md-6";
-    col.innerHTML = `
-      <div class="genre-card" data-aos="fade-up">
-        <h5>${item.name}</h5>
-        <button class="btn btn-outline-primary mt-2" onclick="toggle('${prefix}-${i}')">View Songs</button>
-        <div class="song-list" id="${prefix}-${i}">
-          ${item.songs.map(s => `<a href="#" onclick="event.preventDefault(); playSong('${s}')">▪ ${s}</a>`).join("")}
-        </div>
-      </div>`;
-    container.appendChild(col);
-  });
-}
-
-render("genreContainer", genres, "genre");
-render("moodContainer", moods, "mood");
-render("artistContainer", artists, "artist");
-
-function toggle(id) {
-  document.querySelectorAll(".song-list").forEach(list => {
-    if (list.id !== id) list.style.display = "none";
-  });
-  const el = document.getElementById(id);
-  el.style.display = el.style.display === "block" ? "none" : "block";
-}
-
-function playSong(song) {
-  const audio = document.getElementById("audioPlayer");
-  audio.src = `assets/audio/${song.replaceAll(" ", "_").toLowerCase()}.mp3`;
-  audio.style.display = "block";
-  audio.play();
-}
-
-AOS.init({ once: true });
-</script>
-
-</body>
-</html>
+  { name: "Romantic", songs: ["Perfect","Tum Hi Ho]()
