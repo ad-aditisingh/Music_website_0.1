@@ -225,7 +225,7 @@
   letters.forEach((letter, index) => {
     let i = 0;
 
-    // STATIC position – only opacity
+    // Static position, only opacity
     gsap.fromTo(
       letter,
       { opacity: 0 },
@@ -249,84 +249,12 @@
     }, 60);
   });
 
-  /* ===============================
-     BRIGHT NEON GLOWS (KEY FIX)
-     =============================== */
-
-  const greenGlow = `
-    0 0 6px rgba(190,252,92,1),
-    0 0 20px rgba(190,252,92,0.95),
-    0 0 60px rgba(190,252,92,0.9),
-    0 0 120px rgba(190,252,92,0.6)
-  `;
-
-  const purpleGlow = `
-    0 0 6px rgba(192,132,252,1),
-    0 0 20px rgba(192,132,252,0.95),
-    0 0 60px rgba(192,132,252,0.9),
-    0 0 120px rgba(192,132,252,0.6)
-  `;
-
-  // Base glow pulse for whole logo
-  gsap.to(".hero-logo", {
-    textShadow: greenGlow,
-    repeat: -1,
-    yoyo: true,
-    duration: 2.5,
-    delay: 1.8
-  });
-
-  // Extra punch for G
-  gsap.to(".accent-g", {
-    textShadow: purpleGlow,
-    repeat: -1,
-    yoyo: true,
-    duration: 3
-  });
-
-  // Navbar entrance
+  // Navbar entrance animation (kept)
   gsap.from(".navbar", {
     y: -80,
     opacity: 0,
     duration: 1,
     ease: "power2.out"
-  });
-
-  /* ===============================
-     SCROLL COLOR SWAP (BRIGHT)
-     =============================== */
-
-  gsap.registerPlugin(ScrollTrigger);
-
-  ScrollTrigger.create({
-    trigger: "body",
-    start: "top -80",
-    onEnter: () => {
-      gsap.to(".accent-main", {
-        color: "var(--accent-secondary)",
-        textShadow: purpleGlow,
-        duration: 0.35
-      });
-
-      gsap.to(".accent-g", {
-        color: "var(--accent-primary)",
-        textShadow: greenGlow,
-        duration: 0.35
-      });
-    },
-    onLeaveBack: () => {
-      gsap.to(".accent-main", {
-        color: "var(--accent-primary)",
-        textShadow: greenGlow,
-        duration: 0.35
-      });
-
-      gsap.to(".accent-g", {
-        color: "var(--accent-secondary)",
-        textShadow: purpleGlow,
-        duration: 0.35
-      });
-    }
   });
 </script>
 
