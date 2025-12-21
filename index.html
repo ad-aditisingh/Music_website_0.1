@@ -98,11 +98,85 @@
       color: var(--text-muted);
       text-align: center;
     }
+
+
+    /* Ambient background animation */
+.ambient-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.ambient-bg span {
+  position: absolute;
+  width: 45vw;
+  height: 45vw;
+  background: radial-gradient(
+    circle,
+    rgba(190,252,92,0.18),
+    transparent 60%
+  );
+  animation: float 25s infinite linear;
+}
+
+.ambient-bg span:nth-child(1) {
+  top: -10%;
+  left: -10%;
+}
+
+.ambient-bg span:nth-child(2) {
+  top: 30%;
+  left: 60%;
+  animation-delay: -8s;
+  background: radial-gradient(
+    circle,
+    rgba(192,132,252,0.18),
+    transparent 60%
+  );
+}
+
+.ambient-bg span:nth-child(3) {
+  top: 60%;
+  left: 10%;
+  animation-delay: -15s;
+}
+
+@keyframes float {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(60px, -40px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+    .hero,
+    .navbar,
+    section,
+    footer {
+      position: relative;
+      z-index: 1;
+    }
+
+
   </style>
 </head>
 
 <body>
 
+<div class="ambient-bg">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+
+
+  
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-dark">
   <div class="container">
