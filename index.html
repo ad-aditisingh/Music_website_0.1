@@ -14,6 +14,15 @@
   <!-- Shared Equalizer CSS -->
   <link rel="stylesheet" href="css/equalizer.css">
 
+
+  <!-- GSAP -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+
+<!-- AOS -->
+<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+
   <!-- Page Styles -->
   <style>
     :root {
@@ -182,11 +191,13 @@
         0 0 60px rgba(192, 132, 252, 0.4);
     }
 
-
-
-
-
-
+    <h1 class="hero-logo">
+      <span class="char">U</span>
+      <span class="char">M</span>
+      <span class="char">A</span>
+      <span class="char">A</span>
+      <span class="char">G</span>
+    </h1>
 
 
     
@@ -324,6 +335,7 @@
   });
 </script>
 
+
 <script>
   AOS.init({
     once: true,
@@ -337,9 +349,16 @@
   letters.forEach((letter, index) => {
     let iterations = 0;
 
-    gsap.fromTo(letter,
-      { y: 40, opacity: 0 },
-      { y: 0, opacity: 1, duration: 1, delay: index * 0.15, ease: "power3.out" }
+    gsap.fromTo(
+      letter,
+      { y: 60, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 1,
+        delay: index * 0.15,
+        ease: "power3.out"
+      }
     );
 
     const scramble = setInterval(() => {
@@ -354,7 +373,6 @@
     }, 60);
   });
 
-  // Subtle glow pulse after formation
   gsap.to(".hero-logo", {
     textShadow: "0 0 40px rgba(190,252,92,0.9), 0 0 100px rgba(192,132,252,0.6)",
     repeat: -1,
@@ -363,7 +381,6 @@
     delay: 1.5
   });
 
-  // Navbar entrance
   gsap.from(".navbar", {
     y: -80,
     opacity: 0,
@@ -371,6 +388,7 @@
     ease: "power2.out"
   });
 </script>
+
   
 
   
