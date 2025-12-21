@@ -266,4 +266,68 @@ const genres = [
 
 const moods = [
   { name: "Chill", songs: ["Let Her Go","Death Bed","Riptide"] },
-  { name: "Romantic", songs: ["Perfect","Tum Hi Ho]()
+  { name: "Romantic", songs: ["Perfect","Tum Hi Ho","All of Me"] },
+  { name: "Party", songs: ["Uptown Funk","Dance Monkey","Taki Taki"] },
+  { name: "Focus", songs: ["Weightless","Clair de Lune","River Flows In You"] }
+];
+
+const artists = [
+  { name: "Taylor Swift", songs: ["Love Story","Cruel Summer","Style"] },
+  { name: "Arijit Singh", songs: ["Tum Hi Ho","Channa Mereya","Raabta"] },
+  { name: "Ed Sheeran", songs: ["Perfect","Photograph","Shape of You"] },
+  { name: "A.R. Rahman", songs: ["Kun Faya Kun","Dil Se Re","Tere Bina"] }
+];
+
+function slugify(text) {
+  return text.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+}
+
+function render(containerId, data, prefix) {
+  const container = document.getElementById(containerId);
+  data.forEach((item, i) => {
+    const col = document.createElement("div");
+    col.className = "col-md-6";
+    col.innerHTML = `
+      <div class="genre-card"
+           data-aos="fade-up"
+           data-bg="assets/images/${prefix}-${slugify(item.name)}.jpg">
+        <h5>${item.name}</h5>
+        <button class="btn btn-outline-primary mt-2"
+                onclick="toggle('${prefix}-${i}')">View Songs</button>
+        <div class="song-list" id="${prefix}-${i}">
+          ${item.songs.map(s => `<a href="#" onclick="event.preventDefault(); playSong('${s}')">▪ ${s}</a>`).join("")}
+        </div>
+      </div>`;
+    container.appendChild(col);
+  });
+}
+
+render("genreContainer", genres, "genre");
+render("moodContainer", moods, "mood");
+render("artistContainer", artists, "artist");
+
+document.querySelectorAll(".genre-card").forEach(card => {
+  const bg = card.getAttribute("data-bg");
+  if (bg) card.style.backgroundImage = `url('${bg}')`;
+});
+
+function toggle(id) {
+  document.querySelectorAll(".song-list").forEach(list => {
+    if (list.id !== id) list.style.display = "none";
+  });
+  const el = document.getElementById(id);
+  el.style.display = el.style.display === "block" ? "none" : "block";
+}
+
+function playSong(song) {
+  const audio = document.getElementById("audioPlayer");
+  audio.src = `assets/audio/${song.replaceAll(" ", "_").toLowerCase()}.mp3`;
+  audio.style.display = "block";
+  audio.play();
+}
+
+AOS.init({ once: true });
+</script>
+
+</body>
+</html>
