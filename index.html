@@ -85,14 +85,15 @@
       z-index: 1;
     }
 
+
     .hero-logo {
       display: flex;
-      gap: 0.6em;
+      gap: 0.15em;              /* closer letters */
       font-size: clamp(4rem, 12vw, 9rem);
       font-weight: 700;
-      letter-spacing: 0.3em;
-      z-index: 2;
+      letter-spacing: 0.05em;   /* much tighter */
     }
+
 
     .hero-logo .char {
       display: inline-block;
@@ -210,12 +211,12 @@
 
   letters.forEach((letter, index) => {
     let i = 0;
-
     gsap.fromTo(
       letter,
-      { y: 60, opacity: 0 },
-      { y: 0, opacity: 1, delay: index * 0.15, duration: 1, ease: "power3.out" }
+      { opacity: 0 },
+      { opacity: 1, delay: index * 0.15, duration: 0.6, ease: "power1.out" }
     );
+
 
     const scramble = setInterval(() => {
       if (i >= 12) {
@@ -226,7 +227,7 @@
           randomChars[Math.floor(Math.random() * randomChars.length)];
         i++;
       }
-    }, 60);
+    }, 45);
   });
 
   gsap.to(".hero-logo", {
