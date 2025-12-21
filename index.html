@@ -31,13 +31,14 @@
       font-family: 'Poppins', sans-serif;
       background: var(--bg-main);
       color: var(--text-main);
-      padding-top: 80px;
+      margin: 0;
     }
 
     /* Navbar */
     .navbar {
       position: fixed;
       top: 0;
+      left: 0;
       width: 100%;
       z-index: 999;
       background: rgba(0,0,0,0.85);
@@ -49,9 +50,59 @@
       letter-spacing: 2px;
     }
 
+    /* Ambient background */
+    .ambient-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .ambient-bg span {
+      position: absolute;
+      width: 45vw;
+      height: 45vw;
+      background: radial-gradient(circle, rgba(190,252,92,0.18), transparent 60%);
+      animation: float 25s infinite linear;
+    }
+
+    .ambient-bg span:nth-child(1) {
+      top: -10%;
+      left: -10%;
+    }
+
+    .ambient-bg span:nth-child(2) {
+      top: 30%;
+      left: 60%;
+      animation-delay: -8s;
+      background: radial-gradient(circle, rgba(192,132,252,0.18), transparent 60%);
+    }
+
+    .ambient-bg span:nth-child(3) {
+      top: 60%;
+      left: 10%;
+      animation-delay: -15s;
+    }
+
+    @keyframes float {
+      0% { transform: translate(0,0); }
+      50% { transform: translate(60px,-40px); }
+      100% { transform: translate(0,0); }
+    }
+
+    /* Keep content above background */
+    .navbar,
+    section,
+    footer {
+      position: relative;
+      z-index: 1;
+    }
+
     /* Hero */
     .hero {
       min-height: 100vh;
+      padding-top: 80px; /* space for navbar */
       display: flex;
       justify-content: center;
       align-items: center;
@@ -75,12 +126,18 @@
       color: var(--accent-secondary);
     }
 
-    /* Scroll paragraph */
+    /* Paragraph section */
+    .umaag-section {
+      padding: 120px 20px 100px;
+    }
+
     .umaag-scroll-text {
-      font-size: clamp(1.4rem, 2.5vw, 1.7rem);
-      line-height: 1.8;
-      color: var(--text-muted);
-      margin-top: 60px;
+      max-width: 780px;
+      margin: 0 auto;
+      font-size: clamp(1.5rem, 2.6vw, 1.85rem);
+      line-height: 1.85;
+      color: rgba(255,255,255,0.78);
+      letter-spacing: 0.2px;
     }
 
     .umaag-link {
@@ -94,89 +151,22 @@
     }
 
     footer {
-      padding: 20px;
-      color: var(--text-muted);
+      padding: 30px 0;
       text-align: center;
+      color: var(--text-muted);
     }
-
-
-    /* Ambient background animation */
-.ambient-bg {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.ambient-bg span {
-  position: absolute;
-  width: 45vw;
-  height: 45vw;
-  background: radial-gradient(
-    circle,
-    rgba(190,252,92,0.18),
-    transparent 60%
-  );
-  animation: float 25s infinite linear;
-}
-
-.ambient-bg span:nth-child(1) {
-  top: -10%;
-  left: -10%;
-}
-
-.ambient-bg span:nth-child(2) {
-  top: 30%;
-  left: 60%;
-  animation-delay: -8s;
-  background: radial-gradient(
-    circle,
-    rgba(192,132,252,0.18),
-    transparent 60%
-  );
-}
-
-.ambient-bg span:nth-child(3) {
-  top: 60%;
-  left: 10%;
-  animation-delay: -15s;
-}
-
-@keyframes float {
-  0% {
-    transform: translate(0, 0);
-  }
-  50% {
-    transform: translate(60px, -40px);
-  }
-  100% {
-    transform: translate(0, 0);
-  }
-}
-
-    .hero,
-    .navbar,
-    section,
-    footer {
-      position: relative;
-      z-index: 1;
-    }
-
-
   </style>
 </head>
 
 <body>
 
+<!-- Ambient Background -->
 <div class="ambient-bg">
   <span></span>
   <span></span>
   <span></span>
 </div>
 
-
-  
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-dark">
   <div class="container">
@@ -206,18 +196,16 @@
   </h1>
 </section>
 
-<!-- SCROLL PARAGRAPH -->
-<section class="py-5">
-  <div class="container text-center" style="max-width: 800px;">
-    <p class="umaag-scroll-text" data-aos="fade-up">
-      UmaaG is built around
-      <a href="career.html" class="umaag-link">career</a>,
-      <a href="discovery.html" class="umaag-link">discovery</a>,
-      and
-      <a href="creation.html" class="umaag-link">creation</a>
-      — helping you explore music paths, discover new sounds, and create your own identity in the music world.
-    </p>
-  </div>
+<!-- PARAGRAPH -->
+<section class="umaag-section text-center">
+  <p class="umaag-scroll-text" data-aos="fade-up">
+    UmaaG is built around
+    <a href="career.html" class="umaag-link">career</a>,
+    <a href="discovery.html" class="umaag-link">discovery</a>,
+    and
+    <a href="creation.html" class="umaag-link">creation</a>
+    — a space where you explore music paths, discover new sounds, and create your own identity in the evolving music world.
+  </p>
 </section>
 
 <footer>
@@ -229,14 +217,13 @@
   AOS.init({ once: true });
 
   const letters = document.querySelectorAll(".hero-logo .char");
-  const finalText = ["U", "M", "A", "A", "G"];
+  const finalText = ["U","M","A","A","G"];
   const randomChars =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZअआइईउऊकखगघचछजझटठडढतथदधनपफबभमयरलवशषसह";
 
   letters.forEach((letter, index) => {
     let iterations = 0;
 
-    // Fade in only (no movement)
     gsap.fromTo(
       letter,
       { opacity: 0 },
@@ -255,7 +242,6 @@
     }, 60);
   });
 
-  // Navbar entrance
   gsap.from(".navbar", {
     y: -50,
     opacity: 0,
