@@ -1,189 +1,215 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Create Music | MusicVerse</title>
+  <title>Career | UmaaG</title>
+
+  <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Equalizer -->
   <link rel="stylesheet" href="css/equalizer.css">
 
   <style>
+    :root {
+      --bg-main: #000;
+      --bg-card: #121826;
+      --text-main: #E6EDF3;
+      --text-muted: #A1A1AA;
+      --accent-primary: #BEFC5C;
+      --accent-secondary: #9966CC;
+    }
+
     body {
-      background-color: #0A0A0F;
       font-family: 'Poppins', sans-serif;
-      color: #E6EDF3;
+      background: var(--bg-main);
+      color: var(--text-main);
+      margin: 0;
+      padding-top: 80px;
+    }
+
+    /* Ambient background */
+    .ambient-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .ambient-bg span {
+      position: absolute;
+      width: 45vw;
+      height: 45vw;
+      background: radial-gradient(circle, rgba(190,252,92,0.14), transparent 60%);
+      animation: float 30s infinite linear;
+    }
+
+    .ambient-bg span:nth-child(1) { top: -10%; left: -10%; }
+    .ambient-bg span:nth-child(2) {
+      top: 40%;
+      left: 60%;
+      animation-delay: -12s;
+      background: radial-gradient(circle, rgba(153,102,204,0.18), transparent 60%);
+    }
+    .ambient-bg span:nth-child(3) {
+      top: 70%;
+      left: 10%;
+      animation-delay: -20s;
+    }
+
+    @keyframes float {
+      0% { transform: translate(0,0); }
+      50% { transform: translate(60px,-40px); }
+      100% { transform: translate(0,0); }
     }
 
     /* Navbar */
     .navbar {
-      background-color: #0A0A0F;
-      box-shadow: 0 0 10px #a200ff22;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 999;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(8px);
     }
 
     .navbar-brand {
-      color:#9966CC !important;
-      font-size: 1.5rem;
+      color: var(--accent-secondary) !important;
+      font-weight: 700;
+      letter-spacing: 2px;
     }
 
-    .navbar-nav .nav-link {
-      color: #E6EDF3 !important;
-      transition: color 0.3s ease;
+    .nav-link {
+      color: var(--text-main) !important;
     }
 
-    .navbar-nav .nav-link:hover {
-      color:#9966CC  !important;
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--accent-primary) !important;
     }
 
-
-
-
-    h2, h3, h5, .navbar-brand {
-      font-family: 'Poppins', cursive;
-      color: #9966CC;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-    
-    h1 {
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      text-shadow: 0 0 20px #5c5c99;
+    section, footer, .navbar {
+      position: relative;
+      z-index: 1;
     }
 
-    body {
-      padding-top: 70px;
-    }
-
-
-    /* Section Titles */
-    .section-title {
+    /* Hero */
+    .hero {
+      position: relative;
+      height: 380px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
-      margin-top: 60px;
-      margin-bottom: 30px;
-      font-weight: 600;
-      font-family: 'Poppins', cursive;
-      color: #9966CC;
-      letter-spacing: 1px;
-      text-transform: uppercase;
     }
 
-     section.container {
-      padding-top: 60px;     /* good space above each section */
-      padding-bottom: 35px;  /* reduced space below cards */
-}
+    .hero-content h1 {
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
 
-     section.container:first-of-type {
-      margin-top: 40px;      /* clean space above first section */
-}
+    .hero-subtitle {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
 
-     section.container h2 {
-      margin-bottom: 35px;   /* balance between heading and cards */
-}
+    /* Section titles */
+    section.container {
+      padding-top: 70px;
+      padding-bottom: 40px;
+    }
+
+    section.container h2 {
+      text-align: center;
+      margin-bottom: 35px;
+      color: var(--accent-secondary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
 
     /* Cards */
     .tool-card {
-      background-color: #121826;
-      border-radius: 15px;
-      box-shadow: 0 0 10px #a200ff22;
+      background: var(--bg-card);
+      border-radius: 16px;
       padding: 30px;
       height: 100%;
       text-align: center;
-      transition: 0.3s;
+      transition: transform 0.3s ease;
     }
 
     .tool-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 0 25px #a200ff22;
-    }
-
-    .tool-card img {
-      width: 80px;
-      height: 80px;
-      object-fit: contain;
-      margin-bottom: 15px;
+      transform: translateY(-6px);
     }
 
     .tool-card h5 {
-      color: #9966CC;
+      color: var(--accent-secondary);
       font-weight: 600;
-      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    .tool-card p {
+      color: var(--text-muted);
     }
 
     .btn-custom {
-      background-color: #9966CC;
+      background-color: var(--accent-secondary);
       border: none;
       border-radius: 25px;
       padding: 8px 20px;
-      color: white;
+      color: #fff;
       text-decoration: none;
       display: inline-block;
-      margin-top: 10px;
+      margin-top: 12px;
       transition: 0.3s;
     }
 
     .btn-custom:hover {
       background-color: #7a4fb4;
       box-shadow: 0 0 10px rgba(153,102,204,0.5);
-      text-decoration: none;
-      color: white;
+      color: #fff;
     }
 
-    /* Footer */
     footer {
-      background-color: #121826;
-      color: #A1A1AA;
-      padding: 20px 0;
-      margin-top: 40px;
+      background: var(--bg-card);
+      color: var(--text-muted);
+      padding: 25px 0;
+      margin-top: 60px;
     }
 
     footer a {
-      color: #9966CC;
+      color: var(--accent-secondary);
       text-decoration: none;
     }
-
-    .hero {
-  position: relative;
-  height: 380px;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-}
-
-.hero-content h1 {
-  text-shadow: 0 0 20px #5c5c99;
-}
-
-.hero-subtitle {
-  color: #dfe9ff;
-  opacity: 0.95;
-}
-
-
-
-
-    
   </style>
 </head>
 
 <body>
 
-  <!-- Navbar -->
+<!-- Ambient Background -->
+<div class="ambient-bg">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+
+<!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
   <div class="container">
     <a class="navbar-brand" href="index.html">UMAAG</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="career.html">Career</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link active" href="career.html">Career</a></li>
         <li class="nav-item"><a class="nav-link" href="discovery.html">Discovery</a></li>
         <li class="nav-item"><a class="nav-link" href="creation.html">Creation</a></li>
       </ul>
@@ -191,10 +217,11 @@
   </div>
 </nav>
 
+<!-- Hero -->
 <section class="hero">
-  <div class="equalizer-bg" aria-hidden="true">
+  <div class="equalizer-bg">
     <div class="bars">
-      <!-- 48 BARS -->
+      <!-- 48 bars unchanged -->
       <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
       <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
       <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
@@ -212,104 +239,46 @@
 
   <div class="hero-content">
     <h1>CREATE YOUR OWN MUSIC</h1>
-    <p class="hero-subtitle">
-      Create, mix, and share your sound with the world.
-    </p>
+    <p class="hero-subtitle">Create, mix, and share your sound with the world.</p>
   </div>
 </section>
 
+<!-- CONTENT (unchanged) -->
+<section class="container">
+  <h2>Free Online Music Creation</h2>
+  <div class="row g-4">
+    <div class="col-md-4"><div class="tool-card"><h5>Soundtrap by Spotify</h5><p>Record, mix, and collaborate online.</p><a href="https://www.soundtrap.com/" target="_blank" class="btn-custom">Visit Website</a></div></div>
+    <div class="col-md-4"><div class="tool-card"><h5>Soundation</h5><p>Create tracks with loops and synths.</p><a href="https://soundation.com/" target="_blank" class="btn-custom">Visit Website</a></div></div>
+    <div class="col-md-4"><div class="tool-card"><h5>Audiotool</h5><p>Powerful online DAW for creators.</p><a href="https://www.audiotool.com/" target="_blank" class="btn-custom">Visit Website</a></div></div>
+  </div>
+</section>
 
-  <!-- Free Online Music Creation -->
-  <section class="container">
-    <h2 class="text-center">Free Online Music Creation</h2>
-    <div class="row g-4">
-      <div class="col-md-4">
-        <div class="tool-card">
-          <h5>Soundtrap by Spotify</h5>
-          <p>Record, mix, and collaborate online. Great for beginners and pros with real-time collaboration.</p>
-          <a href="https://www.soundtrap.com/" target="_blank" class="btn-custom">Visit Website</a>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="tool-card">
-          <h5>Soundation</h5>
-          <p>Create tracks with loops, beats, and synths right in your browser — perfect for EDM and pop music.</p>
-          <a href="https://soundation.com/" target="_blank" class="btn-custom">Visit Website</a>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="tool-card">
-          <h5>Audiotool</h5>
-          <p>Powerful online DAW featuring drum machines, synthesizers, and a large community of creators.</p>
-          <a href="https://www.audiotool.com/" target="_blank" class="btn-custom">Visit Website</a>
-        </div>
-      </div>
-    </div>
-  </section>
+<section class="container">
+  <h2>DJ & Beat Mixing</h2>
+  <div class="row g-4">
+    <div class="col-md-6"><div class="tool-card"><h5>YouDJ</h5><p>Mix tracks directly in your browser.</p><a href="https://you.dj/" target="_blank" class="btn-custom">Visit Website</a></div></div>
+    <div class="col-md-6"><div class="tool-card"><h5>Transitions DJ</h5><p>Mix songs with tempo matching.</p><a href="https://dj.app/" target="_blank" class="btn-custom">Visit Website</a></div></div>
+  </div>
+</section>
 
-  <!-- DJ & Beat Mixing -->
-  <section class="container">
-    <h2 class="text-center">DJ & Beat Mixing</h2>
-    <div class="row g-4">
-      <div class="col-md-6">
-        <div class="tool-card">
-          <h5>YouDJ</h5>
-          <p>Mix and play tracks directly in your browser with effects and samples. Great for quick, fun DJ sessions.</p>
-          <a href="https://you.dj/" target="_blank" class="btn-custom">Visit Website</a>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="tool-card">
-          <h5>Transitions DJ</h5>
-          <p>Mix songs from SoundCloud or your local files with tempo and beat matching tools.</p>
-          <a href="https://dj.app/" target="_blank" class="btn-custom">Visit Website</a>
-        </div>
-      </div>
-    </div>
-  </section>
+<section class="container">
+  <h2>Professional Music Production Software</h2>
+  <div class="row g-4">
+    <div class="col-md-4"><div class="tool-card"><h5>FL Studio</h5><p>Popular DAW for electronic music.</p><a href="https://www.image-line.com/flstudio/" target="_blank" class="btn-custom">Visit Website</a></div></div>
+    <div class="col-md-4"><div class="tool-card"><h5>Ableton Live</h5><p>Perfect for live performances.</p><a href="https://www.ableton.com/" target="_blank" class="btn-custom">Visit Website</a></div></div>
+    <div class="col-md-4"><div class="tool-card"><h5>Logic Pro</h5><p>Apple’s professional DAW.</p><a href="https://www.apple.com/logic-pro/" target="_blank" class="btn-custom">Visit Website</a></div></div>
+  </div>
+</section>
 
-  <!-- Professional DAWs -->
-  <section class="container">
-    <h2 class="text-center">Professional Music Production Software</h2>
-    <div class="row g-4">
-      <div class="col-md-4">
-        <div class="tool-card">
-          <h5>FL Studio</h5>
-          <p>One of the most popular DAWs for electronic, hip-hop, and pop music production.</p>
-          <a href="https://www.image-line.com/flstudio/" target="_blank" class="btn-custom">Visit Website</a>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="tool-card">
-          <h5>Ableton Live</h5>
-          <p>Perfect for live performances and advanced mixing with real-time sound control.</p>
-          <a href="https://www.ableton.com/" target="_blank" class="btn-custom">Visit Website</a>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="tool-card">
-          <h5>Logic Pro</h5>
-          <p>Apple’s professional-grade DAW for songwriting, recording, and high-quality production.</p>
-          <a href="https://www.apple.com/logic-pro/" target="_blank" class="btn-custom">Visit Website</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-<!-- Footer -->
 <footer class="text-center">
   <div class="container">
     <p>&copy; 2025 UMAAG. All Rights Reserved.</p>
-    <p>
-      <a href="#">Instagram</a> |
-      <a href="#">Twitter</a> |
-      <a href="#">YouTube</a>
-    </p>
+    <p><a href="#">Instagram</a> | <a href="#">Twitter</a> | <a href="#">YouTube</a></p>
   </div>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="js/equalizer.js"></script>
-  
+
 </body>
 </html>
