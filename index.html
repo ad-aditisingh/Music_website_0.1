@@ -133,6 +133,34 @@
       box-shadow: 0 0 25px rgba(190,252,92,0.25);
     }
 
+    .umaag-scroll-text {
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .umaag-link {
+      color: var(--accent-primary);
+      text-decoration: none;
+      font-weight: 600;
+      position: relative;
+    }
+
+    .umaag-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 0;
+      height: 2px;
+      background: var(--accent-primary);
+      transition: width 0.3s ease;
+    }
+
+    .umaag-link:hover::after {
+      width: 100%;
+    }
+
+
     footer {
       background: var(--bg-card);
       padding: 20px 0;
@@ -177,16 +205,16 @@
 </section>
 
 <!-- ABOUT -->
-<section class="py-5 text-center">
+<!--<section class="py-5 text-center">
   <div class="container about-section">
     <h2>Welcome to UmaaG</h2>
     <p class="lead mt-3">
       UmaaG is a creative hub for music lovers and creators.
     </p>
   </div>
-</section>
+</section>-->
 
-<!-- FEATURES -->
+<!-- FEATURES 
 <section class="py-5">
   <div class="container">
     <div class="row g-4">
@@ -207,8 +235,25 @@
       </div>
     </div>
   </div>
+</section>-->
+
+<section class="py-5">
+  <div class="container text-center" style="max-width: 750px;">
+    <p class="lead umaag-scroll-text"
+       data-aos="fade-up"
+       data-aos-duration="800"
+       data-aos-offset="200">
+      UmaaG is built around
+      <a href="career.html" class="umaag-link">career</a>,
+      <a href="discovery.html" class="umaag-link">discovery</a>,
+      and
+      <a href="creation.html" class="umaag-link">creation</a>
+      — helping you explore music paths, discover new sounds, and create your own identity in the music world.
+    </p>
+  </div>
 </section>
 
+  
 <footer class="text-center">
   <p>&copy; 2025 UMAAG</p>
 </footer>
