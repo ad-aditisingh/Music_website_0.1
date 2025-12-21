@@ -30,7 +30,7 @@
       background: var(--bg-main);
       color: var(--text-main);
       margin: 0;
-      padding-top: 80px;
+      padding-top: 80px; /* space for fixed navbar */
     }
 
     /* Ambient background */
@@ -94,7 +94,9 @@
       color: var(--accent-primary) !important;
     }
 
-    section, footer, .navbar {
+    /* ❗ FIXED: navbar removed from this rule */
+    section,
+    footer {
       position: relative;
       z-index: 1;
     }
