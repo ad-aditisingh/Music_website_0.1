@@ -129,7 +129,10 @@
   border-radius: 16px;
   padding: 30px;
   height: 100%;
-  text-align: center;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   overflow: hidden;
   transition: transform 0.3s ease;
 }
@@ -162,7 +165,7 @@
 .tool-card h5 {
   color: var(--accent-secondary);
   font-weight: 600;
-  margin-bottom: 14px;
+  margin-bottom: 10px;
   text-transform: uppercase;
   letter-spacing: 1px;
   font-size: 1rem;
@@ -170,12 +173,16 @@
 
 .tool-card p {
   color: var(--text-muted);
-  font-size: 1rem;
+  font-size: 0.95rem;
   line-height: 1.6;
   max-width: 90%;
   margin: 0 auto;
+  margin-bottom: 12px;
 }
 
+.tool-card .btn-custom {
+  align-self: flex-start;
+}
 
 .btn-custom {
   background-color: var(--accent-secondary);
@@ -252,7 +259,7 @@
       <div class="tool-card" data-aos="fade-up"
         style="background-image:url('assets/images/creation/soundtrap.jpg')">
         <h5>Soundtrap by Spotify</h5>
-        <p>Record, mix, and collaborate online. Great for beginners and pros.</p>
+        <!--<p>Record, mix, and collaborate online. Great for beginners and pros.</p>-->
         <a href="https://www.soundtrap.com/" target="_blank" class="btn-custom">Visit Website</a>
       </div>
     </div>
@@ -260,7 +267,7 @@
       <div class="tool-card" data-aos="fade-up"
         style="background-image:url('assets/images/creation/soundation.jpg')">
         <h5>Soundation</h5>
-        <p>Create tracks with loops, beats, and synths directly in your browser.</p>
+        <!--<p>Create tracks with loops, beats, and synths directly in your browser.</p>-->
         <a href="https://soundation.com/" target="_blank" class="btn-custom">Visit Website</a>
       </div>
     </div>
@@ -268,7 +275,7 @@
       <div class="tool-card" data-aos="fade-up"
         style="background-image:url('assets/images/creation/audiotool.jpg')">
         <h5>Audiotool</h5>
-        <p>Powerful online DAW with drum machines and synthesizers.</p>
+        <!--<p>Powerful online DAW with drum machines and synthesizers.</p>-->
         <a href="https://www.audiotool.com/" target="_blank" class="btn-custom">Visit Website</a>
       </div>
     </div>
@@ -283,7 +290,7 @@
       <div class="tool-card" data-aos="fade-up"
         style="background-image:url('assets/images/creation/youdj.jpg')">
         <h5>YouDJ</h5>
-        <p>Mix and play tracks in your browser with effects and samples.</p>
+        <!--<p>Mix and play tracks in your browser with effects and samples.</p>-->
         <a href="https://you.dj/" target="_blank" class="btn-custom">Visit Website</a>
       </div>
     </div>
@@ -291,7 +298,7 @@
       <div class="tool-card" data-aos="fade-up"
         style="background-image:url('assets/images/creation/transitions.png')">
         <h5>Transitions DJ</h5>
-        <p>Mix songs with tempo and beat matching tools.</p>
+        <!--<p>Mix songs with tempo and beat matching tools.</p>-->
         <a href="https://dj.app/" target="_blank" class="btn-custom">Visit Website</a>
       </div>
     </div>
@@ -306,7 +313,7 @@
       <div class="tool-card" data-aos="fade-up"
         style="background-image:url('assets/images/creation/flstudio.jpg')">
         <h5>FL Studio</h5>
-        <p>Popular DAW for electronic, hip-hop, and pop music.</p>
+        <!--<p>Popular DAW for electronic, hip-hop, and pop music.</p>-->
         <a href="https://www.image-line.com/flstudio/" target="_blank" class="btn-custom">Visit Website</a>
       </div>
     </div>
@@ -314,7 +321,7 @@
       <div class="tool-card" data-aos="fade-up"
         style="background-image:url('assets/images/creation/ableton.jpg')">
         <h5>Ableton Live</h5>
-        <p>Ideal for live performances and advanced sound control.</p>
+        <!--<p>Ideal for live performances and advanced sound control.</p>-->
         <a href="https://www.ableton.com/" target="_blank" class="btn-custom">Visit Website</a>
       </div>
     </div>
@@ -322,7 +329,7 @@
       <div class="tool-card" data-aos="fade-up"
         style="background-image:url('assets/images/creation/logicpro.jpg')">
         <h5>Logic Pro</h5>
-        <p>Apple’s professional-grade DAW for songwriting and production.</p>
+        <!--<p>Apple’s professional-grade DAW for songwriting and production.</p>-->
         <a href="https://www.apple.com/logic-pro/" target="_blank" class="btn-custom">Visit Website</a>
       </div>
     </div>
@@ -330,12 +337,12 @@
 </section>
 
 <footer>
-  <p>&copy; 2025 UMAAG. All Rights Reserved.</p>
-  <p>
+  <p>&copy; 2025 UMAAG.</p>
+  <!--<p>
     <a href="#">Instagram</a> |
     <a href="#">Twitter</a> |
     <a href="#">YouTube</a>
-  </p>
+  </p>-->
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
