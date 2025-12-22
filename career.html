@@ -10,6 +10,9 @@
 
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- AOS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 
   <style>
     :root {
@@ -277,7 +280,7 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-content">
+  <div class="hero-content" data-aos="fade-up">
     <h1>Want to Build Your Career in Music?</h1>
     <p>Turn your passion into a profession.</p>
   </div>
@@ -286,45 +289,45 @@
 
 <!-- TOP COLLEGES -->
 <section class="container my-5">
-  <h2 class="text-center mb-4">Top Colleges for Music</h2>
+  <h2 class="text-center mb-4" data-aos="fade-up">Top Colleges for Music</h2>
   <div class="row g-4 justify-content-center">
 
-    <div class="col-md-4">
+    <div class="col-md-4" data-aos="fade-up">
       <div class="college-card" style="background-image:url('assets/images/colleges/berklee.jpg')">
         <h5>Berklee College of Music</h5>
         <a href="https://www.berklee.edu/" target="_blank" class="visit-btn">Visit Website</a>
       </div>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-4" data-aos="fade-up">
       <div class="college-card" style="background-image:url('assets/images/colleges/juilliard.jpg')">
         <h5>Juilliard School</h5>
         <a href="https://www.juilliard.edu/" target="_blank" class="visit-btn">Visit Website</a>
       </div>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-4" data-aos="fade-up">
       <div class="college-card" style="background-image:url('assets/images/colleges/rcm.jpg')">
         <h5>Royal College of Music</h5>
         <a href="https://www.rcm.ac.uk/" target="_blank" class="visit-btn">Visit Website</a>
       </div>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-4" data-aos="fade-up">
       <div class="college-card" style="background-image:url('assets/images/colleges/km.jpg')">
         <h5>KM Music Conservatory</h5>
         <a href="https://kmmc.in/" target="_blank" class="visit-btn">Visit Website</a>
       </div>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-4" data-aos="fade-up">
       <div class="college-card" style="background-image:url('assets/images/colleges/delhi-school-of-music.jpg')">
         <h5>Delhi School of Music</h5>
         <a href="https://delhischoolofmusic.net/" target="_blank" class="visit-btn">Visit Website</a>
       </div>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-4" data-aos="fade-up">
       <div class="college-card" style="background-image:url('assets/images/colleges/swarnabhoomi.jpg')">
         <h5>Swarnabhoomi Academy of Music</h5>
         <a href="https://sam.org.in/" target="_blank" class="visit-btn">Visit Website</a>
@@ -335,7 +338,7 @@
 </section>
 
 <!-- POPULAR CAREERS (SLIDER, CONTENT PRESERVED) -->
-<section class="container my-5 text-center">
+<section class="container my-5 text-center" data-aos="fade-up">
   <h2 class="mb-4">Popular Careers in Music</h2>
 
   <div class="career-slider-wrapper">
@@ -349,7 +352,7 @@
 
 
 <!-- SKILLS BUTTON -->
-<section class="container my-5 text-center">
+<section class="container my-5 text-center" data-aos="fade-up">
   <h2 class="mb-3">Skills You'd Require</h2>
   <button class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#skillsModal">
     Read Full Skills Article
@@ -359,7 +362,7 @@
 <!-- SKILLS MODAL (FULL CONTENT PRESERVED) -->
 <div class="modal fade" id="skillsModal" tabindex="-1">
   <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content p-4">
+    <div class="modal-content p-4" data-aos="zoom-in">
 
       <h3>Skills You'd Require</h3>
 
@@ -458,6 +461,13 @@
   renderCareer();
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  AOS.init({
+    once: true,
+    duration: 800,
+    easing: "ease-out-cubic"
+  });
+</script>
 
 </body>
 </html>  
