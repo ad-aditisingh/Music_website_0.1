@@ -21,6 +21,7 @@
   <style>
     :root {
       --bg-main: #000;
+      --bg-card: #121212;
       --text-main: #fff;
       --text-muted: #b3b3b3;
       --accent-primary: #BEFC5C;
@@ -48,6 +49,7 @@
     .navbar-brand {
       font-weight: 700;
       letter-spacing: 2px;
+      color: var(--accent-secondary) !important;
     }
 
     /* Ambient background */
@@ -155,6 +157,37 @@
       text-align: center;
       color: var(--text-muted);
     }
+
+
+    /* Moving background line */
+    .moving-line {
+      position: fixed;
+      top: -30%;
+      left: -50%;
+      width: 200%;
+      height: 2px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(190,252,92,0.35),
+        rgba(192,132,252,0.35),
+        transparent
+      );
+      z-index: 0;
+      animation: moveLine 18s linear infinite;
+      transform: rotate(-12deg);
+      pointer-events: none;
+    }
+
+    @keyframes moveLine {
+      0% {
+        transform: translateX(-20%) rotate(-12deg);
+      }
+      100% {
+        transform: translateX(20%) rotate(-12deg);
+      }
+    }
+
   </style>
 </head>
 
@@ -167,6 +200,10 @@
   <span></span>
 </div>
 
+<!-- Moving Line Background -->
+<div class="moving-line"></div>
+
+  
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-dark">
   <div class="container">
