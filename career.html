@@ -87,45 +87,136 @@
       position:relative;
       background-size:cover;
       background-position:center;
-      border-radius:16px;
+      border-radius:18px;
       padding:30px;
-      height:100%;
-      overflow:hidden;
+      min-height:260px;
+      color:#fff;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
     }
     .college-card::before{
       content:"";
-      position:absolute;inset:0;
-      background:linear-gradient(to bottom,rgba(0,0,0,.4),rgba(0,0,0,.85));
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to bottom,rgba(0,0,0,.25),rgba(0,0,0,.9));
+      border-radius:18px;
     }
     .college-card *{position:relative;z-index:1;}
-    .college-card h5{color:var(--accent-secondary);}
 
-    /* Career slider */
-    .career-slider{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:20px;
+    .college-card h5{
+      font-weight:600;
+      margin-bottom:12px;
     }
+
+    .visit-btn{
+      align-self:flex-start;
+      padding:8px 18px;
+      border-radius:20px;
+      background:var(--accent-secondary);
+      color:#000;
+      font-weight:600;
+      text-decoration:none;
+      transition:.3s;
+    }
+    .visit-btn:hover{
+      background:var(--accent-primary);
+      color:#000;
+    }
+
+    /* Career Slider Wrapper */
+.career-slider-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+/* Arrow Buttons */
+.slider-btn {
+  font-size: 2.5rem;
+  cursor: pointer;
+  user-select: none;
+  color: var(--accent-primary);
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+
+.slider-btn:hover {
+  transform: scale(1.2);
+  color: var(--accent-secondary);
+}
+
+/* Career Card */
+.career-card {
+  width: 420px;
+  min-height: 220px;
+  background: var(--bg-card);
+  border-radius: 18px;
+  padding: 32px;
+  text-align: center;
+  transition: 0.35s ease;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.career-card h5 {
+  color: var(--accent-secondary);
+  font-weight: 600;
+  margin-bottom: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.career-card p {
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Mobile fix */
+@media (max-width: 576px) {
+  .career-card {
+    width: 100%;
+    max-width: 320px;
+  }
+}
+
+
+    /* Career Slider */
     .career-card{
-      width:320px;
+      width:420px;
+      min-height:220px;
       background:var(--bg-card);
+      border-radius:18px;
       padding:30px;
-      border-radius:16px;
       text-align:center;
       transition:.4s;
     }
+
     .slider-btn{
-      font-size:2rem;
+      font-size:2.5rem;
       cursor:pointer;
-      user-select:none;
       color:var(--accent-primary);
+      user-select:none;
     }
 
     /* Modal */
     .modal-content{
       background:var(--bg-card);
       color:var(--text-main);
+      border-radius:18px;
+    }
+
+    /* Resources */
+    .resource-links a{
+      display:block;
+      margin:8px 0;
+      color:var(--accent-secondary);
+      text-decoration:none;
+      font-weight:500;
+    }
+    .resource-links a:hover{
+      color:var(--accent-primary);
     }
 
     footer{
@@ -161,76 +252,58 @@
   </div>
 </nav>
 
-  <!-- HERO -->
+<!-- HERO -->
 <section class="hero">
   <div>
     <h1>Want to Build Your Career in Music?</h1>
-    <p class="subtitle">Turn your passion into a profession.</p>
+    <p class="text-muted">Turn your passion into a profession.</p>
   </div>
 </section>
 
 <!-- TOP COLLEGES -->
 <section class="container my-5">
   <h2 class="text-center mb-4">Top Colleges for Music</h2>
-  <div class="row g-4">
+  <div class="row g-4 justify-content-center">
 
     <div class="col-md-4">
-      <div class="career-card"
-        style="background-image:url('assets/images/colleges/berklee.jpg');
-               background-size:cover;background-position:center;">
-        <h5>Berklee College of Music (Massachusetts)</h5>
-        <!--<p>Renowned globally for contemporary music education and performance programs.</p>-->
-        <a href="https://www.berklee.edu/" target="_blank" class="btn-custom">Visit Website</a>
+      <div class="college-card" style="background-image:url('assets/images/colleges/berklee.jpg')">
+        <h5>Berklee College of Music</h5>
+        <a href="https://www.berklee.edu/" target="_blank" class="visit-btn">Visit Website</a>
       </div>
     </div>
 
     <div class="col-md-4">
-      <div class="career-card"
-        style="background-image:url('assets/images/colleges/juilliard.jpg');
-               background-size:cover;background-position:center;">
-        <h5>Juilliard School (New York)</h5>
-        <!--<p>Prestigious conservatory offering world-class degrees in music, drama, and dance.</p>-->
-        <a href="https://www.juilliard.edu/" target="_blank" class="btn-custom">Visit Website</a>
+      <div class="college-card" style="background-image:url('assets/images/colleges/juilliard.jpg')">
+        <h5>Juilliard School</h5>
+        <a href="https://www.juilliard.edu/" target="_blank" class="visit-btn">Visit Website</a>
       </div>
     </div>
 
     <div class="col-md-4">
-      <div class="career-card"
-        style="background-image:url('assets/images/colleges/rcm.jpg');
-               background-size:cover;background-position:center;">
-        <h5>Royal College of Music (England)</h5>
-        <!--<p>Offers world-class training for composers, conductors, and performers.</p>-->
-        <a href="https://www.rcm.ac.uk/" target="_blank" class="btn-custom">Visit Website</a>
+      <div class="college-card" style="background-image:url('assets/images/colleges/rcm.jpg')">
+        <h5>Royal College of Music</h5>
+        <a href="https://www.rcm.ac.uk/" target="_blank" class="visit-btn">Visit Website</a>
       </div>
     </div>
 
     <div class="col-md-4">
-      <div class="career-card"
-        style="background-image:url('assets/images/colleges/km.jpg');
-               background-size:cover;background-position:center;">
-        <h5>KM Music Conservatory (Tamil Nadu)</h5>
-        <!--<p>Founded by A.R. Rahman, provides education in music production and performance.</p>-->
-        <a href="https://kmmc.in/" target="_blank" class="btn-custom">Visit Website</a>
+      <div class="college-card" style="background-image:url('assets/images/colleges/km.jpg')">
+        <h5>KM Music Conservatory</h5>
+        <a href="https://kmmc.in/" target="_blank" class="visit-btn">Visit Website</a>
       </div>
     </div>
 
     <div class="col-md-4">
-      <div class="career-card"
-        style="background-image:url('assets/images/colleges/delhi.jpg');
-               background-size:cover;background-position:center;">
-        <h5>Delhi School of Music (New Delhi)</h5>
-        <!--<p>Offers Western classical music education with graded certification programs.</p>-->
-        <a href="https://delhischoolofmusic.net/" target="_blank" class="btn-custom">Visit Website</a>
+      <div class="college-card" style="background-image:url('assets/images/colleges/delhi-school-of-music.jpg')">
+        <h5>Delhi School of Music</h5>
+        <a href="https://delhischoolofmusic.net/" target="_blank" class="visit-btn">Visit Website</a>
       </div>
     </div>
 
     <div class="col-md-4">
-      <div class="career-card"
-        style="background-image:url('assets/images/colleges/swarnabhoomi.jpg');
-               background-size:cover;background-position:center;">
-        <h5>Swarnabhoomi Academy of Music (Tamil Nadu)</h5>
-        <!--<p>Premier music school offering degrees in performance, production, and composition.</p>-->
-        <a href="https://sam.org.in/" target="_blank" class="btn-custom">Visit Website</a>
+      <div class="college-card" style="background-image:url('assets/images/colleges/swarnabhoomi.jpg')">
+        <h5>Swarnabhoomi Academy of Music</h5>
+        <a href="https://sam.org.in/" target="_blank" class="visit-btn">Visit Website</a>
       </div>
     </div>
 
@@ -241,14 +314,15 @@
 <section class="container my-5 text-center">
   <h2 class="mb-4">Popular Careers in Music</h2>
 
-  <div class="d-flex justify-content-center align-items-center gap-4">
-    <span style="cursor:pointer;font-size:2rem" onclick="prevCareer()">&lt;</span>
+  <div class="career-slider-wrapper">
+    <span class="slider-btn" onclick="prevCareer()">&lt;</span>
 
-    <div class="career-card" id="careerCard" style="max-width:500px;"></div>
+    <div class="career-card" id="careerCard"></div>
 
-    <span style="cursor:pointer;font-size:2rem" onclick="nextCareer()">&gt;</span>
+    <span class="slider-btn" onclick="nextCareer()">&gt;</span>
   </div>
 </section>
+
 
 <!-- SKILLS BUTTON -->
 <section class="container my-5 text-center">
