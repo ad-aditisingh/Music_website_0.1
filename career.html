@@ -245,6 +245,23 @@
       color:var(--accent-primary);
     }
 
+    .skills-scroll {
+  max-height: 60vh;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+/* Optional: premium scrollbar */
+.skills-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.skills-scroll::-webkit-scrollbar-thumb {
+  background: var(--accent-secondary);
+  border-radius: 10px;
+}
+
+
     footer{
       background:var(--bg-card);
       padding:30px;
@@ -361,11 +378,15 @@
 
 <!-- SKILLS MODAL (FULL CONTENT PRESERVED) -->
 <div class="modal fade" id="skillsModal" tabindex="-1">
-  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content p-4" data-aos="zoom-in">
+ <div class="modal-dialog modal-lg modal-dialog-centered">
+  <div class="modal-content" data-aos="zoom-in">
+   <div class="modal-header border-0 px-4 pt-4">
+    <div class="modal fade" id="skillsModal" tabindex="-1">
 
-      <h3>Skills You'd Require</h3>
-
+      <h3 class="modal-title">Skills You'd Require</h3>
+      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+    </div>
+    <div class="modal-body skills-scroll px-4 pb-4">
       <h5>Musical Skills</h5>
       <p>
         If you want to grow in the world of music, start by strengthening your basics —
@@ -404,7 +425,7 @@
     </div>
   </div>
 </div>
-
+</div>
 <!-- CAREER SLIDER SCRIPT -->
 <script>
   const careers = [
