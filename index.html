@@ -188,6 +188,26 @@
       }
     }
 
+    /* Mobile hero centering fix */
+@media (max-width: 768px) {
+  .hero {
+    min-height: calc(100vh - 80px);
+    padding-top: 0;
+    align-items: center;
+  }
+
+  .hero-logo {
+    margin-top: -20px; /* subtle optical centering */
+  }
+}
+    @media (max-width: 768px) {
+  .hero-logo {
+    letter-spacing: 0.02em;
+  }
+}
+
+
+
   </style>
 </head>
 
