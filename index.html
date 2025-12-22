@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,7 +34,6 @@
       background: var(--bg-main);
       color: var(--text-main);
       margin: 0;
-      padding-top: 80px;
     }
 
     /* Navbar */
@@ -103,14 +103,14 @@
     }
 
     /* Hero */
-.hero {
-  min-height: calc(100vh - 80px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
+    .hero {
+      min-height: 100vh;
+      padding-top: 80px; /* space for navbar */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
 
     .hero-logo {
       display: flex;
@@ -275,7 +275,12 @@
 <nav class="navbar navbar-expand-lg navbar-dark">
   <div class="container">
     <a class="navbar-brand" href="index.html">UMAAG</a>
-    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
+    <button class="navbar-toggler"
+            type="button"
+            aria-label="Toggle navigation"
+            data-bs-toggle="collapse"
+            data-bs-target="#nav">
+
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="nav">
