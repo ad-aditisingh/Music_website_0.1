@@ -212,6 +212,23 @@
   text-overflow: ellipsis;
 }
 
+    .progress-container {
+  flex: 1;
+  height: 4px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 10px;
+  cursor: pointer;
+  position: relative;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: var(--accent-primary);
+  border-radius: 10px;
+}
+
+
 
     footer {
       padding: 30px 0;
@@ -286,10 +303,16 @@
 <audio id="audioPlayer" controls style="display:none;width:100%;margin-top:30px;"></audio>-->
 <div id="playerWrapper" class="audio-wrapper" style="display:none">
   <button id="playPauseBtn">▶</button>
+
+  <div class="progress-container" id="progressContainer">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
   <span id="nowPlaying">Playing...</span>
 </div>
 
 <audio id="audioPlayer"></audio>
+
   
 
 <footer>
@@ -378,6 +401,8 @@ function toggle(id) {
   const wrapper = document.getElementById("playerWrapper");
   const playBtn = document.getElementById("playPauseBtn");
   const label = document.getElementById("nowPlaying");
+  const progressBar = document.getElementById("progressBar");
+  const progressContainer = document.getElementById("progressContainer");
 
   audio.src = `assets/audio/${song.replaceAll(" ", "_").toLowerCase()}.mp3`;
   label.textContent = song;
@@ -385,6 +410,7 @@ function toggle(id) {
   audio.play();
   playBtn.textContent = "⏸";
 
+  // Play / Pause toggle
   playBtn.onclick = () => {
     if (audio.paused) {
       audio.play();
@@ -393,6 +419,21 @@ function toggle(id) {
       audio.pause();
       playBtn.textContent = "▶";
     }
+  };
+
+  // Update progress bar as song plays
+  audio.ontimeupdate = () => {
+    const progress = (audio.currentTime / audio.duration) * 100;
+    progressBar.style.width = `${progress}%`;
+  };
+
+  // Click to seek
+  progressContainer.onclick = (e) => {
+    const width = progressContainer.clientWidth;
+    const clickX = e.offsetX;
+    const duration = audio.duration;
+
+    audio.currentTime = (clickX / width) * duration;
   };
 }
 
