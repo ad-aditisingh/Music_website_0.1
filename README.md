@@ -1,6 +1,6 @@
 # Music Website – UMAAG
 
-A frontend music-focused website that explores music careers, creation, and discovery through a clean and interactive user interface.
+A frontend music focused website that explores music careers, creation, and discovery through a clean and interactive user interface.
 
 The project was built to practice frontend development fundamentals, responsive design, and UI animations while presenting music as a multidimensional creative field.
 
