@@ -334,29 +334,35 @@ Whether you’re exploring
 
   const letters = document.querySelectorAll(".hero-logo .char");
   const finalText = ["U","M","A","A","G"];
-  const randomChars =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZअआइईउऊकखगघचछजझटठडढतथदधनपफबभमयरलवशषसह";
+const randomChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-  letters.forEach((letter, index) => {
-    let iterations = 0;
+letters.forEach((letter, index) => {
+  let iterations = 0;
 
-    gsap.fromTo(
-      letter,
-      { opacity: 0 },
-      { opacity: 1, duration: 0.4, delay: index * 0.15 }
-    );
+  gsap.fromTo(
+    letter,
+    { opacity: 0, scale: 0.9 },
+    {
+      opacity: 1,
+      scale: 1,
+      duration: 0.5,
+      delay: index * 0.18,
+      ease: "power2.out"
+    }
+  );
 
-    const scramble = setInterval(() => {
-      if (iterations >= 12) {
-        letter.textContent = finalText[index];
-        clearInterval(scramble);
-      } else {
-        letter.textContent =
-          randomChars[Math.floor(Math.random() * randomChars.length)];
-        iterations++;
-      }
-    }, 60);
-  });
+  const scramble = setInterval(() => {
+    if (iterations >= 18) {
+      letter.textContent = finalText[index];
+      clearInterval(scramble);
+    } else {
+      letter.textContent =
+        randomChars[Math.floor(Math.random() * randomChars.length)];
+      iterations++;
+    }
+  }, 80);
+});
+
 
   gsap.from(".navbar", {
     y: -50,
