@@ -180,6 +180,39 @@
       color: #000;
     }
 
+
+    .audio-wrapper {
+  margin: 40px auto;
+  max-width: 500px;
+  background: var(--bg-card);
+  border-radius: 40px;
+  padding: 12px 22px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.audio-wrapper button {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: var(--accent-primary);
+  color: #000;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.audio-wrapper span {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
     footer {
       padding: 30px 0;
       text-align: center;
@@ -249,8 +282,15 @@
   </div>
 </section>
 
-<!-- AUDIO -->
-<audio id="audioPlayer" controls style="display:none;width:100%;margin-top:30px;"></audio>
+<!-- AUDIO 
+<audio id="audioPlayer" controls style="display:none;width:100%;margin-top:30px;"></audio>-->
+<div id="playerWrapper" class="audio-wrapper" style="display:none">
+  <button id="playPauseBtn">▶</button>
+  <span id="nowPlaying">Playing...</span>
+</div>
+
+<audio id="audioPlayer"></audio>
+  
 
 <footer>
   &copy; 2025 UMAAG
@@ -327,12 +367,35 @@ function toggle(id) {
   el.style.display = el.style.display === "block" ? "none" : "block";
 }
 
-function playSong(song) {
+/*function playSong(song) {
   const audio = document.getElementById("audioPlayer");
   audio.src = `assets/audio/${song.replaceAll(" ", "_").toLowerCase()}.mp3`;
   audio.style.display = "block";
   audio.play();
+}*/
+  function playSong(song) {
+  const audio = document.getElementById("audioPlayer");
+  const wrapper = document.getElementById("playerWrapper");
+  const playBtn = document.getElementById("playPauseBtn");
+  const label = document.getElementById("nowPlaying");
+
+  audio.src = `assets/audio/${song.replaceAll(" ", "_").toLowerCase()}.mp3`;
+  label.textContent = song;
+  wrapper.style.display = "flex";
+  audio.play();
+  playBtn.textContent = "⏸";
+
+  playBtn.onclick = () => {
+    if (audio.paused) {
+      audio.play();
+      playBtn.textContent = "⏸";
+    } else {
+      audio.pause();
+      playBtn.textContent = "▶";
+    }
+  };
 }
+
 
 AOS.init({
   once: true,
