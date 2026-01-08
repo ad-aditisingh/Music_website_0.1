@@ -5,13 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Music Creation | UmaaG</title>
 
-  <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <!-- AOS -->
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 
@@ -30,10 +27,10 @@
       background: var(--bg-main);
       color: var(--text-main);
       margin: 0;
-      padding-top: 80px; /* space for fixed navbar */
+      padding-top: 80px; 
     }
 
-    /* Ambient background */
+    
     .ambient-bg {
       position: fixed;
       inset: 0;
@@ -69,7 +66,7 @@
       100% { transform: translate(0,0); }
     }
 
-    /* Navbar */
+    
     .navbar {
       position: fixed;
       top: 0;
@@ -94,14 +91,14 @@
       color: var(--accent-primary) !important;
     }
 
-    /* ❗ FIXED: navbar removed from this rule */
+    
     section,
     footer {
       position: relative;
       z-index: 1;
     }
 
-    /* Page header */
+    
     .page-header {
       padding: 80px 0 140px;
       text-align: center;
@@ -120,8 +117,7 @@
       font-size: 1.1rem;
     }
 
-    /* Cards */
-/* Image-based cards (same style as Discovery) */
+
 .tool-card {
   position: relative;
   background-size: cover;
@@ -137,7 +133,7 @@
   transition: transform 0.3s ease;
 }
 
-/* Dark overlay for readability */
+
 .tool-card::before {
   content: "";
   position: absolute;
@@ -150,7 +146,7 @@
   z-index: 0;
 }
 
-/* Keep content above overlay */
+
 .tool-card * {
   position: relative;
   z-index: 1;
@@ -161,7 +157,7 @@
       transform: translateY(-6px);
     }
 
-/* Match Career page card text style */
+
 .tool-card h5 {
   color: #fff;
   font-weight: 600;
@@ -172,7 +168,7 @@
 
 
 .tool-card p {
-  color: #e5e7eb; /* softer white, same family as career page */
+  color: #e5e7eb; 
   font-size: 0.95rem;
   line-height: 1.6;
 }
@@ -211,14 +207,14 @@
 
 <body>
 
-<!-- Ambient Background -->
+
 <div class="ambient-bg">
   <span></span>
   <span></span>
   <span></span>
 </div>
 
-<!-- NAVBAR -->
+
 <nav class="navbar navbar-expand-lg navbar-dark">
   <div class="container">
     <a class="navbar-brand" href="index.html">UMAAG</a>
@@ -236,21 +232,20 @@
   </div>
 </nav>
 
-<!-- HEADER -->
+
 <section class="page-header">
   <h1 data-aos="fade-up">
   Create<br>
   the Sound That<br>
   Defines You
 </h1>
-
   <p data-aos="fade-up" data-aos-delay="150">
     Create, mix, and share your music.
   </p>
 </section>
 
 
-<!-- Free Online Music Creation -->
+
 <section class="container my-5">
   <h2 class="text-center mb-4" data-aos="fade-up">Free Online Music Creation</h2>
   <div class="row g-4">
@@ -258,30 +253,29 @@
       <div class="tool-card" data-aos="fade-up"
         style="background-image:url('assets/images/creation/soundtrap.jpg')">
         <h5>Soundtrap by Spotify</h5>
-        <!--<p>Record, mix, and collaborate online. Great for beginners and pros.</p>-->
         <a href="https://www.soundtrap.com/" target="_blank" class="btn-custom">Visit Website</a>
       </div>
     </div>
+    
     <div class="col-md-4">
       <div class="tool-card" data-aos="fade-up"
         style="background-image:url('assets/images/creation/soundation.jpg')">
         <h5>Soundation</h5>
-        <!--<p>Create tracks with loops, beats, and synths directly in your browser.</p>-->
         <a href="https://soundation.com/" target="_blank" class="btn-custom">Visit Website</a>
       </div>
     </div>
+    
     <div class="col-md-4">
       <div class="tool-card" data-aos="fade-up"
         style="background-image:url('assets/images/creation/audiotool.jpg')">
         <h5>Audiotool</h5>
-        <!--<p>Powerful online DAW with drum machines and synthesizers.</p>-->
         <a href="https://www.audiotool.com/" target="_blank" class="btn-custom">Visit Website</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- DJ & Beat Mixing -->
+
 <section class="container my-5">
   <h2 class="text-center mb-4" data-aos="fade-up">DJ & Beat Mixing</h2>
   <div class="row g-4">
@@ -289,22 +283,21 @@
       <div class="tool-card" data-aos="fade-up"
         style="background-image:url('assets/images/creation/youdj.jpg')">
         <h5>YouDJ</h5>
-        <!--<p>Mix and play tracks in your browser with effects and samples.</p>-->
         <a href="https://you.dj/" target="_blank" class="btn-custom">Visit Website</a>
       </div>
     </div>
+   
     <div class="col-md-6">
       <div class="tool-card" data-aos="fade-up"
         style="background-image:url('assets/images/creation/transitions.jpg')">
         <h5>Transitions DJ</h5>
-        <!--<p>Mix songs with tempo and beat matching tools.</p>-->
         <a href="https://dj.app/" target="_blank" class="btn-custom">Visit Website</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Professional DAWs -->
+
 <section class="container my-5">
   <h2 class="text-center mb-4" data-aos="fade-up">Professional Music Production Software</h2>
   <div class="row g-4">
@@ -312,15 +305,14 @@
       <div class="tool-card" data-aos="fade-up"
         style="background-image:url('assets/images/creation/flstudio.jpg')">
         <h5>FL Studio</h5>
-        <!--<p>Popular DAW for electronic, hip-hop, and pop music.</p>-->
         <a href="https://www.image-line.com/flstudio/" target="_blank" class="btn-custom">Visit Website</a>
       </div>
     </div>
+   
     <div class="col-md-4">
       <div class="tool-card" data-aos="fade-up"
         style="background-image:url('assets/images/creation/ableton.jpg')">
         <h5>Ableton Live</h5>
-        <!--<p>Ideal for live performances and advanced sound control.</p>-->
         <a href="https://www.ableton.com/" target="_blank" class="btn-custom">Visit Website</a>
       </div>
     </div>
@@ -328,7 +320,7 @@
       <div class="tool-card" data-aos="fade-up"
         style="background-image:url('assets/images/creation/logicpro.jpg')">
         <h5>Logic Pro</h5>
-        <!--<p>Apple’s professional-grade DAW for songwriting and production.</p>-->
+        
         <a href="https://www.apple.com/logic-pro/" target="_blank" class="btn-custom">Visit Website</a>
       </div>
     </div>
@@ -337,11 +329,6 @@
 
 <footer>
   &copy; 2025 UMAAG
-  <!--<p>
-    <a href="#">Instagram</a> |
-    <a href="#">Twitter</a> |
-    <a href="#">YouTube</a>
-  </p>-->
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
