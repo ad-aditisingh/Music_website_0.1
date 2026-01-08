@@ -4,14 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Music Discovery | UmaaG</title>
-
-  <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-
-  <!-- AOS -->
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 
@@ -32,7 +26,7 @@
       margin: 0;
     }
 
-    /* Ambient background */
+    
     .ambient-bg {
       position: fixed;
       inset: 0;
@@ -68,7 +62,7 @@
       100% { transform: translate(0,0); }
     }
 
-    /* Navbar */
+   
     .navbar {
       position: fixed;
       top: 0;
@@ -98,7 +92,7 @@
       z-index: 1;
     }
 
-    /* Page header */
+    
     .page-header {
       padding-top: 140px;
       padding-bottom: 80px;
@@ -118,7 +112,7 @@
       font-size: 1.1rem;
     }
 
-    /* Image cards */
+    
     .genre-card {
       position: relative;
       overflow: hidden;
@@ -240,14 +234,14 @@
 
 <body>
 
-<!-- Ambient Background -->
+
 <div class="ambient-bg">
   <span></span>
   <span></span>
   <span></span>
 </div>
 
-<!-- NAVBAR -->
+
 <nav class="navbar navbar-expand-lg navbar-dark">
   <div class="container">
     <a class="navbar-brand" href="index.html">UMAAG</a>
@@ -265,27 +259,25 @@
   </div>
 </nav>
 
-<!-- HEADER -->
+
 <section class="page-header">
   <h1 data-aos="fade-up">
   Discover<br>
   the Sound You<br>
   Resonate With
 </h1>
-
   <p data-aos="fade-up" data-aos-delay="150">
     Explore music by genres, moods, and artists.
   </p>
 </section>
 
 
-<!-- GENRES -->
 <section class="container my-5">
   <h2 class="text-center mb-4" data-aos="fade-up">Genres</h2>
   <div class="row g-4" id="genreContainer"></div>
 </section>
 
-<!-- MOODS & ARTISTS -->
+
 <section class="container my-5">
   <div class="row g-4">
     <div class="col-md-6">
@@ -299,8 +291,7 @@
   </div>
 </section>
 
-<!-- AUDIO 
-<audio id="audioPlayer" controls style="display:none;width:100%;margin-top:30px;"></audio>-->
+
 <div id="playerWrapper" class="audio-wrapper" style="display:none">
   <button id="playPauseBtn">▶</button>
 
@@ -319,10 +310,9 @@
   &copy; 2025 UMAAG
 </footer>
 
-<!-- BOOTSTRAP -->
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- DISCOVERY LOGIC -->
 <script>
 const genres = [
   { name: "Pop", songs: ["Shape of You","Blinding Lights","Levitating","Watermelon Sugar"] },
@@ -390,12 +380,6 @@ function toggle(id) {
   el.style.display = el.style.display === "block" ? "none" : "block";
 }
 
-/*function playSong(song) {
-  const audio = document.getElementById("audioPlayer");
-  audio.src = `assets/audio/${song.replaceAll(" ", "_").toLowerCase()}.mp3`;
-  audio.style.display = "block";
-  audio.play();
-}*/
   function playSong(song) {
   const audio = document.getElementById("audioPlayer");
   const wrapper = document.getElementById("playerWrapper");
@@ -410,7 +394,7 @@ function toggle(id) {
   audio.play();
   playBtn.textContent = "⏸";
 
-  // Play / Pause toggle
+
   playBtn.onclick = () => {
     if (audio.paused) {
       audio.play();
@@ -421,13 +405,12 @@ function toggle(id) {
     }
   };
 
-  // Update progress bar as song plays
+
   audio.ontimeupdate = () => {
     const progress = (audio.currentTime / audio.duration) * 100;
     progressBar.style.width = `${progress}%`;
   };
 
-  // Click to seek
   progressContainer.onclick = (e) => {
     const width = progressContainer.clientWidth;
     const clickX = e.offsetX;
